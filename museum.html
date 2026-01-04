@@ -13,6 +13,8 @@
   <script src="app.js" defer></script>
   <script src="player.js" defer></script>
   <script src="headlines.js" defer></script>
+  <script src="museum.js" defer></script>
+
 </head>
 
 <body class="airbrush-wall">
@@ -47,37 +49,14 @@
           <div class="tag">ARCHIVE: LIVE</div>
         </div>
 
-        <div class="museum-grid" style="display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:14px; padding-top:14px;">
-          <!-- LIMINAL COLLECTION CARD -->
-          <a class="museum-card" href="liminal.html" style="display:block; text-decoration:none;">
-            <div class="card" style="border-radius:16px; overflow:hidden;">
-              <div style="aspect-ratio: 16 / 10; background: rgba(0,0,0,.35); border-bottom:1px solid rgba(57,255,20,.16); overflow:hidden;">
-                <!-- Cover image = first uploaded -->
-                <img
-                  src="P1014352.JPG"
-                  alt="Liminal collection cover"
-                  style="width:100%; height:100%; object-fit:cover; display:block; filter: contrast(1.02) saturate(1.02);"
-                  loading="lazy"
-                />
-              </div>
-
-              <div style="padding:12px 12px 14px;">
-                <div style="font-size:26px; letter-spacing:.12em; text-transform:uppercase;">LIMINAL</div>
-                <div style="font-size:18px; letter-spacing:.10em; opacity:.78; margin-top:4px;">
-                  10 photos • click to enter
-                </div>
-              </div>
-            </div>
-          </a>
-
-          <!-- OPTIONAL placeholder for future collection -->
-          <div class="card" style="border-radius:16px; padding:18px; display:flex; align-items:center; justify-content:center; min-height: 180px; opacity:.75;">
-            <div style="text-align:center;">
-              <div style="font-size:24px; letter-spacing:.12em; text-transform:uppercase;">MORE SOON</div>
-              <div style="font-size:18px; letter-spacing:.10em; opacity:.8; margin-top:6px;">upload next batch anytime</div>
-            </div>
-          </div>
+        <div
+          id="museumGrid"
+          class="museum-grid"
+          style="display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:14px; padding-top:14px;"
+        >
+          <!-- Cards injected by museum.js -->
         </div>
+```
 
         <style>
           @media (max-width: 860px){
