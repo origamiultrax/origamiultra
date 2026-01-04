@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>MONA</title>
+  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="site.css">
+  <link rel="stylesheet" href="airbrush.css">
+  <script src="headlines.js" defer></script>
+
+</head>
+
+<body class="airbrush-wall">
+  <div class="globe left" aria-hidden="true"></div>
+  <div class="globe right" aria-hidden="true"></div>
+
+  <div class="crt-noise" aria-hidden="true"></div>
+  <div class="tracking-bar" aria-hidden="true"></div>
+
+  <div class="app">
+    <nav class="nav" aria-label="Left navigation">
+      <a class="tab" href="music.html">music</a>
+      <a class="tab" href="museum.html">museum</a>
+      <a class="tab" href="visuals.html">visuals</a>
+    </nav>
+
+    <main class="stage">
+      <section class="panel hero">
+        <div class="titleRow">
+          <h1>MONA</h1>
+          <div class="byline">by origami ultra</div>
+        </div>
+        <div class="status">NOWHERE / EVERYWHERE<span class="cursor"></span></div>
+      </section>
+
+      <section class="panel" aria-label="World Clock Wall">
+        <div class="clockwall-header">
+  <div>WORLD CLOCK WALL</div>
+
+  <div class="clockwall-actions">
+    <button
+      id="headlinesBtn"
+      class="clockwall-tab"
+      type="button"
+      aria-expanded="false"
+      aria-controls="mona-headlines-panel"
+    >
+      HEADLINES
+    </button>
+
+    <div class="tag">SYNC: LIVE</div>
+  </div>
+</div>
+
+        <div class="grid">
+          <div class="clock">
+            <div class="city"><span>New York</span><span class="tz">America/New_York</span></div>
+            <div class="time" id="t-ny">--:--:--</div>
+            <div class="date" id="d-ny">---</div>
+          </div>
+
+          <div class="clock">
+            <div class="city"><span>Socotra Island</span><span class="tz">Asia/Aden</span></div>
+            <div class="time" id="t-socotra">--:--:--</div>
+            <div class="date" id="d-socotra">---</div>
+          </div>
+
+          <div class="clock">
+            <div class="city"><span>Guam</span><span class="tz">Pacific/Guam</span></div>
+            <div class="time" id="t-guam">--:--:--</div>
+            <div class="date" id="d-guam">---</div>
+          </div>
+
+          <div class="clock">
+            <div class="city"><span>Queensland</span><span class="tz">Australia/Brisbane</span></div>
+            <div class="time" id="t-qld">--:--:--</div>
+            <div class="date" id="d-qld">---</div>
+          </div>
+
+          <div class="clock">
+            <div class="city"><span>Pyongyang</span><span class="tz">Asia/Pyongyang</span></div>
+            <div class="time" id="t-pyo">--:--:--</div>
+            <div class="date" id="d-pyo">---</div>
+          </div>
+
+          <div class="clock">
+            <div class="city"><span>Tristan da Cunha</span><span class="tz">Atlantic/St_Helena</span></div>
+            <div class="time" id="t-tristan">--:--:--</div>
+            <div class="date" id="d-tristan">---</div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <nav class="nav" aria-label="Right navigation">
+      <a class="tab" href="agenda.html">agenda</a>
+      <a class="tab" href="shop.html">shop</a>
+      <a class="tab" href="donations.html">donations</a>
+      <a class="tab" href="https://li.sten.to/ORIGAMIULTRA" target="_blank" rel="noopener noreferrer">links</a>
+    </nav>
+  </div>
+
+  <script>
+    const clocks = [
+      { timeId:"t-ny",      dateId:"d-ny",      tz:"America/New_York" },
+      { timeId:"t-socotra", dateId:"d-socotra", tz:"Asia/Aden" },
+      { timeId:"t-guam",    dateId:"d-guam",    tz:"Pacific/Guam" },
+      { timeId:"t-qld",     dateId:"d-qld",     tz:"Australia/Brisbane" },
+      { timeId:"t-pyo",     dateId:"d-pyo",     tz:"Asia/Pyongyang" },
+      { timeId:"t-tristan", dateId:"d-tristan", tz:"Atlantic/St_Helena" }
+    ];
+
+    function makeFormatter(timeZone){
+      return {
+        time: new Intl.DateTimeFormat(undefined, {
+          timeZone, hour:"2-digit", minute:"2-digit", second:"2-digit", hour12:false
+        }),
+        date: new Intl.DateTimeFormat(undefined, {
+          timeZone, weekday:"short", year:"numeric", month:"short", day:"2-digit"
+        })
+      };
+    }
+
+    const fmt = new Map(clocks.map(c => [c.tz, makeFormatter(c.tz)]));
+
+    function tick(){
+      const now = new Date();
+      for(const c of clocks){
+        const f = fmt.get(c.tz);
+        document.getElementById(c.timeId).textContent = f.time.format(now);
+        document.getElementById(c.dateId).textContent = f.date.format(now);
+      }
+    }
+
+    tick();
+    setInterval(tick, 1000);
+  </script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>MONA — Museum</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="site.css">
+  <link rel="stylesheet" href="airbrush.css">
+  <link rel="stylesheet" href="player.css">
+
+  <script src="player.js" defer></script>
+
+  <!-- FALLBACK so page is never blank even if CSS fails -->
+  <style>
+    body{
+      margin:0;
+      background:#000;
+      color:#39ff14;
+      font-family:"VT323", monospace;
+    }
+    a{ color:#39ff14; }
+    .fallback-wrap{ max-width: 1100px; margin: 0 auto; padding: 24px; }
+  </style>
+</head>
+
+<body class="airbrush-wall">
+  <div class="fallback-wrap">
+    <!-- If your site.css loads, your layout classes will take over. If not, this still shows. -->
+
+    <main class="app">
+      <!-- LEFT NAV (fallback friendly) -->
+      <nav class="nav" style="display:flex; gap:12px; flex-wrap:wrap; margin-bottom:16px;">
+        <a class="tab" href="music.html">MUSIC</a>
+        <a class="tab" href="museum.html">MUSEUM</a>
+        <a class="tab" href="visuals.html">VISUALS</a>
+      </nav>
+
+      <section class="stage">
+        <h1 style="letter-spacing:.18em; text-transform:uppercase; margin: 6px 0 14px;">MUSEUM</h1>
+        <div style="opacity:.8; letter-spacing:.10em; margin-bottom:18px;">COLLECTIONS</div>
+
+        <div style="display:grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap:14px;">
+          <!-- LIMINAL COLLECTION -->
+          <a href="liminal.html" style="text-decoration:none; border:1px solid rgba(57,255,20,.22); border-radius:16px; overflow:hidden; background:rgba(0,0,0,.35);">
+            <div style="aspect-ratio:16/10; overflow:hidden; border-bottom:1px solid rgba(57,255,20,.16);">
+              <img src="P1014352.JPG" alt="Liminal collection cover" style="width:100%; height:100%; object-fit:cover; display:block;">
+            </div>
+            <div style="padding:12px 12px 14px;">
+              <div style="font-size:28px; letter-spacing:.12em; text-transform:uppercase;">LIMINAL</div>
+              <div style="opacity:.78; letter-spacing:.10em; margin-top:4px; font-size:18px;">10 photos • click to enter</div>
+            </div>
+          </a>
+
+          <div style="border:1px solid rgba(57,255,20,.16); border-radius:16px; background:rgba(0,0,0,.25); display:flex; align-items:center; justify-content:center; min-height:220px; opacity:.75;">
+            <div style="text-align:center;">
+              <div style="font-size:26px; letter-spacing:.12em; text-transform:uppercase;">MORE SOON</div>
+              <div style="font-size:18px; letter-spacing:.10em; opacity:.85; margin-top:6px;">upload next batch anytime</div>
+            </div>
+          </div>
+        </div>
+
+        <style>
+          @media (max-width: 860px){
+            .fallback-wrap > main .stage > div { grid-template-columns: 1fr !important; }
+          }
+        </style>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
