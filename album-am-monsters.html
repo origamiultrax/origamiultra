@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>AM Monsters — MONA</title>
+  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="site.css">
+  <link rel="stylesheet" href="airbrush.css">
+</head>
+
+<body class="airbrush-wall">
+  <div class="globe left" aria-hidden="true"></div>
+  <div class="globe right" aria-hidden="true"></div>
+  <div class="crt-noise" aria-hidden="true"></div>
+  <div class="tracking-bar" aria-hidden="true"></div>
+
+  <div class="app">
+    <nav class="nav">
+      <a class="tab" href="index.html">home</a>
+      <a class="tab" href="museum.html">museum</a>
+      <a class="tab" href="visuals.html">visuals</a>
+    </nav>
+
+    <main class="stage">
+      <section class="panel hero music-hero">
+        <div class="titleRow">
+          <h1>AM Monsters</h1>
+          <div class="byline">by origami ultra</div>
+        </div>
+        <div class="status">KIDD COMIC BEAT TAPES<span class="cursor"></span></div>
+      </section>
+
+      <section class="panel album-panel">
+        <div class="album-head">
+          <img class="album-cover" src="Kidd Comic Beat Tapes/AM Monsters/cover.png" alt="AM Monsters cover" loading="lazy" />
+          <div class="album-meta">
+            <div class="album-meta__title">AM Monsters</div>
+            <div class="album-meta__sub">click a track to play · shuffle lives in the player</div>
+          </div>
+        </div>
+
+        <div class="tracklist" id="tracklist"></div>
+
+        <div class="player" id="player" aria-label="Album player">
+          <audio id="audio" preload="metadata" crossorigin="anonymous"></audio>
+
+          <div class="player-row player-row--top">
+            <button class="pbtn" id="prevBtn" title="Previous">⟪</button>
+            <button class="pbtn" id="playBtn" title="Play/Pause">▶</button>
+            <button class="pbtn" id="nextBtn" title="Next">⟫</button>
+            <button class="pbtn" id="shuffleBtn" aria-pressed="false" title="Shuffle">SHUF</button>
+
+            <div class="now">
+              <div class="now__track" id="nowTrack">—</div>
+              <div class="now__time"><span id="curTime">0:00</span> / <span id="durTime">0:00</span></div>
+            </div>
+
+            <div class="vol">
+              <label class="tiny">VOL</label>
+              <input id="volSlider" type="range" min="0" max="1" step="0.01" value="0.85" />
+            </div>
+          </div>
+
+          <div class="player-row player-row--mid">
+            <input id="seek" class="seek" type="range" min="0" max="1000" step="1" value="0" />
+          </div>
+
+          <details class="fx" open>
+            <summary class="fx__summary">FX / EQ</summary>
+
+            <div class="fx__grid">
+              <div class="fxbox">
+                <div class="fxbox__title">REVERB</div>
+                <div class="fxbox__row">
+                  <label class="tiny">MIX</label>
+                  <input id="reverbMix" type="range" min="0" max="1" step="0.01" value="0.0" />
+                </div>
+                <div class="fxbox__row">
+                  <label class="tiny">DECAY</label>
+                  <input id="reverbDecay" type="range" min="0.2" max="8" step="0.1" value="2.5" />
+                </div>
+              </div>
+
+              <div class="eq">
+                <div class="eq__title">EQUALIZER</div>
+                <div class="eq__bands" id="eqBands"></div>
+                <div class="eq__row">
+                  <button class="pbtn pbtn--small" id="eqReset">RESET</button>
+                </div>
+              </div>
+            </div>
+          </details>
+        </div>
+      </section>
+    </main>
+
+    <nav class="nav">
+      <a class="tab" href="music.html">music</a>
+      <a class="tab" href="agenda.html">agenda</a>
+      <a class="tab" href="shop.html">shop</a>
+      <a class="tab" href="donations.html">donations</a>
+      <a class="tab" href="https://li.sten.to/ORIGAMIULTRA" target="_blank" rel="noopener noreferrer">links</a>
+    </nav>
+  </div>
+
+  <script>
+    // embedded album data (static page)
+    window.__ALBUM__ = {"id": "AM Monsters", "title": "AM Monsters", "slug": "am-monsters", "cover": "Kidd Comic Beat Tapes/AM Monsters/cover.png", "page": "album-am-monsters.html", "tracks": [{"file": "Kidd Comic Beat Tapes/AM Monsters/Origami Ultra - AM Monsters - 04 Real Underground.mp3", "title": "Origami Ultra - AM Monsters - 04 Real Underground", "duration": null}, {"file": "Kidd Comic Beat Tapes/AM Monsters/Origami Ultra - AM Monsters - 06 Behind The Back.mp3", "title": "Origami Ultra - AM Monsters - 06 Behind The Back", "duration": null}, {"file": "Kidd Comic Beat Tapes/AM Monsters/Origami Ultra - AM Monsters - 01 AM Monsters.mp3", "title": "Origami Ultra - AM Monsters - 01 AM Monsters", "duration": null}, {"file": "Kidd Comic Beat Tapes/AM Monsters/Origami Ultra - AM Monsters - 07 The Orient.mp3", "title": "Origami Ultra - AM Monsters - 07 The Orient", "duration": null}, {"file": "Kidd Comic Beat Tapes/AM Monsters/Origami Ultra - AM Monsters - 08 Skeleton Cove.mp3", "title": "Origami Ultra - AM Monsters - 08 Skeleton Cove", "duration": null}, {"file": "Kidd Comic Beat Tapes/AM Monsters/Origami Ultra - AM Monsters - 05 Psycho Shocker.mp3", "title": "Origami Ultra - AM Monsters - 05 Psycho Shocker", "duration": null}, {"file": "Kidd Comic Beat Tapes/AM Monsters/Origami Ultra - AM Monsters - 03 Finally Free.mp3", "title": "Origami Ultra - AM Monsters - 03 Finally Free", "duration": null}, {"file": "Kidd Comic Beat Tapes/AM Monsters/Origami Ultra - AM Monsters - 02 I'm The Blueprint.mp3", "title": "Origami Ultra - AM Monsters - 02 I'm The Blueprint", "duration": null}]};
+  </script>
+  <script src="player.js"></script>
+</body>
+</html>
