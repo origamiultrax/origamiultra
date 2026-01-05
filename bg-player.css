@@ -1,0 +1,213 @@
+/* bg-player.css — MONA palette, no cover image */
+
+:root{
+  --bgp-green: #39ff14;
+  --bgp-panel: var(--panel-solid, rgba(2, 10, 2, 0.86));
+  --bgp-line:  var(--line, rgba(57,255,20,0.22));
+
+  --bgp-shadow-inset: rgba(0,0,0,.65);
+  --bgp-glow-1: rgba(57,255,20,.20);
+  --bgp-glow-2: rgba(57,255,20,.12);
+
+  --bgp-btn-border: rgba(57,255,20,0.35);
+  --bgp-btn-bg: rgba(0,0,0,0.35);
+
+  --player-w: 360px;
+  --font-ui: "VT323", monospace;
+}
+
+#bgPlayer{
+  position: fixed;
+  right: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: var(--player-w);
+  z-index: 9999;
+
+  font-family: var(--font-ui);
+  color: var(--bgp-green);
+
+  background: var(--bgp-panel);
+  border: 1px solid var(--bgp-line);
+  border-radius: 16px;
+  overflow: hidden;
+
+  box-shadow:
+    0 0 0 1px var(--bgp-shadow-inset) inset,
+    0 0 14px var(--bgp-glow-1),
+    0 0 28px var(--bgp-glow-2);
+}
+
+#bgPlayer *{ box-sizing: border-box; }
+
+#bgPlayer .titlebar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--bgp-line);
+  background: rgba(0,0,0,0.40);
+
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+#bgPlayer .titlebar .title{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  min-width: 0;
+  font-size: 20px;
+}
+
+#bgPlayer .titlebar .title strong{ font-weight: 700; }
+
+#bgPlayer .titlebar .title span{
+  opacity: .75;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  max-width: 220px;
+}
+
+#bgPlayer .winbtns{ display:flex; gap:8px; }
+
+#bgPlayer .winbtn{
+  width: 28px;
+  height: 22px;
+  line-height: 18px;
+  padding: 0;
+  cursor: pointer;
+
+  border: 1px solid var(--bgp-btn-border);
+  background: var(--bgp-btn-bg);
+  color: var(--bgp-green);
+  border-radius: 10px;
+
+  font-family: var(--font-ui);
+  font-size: 18px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+
+  box-shadow:
+    0 0 10px rgba(57,255,20,.18),
+    0 0 22px rgba(57,255,20,.10);
+}
+
+#bgPlayer .winbtn:hover{ filter: brightness(1.12); }
+#bgPlayer .winbtn:active{ transform: translateY(1px); }
+
+#bgPlayer .body{ padding: 12px; }
+
+#bgPlayer .row{ display:flex; gap:0; }
+
+#bgPlayer .meta{ flex: 1 1 auto; min-width:0; width:100%; }
+
+#bgPlayer .track{
+  font-size: 22px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+#bgPlayer .timebar{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-top: 8px;
+}
+
+#bgPlayer .clock{
+  font-size: 18px;
+  letter-spacing: .10em;
+  opacity: .8;
+
+  padding: 6px 10px;
+  border-radius: 12px;
+
+  border: 1px solid rgba(57,255,20,0.18);
+  background: rgba(0,0,0,0.22);
+}
+
+#bgPlayer input[type="range"]{
+  width: 100%;
+  accent-color: var(--bgp-green);
+}
+
+#bgPlayer .controls{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-top: 10px;
+}
+
+#bgPlayer .btn{
+  appearance: none;
+  border: 1px solid var(--bgp-btn-border);
+  background: var(--bgp-btn-bg);
+  border-radius: 12px;
+  padding: 8px 10px;
+  cursor: pointer;
+
+  font-family: var(--font-ui);
+  font-size: 20px;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: var(--bgp-green);
+
+  box-shadow:
+    0 0 10px rgba(57,255,20,.18),
+    0 0 22px rgba(57,255,20,.10);
+}
+
+#bgPlayer .btn:hover{ filter: brightness(1.12); }
+#bgPlayer .btn:active{ transform: translateY(1px); }
+
+#bgPlayer .btn.toggled{
+  border-color: rgba(57,255,20,0.70);
+  background: rgba(57,255,20,0.06);
+}
+
+#bgPlayer .vol{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-left:auto;
+  min-width: 170px;
+}
+
+#bgPlayer .vol .label{
+  font-size: 18px;
+  letter-spacing: .10em;
+  opacity: .85;
+  width: 26px;
+  text-align:center;
+}
+
+#bgPlayer .hint{
+  margin-top: 8px;
+  font-size: 16px;
+  letter-spacing: .10em;
+  text-transform: uppercase;
+  opacity: .75;
+}
+
+/* Collapsed mode */
+#bgPlayer.collapsed{ width: 250px; }
+#bgPlayer.collapsed .timebar,
+#bgPlayer.collapsed .hint{ display:none; }
+#bgPlayer.collapsed .body{ padding: 10px 12px; }
+#bgPlayer.collapsed .controls{ margin-top: 0; }
+
+/* Mobile */
+@media (max-width: 520px){
+  #bgPlayer{
+    right: 12px;
+    width: min(92vw, 360px);
+  }
+}
