@@ -51,7 +51,7 @@
   wrap.innerHTML = `
     <div class="titlebar">
       <div class="title">
-        <strong>Nightwave Plaza</strong>
+        <strong>Plaza Ultra</strong>
         <span id="bgpTitle"></span>
       </div>
       <div class="winbtns">
@@ -144,11 +144,17 @@
   }
 
   function loadTrack(i){
-    index = i;
-    audio.src = makeTrackUrl(PLAYLIST[index]);
-    updateTitles();
-    saveState({ index });
-  }
+  index = i;
+
+  // reset time so new track starts at 0
+  audio.currentTime = 0;
+
+  audio.src = makeTrackUrl(PLAYLIST[index]);
+  updateTitles();
+
+  // save index + reset time
+  saveState({ index, time: 0 });
+}
 
   function pickRandomIndex(){
     return Math.floor(Math.random() * PLAYLIST.length);
@@ -253,14 +259,19 @@
   });
 
   audio.addEventListener("loadedmetadata", () => {
-    const st = loadState();
-    const savedTime = (typeof st.time === "number") ? st.time : 0;
-    if (typeof st.index === "number" && st.index === index && savedTime > 0){
-      audio.currentTime = Math.min(savedTime, (audio.duration || savedTime));
-    }
-    elClock.textContent = `${fmtTime(audio.currentTime)} / ${fmtTime(audio.duration)}`;
-    setPlayLabel();
-  });
+  const st = loadState();
+  const savedTime = (typeof st.time === "number") ? st.time : 0;
+
+  if (typeof st.index === "number" && st.index === index && savedTime > 0) {
+    audio.currentTime = Math.min(savedTime, (audio.duration || savedTime));
+  } else {
+    // 🔥 IMPORTANT: new track should start at 0:00
+    audio.currentTime = 0;
+  }
+
+  elClock.textContent = `${fmtTime(audio.currentTime)} / ${fmtTime(audio.duration)}`;
+  setPlayLabel();
+});
 
   audio.addEventListener("ended", () => {
     wasPlaying = true;

@@ -129,3 +129,11 @@
     setOpen(false);
   });
 })();
+// ---- Background player collision fix ----
+document.getElementById("headlinesBtn")?.addEventListener("click", () => {
+  setTimeout(() => {
+    const panel = document.getElementById("mona-headlines-panel");
+    const isOpen = panel?.getAttribute("aria-hidden") === "false";
+    document.body.classList.toggle("headlines-open", isOpen);
+  }, 0);
+});

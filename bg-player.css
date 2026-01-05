@@ -211,3 +211,7 @@
     width: min(92vw, 360px);
   }
 }
+/* Move player when Headlines panel is open */
+body.headlines-open #bgPlayer{
+  transform: translateY(calc(-50% + 80px - 140px));
+}
