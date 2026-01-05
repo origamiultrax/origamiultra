@@ -81,9 +81,8 @@ def build_music_albums() -> list[dict]:
             # skip albums without cover.png
             continue
 
-        # track order: as encountered in directory listing (not sorted)
-        tracks = [p for p in album_dir.iterdir() if is_audio_file(p)]
-
+        tracks = sorted([p for p in album_dir.iterdir() if is_audio_file(p)], key=lambda p: p.name.lower())
+        
         # Build rel paths
         rel_cover = str(Path("Kidd Comic Beat Tapes") / album_dir.name / "cover.png")
         rel_tracks = []
