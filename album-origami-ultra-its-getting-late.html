@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>It's Getting Late — Origami Ultra</title>
+  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="site.css">
+  <link rel="stylesheet" href="airbrush.css">
+</head>
+
+<body class="airbrush-wall">
+  <div class="globe left" aria-hidden="true"></div>
+  <div class="globe right" aria-hidden="true"></div>
+  <div class="crt-noise" aria-hidden="true"></div>
+  <div class="tracking-bar" aria-hidden="true"></div>
+
+  <div class="app">
+    <nav class="nav">
+      <a class="tab" href="music.html">back</a>
+      <a class="tab" href="index.html">home</a>
+      <a class="tab" href="museum.html">museum</a>
+    </nav>
+
+    <main class="stage">
+      <section class="panel album-panel">
+        <div class="album-head">
+          <img class="album-cover" src="Origami Ultra/It's Getting Late/cover.png" alt="It's Getting Late cover" />
+          <div>
+            <div class="album-meta__title">IT'S GETTING LATE</div>
+            <div class="album-meta__sub">Origami Ultra • Streams on site</div>
+          </div>
+        </div>
+
+        <canvas id="viz" class="viz" aria-label="Spectrum visualizer"></canvas>
+
+        <div class="tracklist" id="tracklist" aria-label="Tracklist"></div>
+
+        <div class="player">
+          <div class="player-row player-row--top">
+            <button class="pbtn" id="prevBtn" type="button">prev</button>
+            <button class="pbtn" id="playBtn" type="button">▶</button>
+            <button class="pbtn" id="nextBtn" type="button">next</button>
+            <button class="pbtn pbtn--small" id="shuffleBtn" type="button" aria-pressed="false">shuffle</button>
+
+            <div class="now__track" id="nowTrack">—</div>
+
+            <div class="now__time"><span id="curTime">0:00</span> / <span id="durTime">0:00</span></div>
+          </div>
+
+          <div class="player-row">
+            <input class="seek" id="seek" type="range" min="0" max="1000" value="0" />
+          </div>
+
+          <div class="player-row">
+            <div class="vol">
+              <div class="tiny">volume</div>
+              <input id="volSlider" type="range" min="0" max="1" step="0.01" value="0.9" />
+            </div>
+          </div>
+
+          <details class="fx" open>
+            <summary class="fx__summary">FX / EQ</summary>
+
+            <div class="fx__grid">
+              <div class="eq">
+                <div class="eq__title">10-BAND EQ</div>
+                <div class="eq__bands" id="eqBands"></div>
+                <div class="eq__row">
+                  <button class="pbtn pbtn--small" id="eqReset" type="button">reset</button>
+                </div>
+              </div>
+
+              <div class="fxbox">
+                <div class="fxbox__title">REVERB (FAUX)</div>
+
+                <div class="fxbox__row">
+                  <div class="tiny">mix</div>
+                  <input id="reverbMix" type="range" min="0" max="1" step="0.01" value="0.15" />
+                </div>
+
+                <div class="fxbox__row">
+                  <div class="tiny">room</div>
+                  <input id="reverbRoom" type="range" min="0" max="1" step="0.01" value="0.55" />
+                </div>
+
+                <div class="fxbox__row">
+                  <div class="tiny">decay</div>
+                  <input id="reverbDecay" type="range" min="0.15" max="6" step="0.05" value="2.4" />
+                </div>
+              </div>
+            </div>
+          </details>
+
+          <audio id="audio" preload="metadata" crossorigin="anonymous"></audio>
+        </div>
+      </section>
+    </main>
+
+    <nav class="nav">
+      <a class="tab" href="agenda.html">agenda</a>
+      <a class="tab" href="shop.html">shop</a>
+      <a class="tab" href="donations.html">donations</a>
+      <a class="tab" href="https://li.sten.to/ORIGAMIULTRA" target="_blank" rel="noopener noreferrer">links</a>
+    </nav>
+  </div>
+
+  <script>
+    window.__ALBUM__ = {
+      title: "It's Getting Late",
+      artist: "Origami Ultra",
+      cover: "Origami Ultra/It's Getting Late/cover.png",
+      tracks: [
+        { file: "Origami Ultra/It's Getting Late/01 - AllOfThis4Nothing.mp3", title: "01 - AllOfThis4Nothing" },
+        { file: "Origami Ultra/It's Getting Late/02 - Desolate Plaza.mp3", title: "02 - Desolate Plaza" },
+        { file: "Origami Ultra/It's Getting Late/03 - WashEmOutTheWater.Wav.mp3", title: "03 - WashEmOutTheWater.Wav" },
+        { file: "Origami Ultra/It's Getting Late/04 - Channel Surfing!.mp3", title: "04 - Channel Surfing!" },
+        { file: "Origami Ultra/It's Getting Late/05 - Eros (feat. Finally Boys).mp3", title: "05 - Eros (feat. Finally Boys)" },
+        { file: "Origami Ultra/It's Getting Late/06 - Nightwave.mp3", title: "06 - Nightwave" },
+        { file: "Origami Ultra/It's Getting Late/07 - Off The Air (feat. Rippped).mp3", title: "07 - Off The Air (feat. Rippped)" },
+        { file: "Origami Ultra/It's Getting Late/08 - Out My Window (Adors & Clourve).mp3", title: "08 - Out My Window (Adors & Clourve)" },
+        { file: "Origami Ultra/It's Getting Late/09 - Fountains.mp3", title: "09 - Fountains" },
+        { file: "Origami Ultra/It's Getting Late/10 - Last Cut.mp3", title: "10 - Last Cut" }
+      ]
+    };
+  </script>
+
+  <script src="player_ultra.js"></script>
+</body>
+</html>

@@ -28,21 +28,33 @@
           <h1>music</h1>
           <div class="byline">by origami ultra</div>
         </div>
-        <!-- Removed "Kidd Comic Beat Tapes" from header line -->
         <div class="status">STREAMS ON SITE<span class="cursor"></span></div>
       </section>
 
+      <!-- NEW: Origami Ultra section ABOVE Kidd Comic -->
       <section class="panel">
         <div class="music-section">
-          
-            <div class="music-section-header">
-  <h2>
-    Kidd Comic
-    <span>Instrumental Projects</span>
-  </h2>
-</div>
+          <div class="music-section-header">
+            <h2>
+              Origami Ultra
+              <span>Albums</span>
+            </h2>
+          </div>
 
-          <!-- Album grid gets populated by music.js -->
+          <div class="music-grid" id="origamiGrid" aria-label="Origami Ultra Albums"></div>
+        </div>
+      </section>
+
+      <!-- Existing: Kidd Comic section -->
+      <section class="panel">
+        <div class="music-section">
+          <div class="music-section-header">
+            <h2>
+              Kidd Comic
+              <span>Instrumental Projects</span>
+            </h2>
+          </div>
+
           <div class="music-grid" id="musicGrid" aria-label="Albums"></div>
         </div>
       </section>
