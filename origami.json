@@ -1,61 +1,50 @@
 {
   "origami_albums": [
     {
-      "id": "It's Getting Late",
+      "id": "its-getting-late",
       "title": "It's Getting Late",
-      "slug": "origami-ultra-its-getting-late",
       "cover": "Origami Ultra/It's Getting Late/cover.png",
       "page": "album-origami-ultra-its-getting-late.html",
       "tracks": [
         {
           "file": "Origami Ultra/It's Getting Late/01 - AllOfThis4Nothing.mp3",
-          "title": "01 - AllOfThis4Nothing",
-          "duration": null
+          "title": "01 – All Of This 4 Nothing"
         },
         {
           "file": "Origami Ultra/It's Getting Late/02 - Desolate Plaza.mp3",
-          "title": "02 - Desolate Plaza",
-          "duration": null
+          "title": "02 – Desolate Plaza"
         },
         {
-          "file": "Origami Ultra/It's Getting Late/03 - WashEmOutTheWater.Wav.mp3",
-          "title": "03 - WashEmOutTheWater.Wav",
-          "duration": null
+          "file": "Origami Ultra/It's Getting Late/03 - WashEmOutTheWater.mp3",
+          "title": "03 – Wash Em Out The Water"
         },
         {
           "file": "Origami Ultra/It's Getting Late/04 - Channel Surfing!.mp3",
-          "title": "04 - Channel Surfing!",
-          "duration": null
+          "title": "04 – Channel Surfing!"
         },
         {
           "file": "Origami Ultra/It's Getting Late/05 - Eros (feat. Finally Boys).mp3",
-          "title": "05 - Eros (feat. Finally Boys)",
-          "duration": null
+          "title": "05 – Eros (feat. Finally Boys)"
         },
         {
           "file": "Origami Ultra/It's Getting Late/06 - Nightwave.mp3",
-          "title": "06 - Nightwave",
-          "duration": null
+          "title": "06 – Nightwave"
         },
         {
-          "file": "Origami Ultra/It's Getting Late/07 - Off The Air (feat. Rippped).mp3",
-          "title": "07 - Off The Air (feat. Rippped)",
-          "duration": null
+          "file": "Origami Ultra/It's Getting Late/07 - Off The Air (feat. Ripped).mp3",
+          "title": "07 – Off The Air (feat. Ripped)"
         },
         {
           "file": "Origami Ultra/It's Getting Late/08 - Out My Window (Adors & Clourve).mp3",
-          "title": "08 - Out My Window (Adors & Clourve)",
-          "duration": null
+          "title": "08 – Out My Window (Adors & Clourve)"
         },
         {
           "file": "Origami Ultra/It's Getting Late/09 - Fountains.mp3",
-          "title": "09 - Fountains",
-          "duration": null
+          "title": "09 – Fountains"
         },
         {
           "file": "Origami Ultra/It's Getting Late/10 - Last Cut.mp3",
-          "title": "10 - Last Cut",
-          "duration": null
+          "title": "10 – Last Cut"
         }
       ]
     }
