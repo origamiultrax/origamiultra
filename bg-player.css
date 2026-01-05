@@ -20,7 +20,7 @@
   position: fixed;
   right: 18px;
   top: 58%;
-  transform: translateY(-50%);
+  transform: translateY(calc(-50% + 80px));
   width: var(--player-w);
   z-index: 9999;
 
