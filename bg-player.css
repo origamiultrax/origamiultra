@@ -16,21 +16,19 @@
   --font-ui: "VT323", monospace;
 }
 
-#bgPlayer{
+#bgPlayer {
   position: fixed;
-  right: 18px;
-  top: 58%;
-  transform: translateY(calc(-50% + 80px));
+  left: 50%;
+  bottom: calc(16px + env(safe-area-inset-bottom));
+  transform: translateX(-50%);
   width: var(--player-w);
   z-index: 9999;
 
   font-family: var(--font-ui);
   color: var(--bgp-green);
-
   background: var(--bgp-panel);
   border: 1px solid var(--bgp-line);
   border-radius: 16px;
-  overflow: hidden;
 
   box-shadow:
     0 0 0 1px var(--bgp-shadow-inset) inset,
