@@ -212,12 +212,13 @@
 #bgPlayer.collapsed .body{ padding: 10px 12px; }
 #bgPlayer.collapsed .controls{ margin-top: 0; }
 
-/* Mobile */
 @media (max-width: 520px){
   #bgPlayer{
     left: 50%;
-    right: unset;
-    width: min(92vw, 360px);
+    right: auto;
+    bottom: calc(10px + env(safe-area-inset-bottom));
     transform: translateX(-50%);
+    width: min(94vw, 420px);
   }
 }
+

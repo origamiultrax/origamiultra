@@ -888,3 +888,69 @@ tbody tr:hover td{
 .spotify-embed-wrap iframe {
   box-shadow: 0 0 30px rgba(0,0,0,0.35);
 }
+/* =========================
+   MOBILE LAYOUT FIX (<= 520px)
+   ========================= */
+@media (max-width: 520px){
+
+  /* Make the whole page a clean vertical stack */
+  .app{
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 14px 14px calc(160px + env(safe-area-inset-bottom)); /* room for player */
+  }
+
+  /* Put left + right nav into a single grid */
+  .nav{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    width: 100%;
+    margin: 0;
+  }
+
+  /* Make nav buttons fit nicely */
+  .nav .tab{
+    width: 100%;
+    text-align: center;
+  }
+
+  /* Make your main stage full width */
+  .stage{
+    width: 100%;
+    margin: 0;
+  }
+
+  /* Panels should be full width on mobile */
+  .panel{
+    width: 100%;
+  }
+
+  /* Tighten the hero header a bit */
+  .panel.hero{
+    padding: 14px;
+  }
+  .panel.hero h1{
+    font-size: 56px; /* adjust if needed */
+    line-height: 1;
+  }
+
+  /* Clock grid becomes 1 column so it doesn’t squeeze */
+  .grid{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  /* Optional: reduce clock padding */
+  .clock{
+    padding: 12px;
+  }
+
+  /* Globes: keep them visible but less intrusive */
+  .globe.left, .globe.right{
+    transform: scale(0.8);
+    opacity: 0.9;
+  }
+}
