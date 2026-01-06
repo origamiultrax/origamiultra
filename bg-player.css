@@ -18,9 +18,9 @@
 
 #bgPlayer{
   position: fixed;
-  left: 50%;
+  left: 24px; /* distance from left edge */
   bottom: calc(16px + env(safe-area-inset-bottom));
-  transform: translateX(-50%);
+  transform: none; /* REMOVE translateX */
   width: var(--player-w);
   z-index: 9999;
 
