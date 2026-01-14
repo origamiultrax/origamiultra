@@ -984,3 +984,55 @@ tbody tr:hover td{
   height: auto;
   display: block;
 }
+/* ===========================
+   NBA — MOBILE TUNING
+   =========================== */
+@media (max-width: 520px){
+
+  .page-nba .nav{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    position: static;
+  }
+
+  .page-nba .nav .tab{
+    flex: 1 1 calc(50% - 10px);
+    max-width: calc(50% - 10px);
+    font-size: 20px;
+    padding: 10px 10px;
+    letter-spacing: 0.12em;
+  }
+
+  .page-nba .stage{
+    gap: 14px;
+  }
+
+  .page-nba .nba-panel{
+    padding: 12px;
+  }
+
+  .page-nba .nba-wrap{
+    width: 100%;
+    max-height: 58vh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 12px;
+    border-radius: 16px;
+  }
+
+  .page-nba .nba-image{
+    width: 100%;
+    height: auto;
+    border-radius: 14px;
+  }
+
+  .page-nba .panel.hero{
+    padding: 14px 12px 12px;
+  }
+
+  .page-nba .panel.hero h1{
+    font-size: 54px;
+  }
+}
