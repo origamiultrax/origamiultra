@@ -701,6 +701,116 @@
     .beta-btn-grid { grid-template-columns: 1fr; }
   }
 
+  /* SOCIALS panel — vivid platform-colored buttons */
+  .socials-panel {
+    width: 100%;
+    background: rgba(15, 5, 12, 0.78);
+    border: 3px outset #8a4a6a;
+    padding: 10px 12px 12px;
+    margin-top: 14px;
+    box-shadow:
+      0 0 0 1px rgba(255, 75, 216, 0.25),
+      0 0 14px rgba(255, 75, 216, 0.28),
+      inset 0 0 30px rgba(25, 0, 15, 0.7),
+      inset 2px 2px 0 rgba(255,255,255,0.12),
+      inset -2px -2px 0 rgba(0,0,0,0.5);
+    position: relative;
+  }
+  .socials-panel::before, .socials-panel::after {
+    content: ''; position: absolute;
+    width: 10px; height: 10px;
+    border: 2px solid var(--magenta); opacity: 0.5;
+  }
+  .socials-panel::before { top: -2px; left: -2px; border-right: none; border-bottom: none; }
+  .socials-panel::after  { bottom: -2px; right: -2px; border-left: none; border-top: none; }
+  .socials-panel-title {
+    font-family: 'Silkscreen', 'VT323', monospace;
+    font-weight: 700; font-size: 11px;
+    color: var(--magenta); letter-spacing: 2px;
+    margin-bottom: 9px;
+    text-shadow: 0 0 5px rgba(255, 75, 216, 0.7);
+    padding: 3px 6px;
+    display: flex; justify-content: space-between; align-items: center;
+    text-transform: uppercase;
+    background: linear-gradient(90deg, rgba(255, 75, 216, 0.22), transparent);
+    border-left: 3px solid var(--magenta);
+  }
+  .socials-panel-title::after {
+    content: '♥ LIVE';
+    font-size: 9px; color: var(--hot-pink);
+    letter-spacing: 1px;
+    animation: blink 1.5s infinite;
+  }
+  .socials-btn-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
+  }
+  .social-btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    gap: 6px;
+    padding: 8px 8px;
+    background: rgba(0, 0, 0, 0.85);
+    border: 3px outset #4a8a5a;
+    color: var(--green);
+    font-family: 'Silkscreen', 'VT323', monospace;
+    font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
+    cursor: pointer; text-transform: uppercase;
+    white-space: nowrap; text-decoration: none; text-align: center;
+    box-shadow: 0 0 10px rgba(57, 255, 20, 0.4), inset 0 0 6px rgba(57, 255, 20, 0.15);
+    transition: background 0.15s, color 0.15s, border-style 0.15s, box-shadow 0.15s;
+  }
+  .social-btn .social-ico { font-size: 13px; }
+  .social-btn:hover {
+    background: var(--green); color: #000; border-style: inset;
+    box-shadow: 0 0 18px rgba(57, 255, 20, 0.9);
+  }
+  /* Per-platform palette */
+  .social-btn--ig {
+    border-color: #c98aff; color: #ff4bd8;
+    box-shadow: 0 0 10px rgba(255,75,216,0.35), inset 0 0 6px rgba(255,75,216,0.15);
+    text-shadow: 0 0 4px rgba(255,75,216,0.5);
+  }
+  .social-btn--ig:hover {
+    background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+    color: #fff; border-color: #ff4bd8;
+    box-shadow: 0 0 20px rgba(255,75,216,0.9);
+    text-shadow: 0 0 3px #000;
+  }
+  .social-btn--spotify {
+    border-color: #1db954; color: #1db954;
+    box-shadow: 0 0 10px rgba(29,185,84,0.35), inset 0 0 6px rgba(29,185,84,0.15);
+    text-shadow: 0 0 4px rgba(29,185,84,0.5);
+  }
+  .social-btn--spotify:hover {
+    background: #1db954; color: #000; border-color: #1db954;
+    box-shadow: 0 0 20px rgba(29,185,84,0.9);
+    text-shadow: none;
+  }
+  .social-btn--apple {
+    border-color: #fc3c44; color: #ff6b73;
+    box-shadow: 0 0 10px rgba(252,60,68,0.35), inset 0 0 6px rgba(252,60,68,0.15);
+    text-shadow: 0 0 4px rgba(252,60,68,0.5);
+  }
+  .social-btn--apple:hover {
+    background: #fc3c44; color: #fff; border-color: #fc3c44;
+    box-shadow: 0 0 20px rgba(252,60,68,0.9);
+    text-shadow: 0 0 3px #000;
+  }
+  .social-btn--bandcamp {
+    border-color: #629aa9; color: #82c0d5;
+    box-shadow: 0 0 10px rgba(98,154,169,0.35), inset 0 0 6px rgba(98,154,169,0.15);
+    text-shadow: 0 0 4px rgba(98,154,169,0.5);
+  }
+  .social-btn--bandcamp:hover {
+    background: #629aa9; color: #fff; border-color: #629aa9;
+    box-shadow: 0 0 20px rgba(98,154,169,0.9);
+    text-shadow: 0 0 3px #000;
+  }
+  @media (max-width: 700px) {
+    .socials-btn-grid { grid-template-columns: 1fr; }
+  }
+
   /* Ticker */
   .ticker-belt {
     margin-top: 14px; width: 100%; overflow: hidden;
@@ -876,12 +986,9 @@
         <a href="music.html" class="orbit-btn">Music</a>
         <a href="museum.html" class="orbit-btn">Museum</a>
         <a href="#nba" class="orbit-btn">New Brown America</a>
-        <a href="#links" class="orbit-btn">Links</a>
-        <a href="#donate" class="orbit-btn">Donations</a>
         <a href="resume.html" class="orbit-btn">Resume</a>
         <a href="concepts.html" class="orbit-btn">Concepts</a>
         <a href="publications.html" class="orbit-btn">Publications</a>
-        <a href="#shows" class="orbit-btn">Shows</a>
         <a href="https://althindu.com/" class="orbit-btn" target="_blank" rel="noopener">Alt Hindu</a>
       </div>
 
@@ -897,6 +1004,25 @@
           <a href="https://origamiultrax.github.io/videodroid/" class="beta-btn" target="_blank" rel="noopener">Videodroid</a>
           <a href="https://origamiultrax.github.io/noisyimages/" class="beta-btn" target="_blank" rel="noopener">Noisy Images</a>
           <a href="https://origamiultrax.github.io/rainforestshowroom/#/home" class="beta-btn" target="_blank" rel="noopener">Rainforest Showroom</a>
+        </div>
+      </div>
+
+      <!-- SOCIALS -->
+      <div class="socials-panel">
+        <div class="socials-panel-title"><span><span class="spin">♥</span> FOLLOW / LISTEN</span></div>
+        <div class="socials-btn-grid">
+          <a href="https://www.instagram.com/origamixultra/" class="social-btn social-btn--ig" target="_blank" rel="noopener">
+            <span class="social-ico">◉</span> INSTAGRAM
+          </a>
+          <a href="https://open.spotify.com/artist/502DZZNFWb6yx9p3K7cdku" class="social-btn social-btn--spotify" target="_blank" rel="noopener">
+            <span class="social-ico">♪</span> SPOTIFY
+          </a>
+          <a href="https://music.apple.com/us/artist/origami-ultra/1679681146" class="social-btn social-btn--apple" target="_blank" rel="noopener">
+            <span class="social-ico">♫</span> APPLE MUSIC
+          </a>
+          <a href="https://internetjunklesinc.bandcamp.com/" class="social-btn social-btn--bandcamp" target="_blank" rel="noopener">
+            <span class="social-ico">▶</span> BANDCAMP
+          </a>
         </div>
       </div>
 
