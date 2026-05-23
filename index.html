@@ -1,146 +1,2497 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-  <title>MONA</title>
-  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="site.css">
-  <link rel="stylesheet" href="airbrush.css">
-  <script src="headlines.js" defer></script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>::: ORIGAMI ULTRA ::: Welcome! :::</title>
 
-  <link rel="stylesheet" href="bg-player.css">
-<script src="voss_tracks.js" defer></script>
-<script src="bg-player.js" defer></script>
+<link href="https://fonts.googleapis.com/css2?family=VT323&family=Share+Tech+Mono&family=Press+Start+2P&family=Silkscreen:wght@400;700&family=Micro+5&display=swap" rel="stylesheet">
 
+<style>
+  @font-face {
+    font-family: 'TS Block Bold';
+    src: url('TS_Block_Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+  }
 
+  :root {
+    --green: #39ff14;
+    --green-soft: rgba(57, 255, 20, 0.55);
+    --green-dim: rgba(57, 255, 20, 0.18);
+    --amber: #ffb347;
+    --magenta: #ff4bd8;
+    --cyan: #00e5ff;
+    --yellow: #ffd700;
+    --hot-pink: #ff1493;
+    /* Weather Channel palette */
+    --twc-blue: #4a5ba8;
+    --twc-purple: #5a3d8a;
+    --twc-orange: #d2691e;
+    --twc-dark: #2a2458;
+    --twc-text: #e8e4ff;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    min-height: 100vh;
+    background: #000;
+    color: #e9ffe4;
+    font-family: 'VT323', 'Share Tech Mono', monospace;
+    overflow-x: hidden;
+  }
+
+  @keyframes blink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
+  .blink { animation: blink 1s steps(1) infinite; }
+
+  /* VHS background */
+  .vhs-bg {
+    position: fixed;
+    inset: 0;
+    background-image: url('https://cinepacks.store/cdn/shop/products/vhs_600x.gif?v=1636656783');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.55;
+    z-index: 0;
+    filter: saturate(1.15) contrast(1.05);
+  }
+
+  /* Twinkling stars */
+  .stars {
+    position: fixed; inset: 0; z-index: 1; pointer-events: none;
+    background-image:
+      radial-gradient(1px 1px at 12% 34%, #fff, transparent),
+      radial-gradient(1px 1px at 34% 78%, #fff, transparent),
+      radial-gradient(1px 1px at 56% 22%, var(--cyan), transparent),
+      radial-gradient(1px 1px at 78% 56%, #fff, transparent),
+      radial-gradient(1px 1px at 91% 12%, var(--magenta), transparent),
+      radial-gradient(1px 1px at 8% 88%, #fff, transparent),
+      radial-gradient(1px 1px at 43% 11%, var(--yellow), transparent),
+      radial-gradient(1px 1px at 67% 91%, #fff, transparent),
+      radial-gradient(1px 1px at 23% 54%, var(--cyan), transparent),
+      radial-gradient(1px 1px at 84% 71%, #fff, transparent);
+    animation: twinkle 3s steps(2) infinite;
+  }
+  @keyframes twinkle { 0%, 100% { opacity: 0.85; } 50% { opacity: 0.3; } }
+
+  .scanlines {
+    position: fixed; inset: 0;
+    background: repeating-linear-gradient(to bottom, rgba(0,0,0,0.22) 0px, rgba(0,0,0,0.22) 1px, transparent 1px, transparent 3px);
+    z-index: 4; pointer-events: none; mix-blend-mode: multiply;
+  }
+
+  .vignette {
+    position: fixed; inset: 0;
+    background: radial-gradient(ellipse at center, transparent 25%, rgba(0,0,0,0.75) 100%);
+    z-index: 2; pointer-events: none;
+  }
+
+  /* PLANT VINE BORDERS — fixed to the viewport, running the full height on left & right */
+  .plant-border {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 170px;
+    z-index: 18;
+    pointer-events: none;
+    background-image: url('plant_vine.png');
+    background-repeat: repeat-y;
+    background-size: 170px auto;
+    filter: drop-shadow(0 0 12px rgba(57, 255, 20, 0.45)) drop-shadow(0 0 4px rgba(0, 0, 0, 0.6));
+    opacity: 0.92;
+  }
+  .plant-border.left { left: 0; background-position: left top; }
+  .plant-border.right { right: 0; transform: scaleX(-1); background-position: left top; }
+
+  /* TOP BANNER MARQUEE */
+  .top-banner {
+    position: relative; z-index: 6;
+    background: linear-gradient(90deg, #000, #001a00, #000);
+    border-bottom: 2px solid var(--green);
+    padding: 4px 0;
+    overflow: hidden;
+    box-shadow: 0 0 12px rgba(57,255,20,0.6);
+  }
+  .top-banner-marquee {
+    display: inline-block; white-space: nowrap;
+    animation: scrollLeft 45s linear infinite;
+    font-family: 'VT323', monospace;
+    font-size: 18px;
+    letter-spacing: 2px;
+  }
+  @keyframes scrollLeft {
+    from { transform: translateX(100vw); }
+    to { transform: translateX(-100%); }
+  }
+
+  /* CONTENT */
+  .frame {
+    position: relative;
+    z-index: 5;
+    min-height: 100vh;
+    padding: 40px 200px 60px 200px; /* horizontal padding leaves room for plant vines */
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* TITLE */
+  .title-wrap {
+    text-align: center;
+    margin: 4px 0 12px;
+    position: relative;
+    z-index: 10;
+  }
+  .title {
+    font-family: 'TS Block Bold', 'Press Start 2P', sans-serif;
+    font-size: clamp(40px, 6vw, 100px);
+    font-weight: bold;
+    letter-spacing: 6px;
+    color: #d4ffcf;
+    line-height: 1;
+    text-shadow:
+      0 0 3px #39ff14,
+      0 0 10px #39ff14,
+      0 0 22px rgba(57,255,20,0.85),
+      0 0 42px rgba(57,255,20,0.55),
+      4px 4px 0 rgba(0,0,0,0.8);
+    animation: titleFlicker 5s infinite;
+  }
+  @keyframes titleFlicker {
+    0%, 100% { opacity: 1; }
+    93% { opacity: 1; }
+    94% { opacity: 0.72; }
+    95% { opacity: 1; }
+    97% { opacity: 0.88; }
+  }
+  .title-bling {
+    display: flex; justify-content: center; align-items: center; gap: 10px;
+    margin-top: 6px;
+    font-family: 'VT323', monospace; font-size: 17px; color: var(--yellow);
+  }
+  .under-construction {
+    background: var(--yellow); color: #000;
+    padding: 2px 8px;
+    font-family: 'Silkscreen', monospace; font-size: 10px; font-weight: 700; letter-spacing: 1px;
+    border: 2px outset var(--yellow);
+    animation: constrFlash 0.8s steps(2) infinite;
+  }
+  @keyframes constrFlash {
+    0%, 100% { background: var(--yellow); color: #000; }
+    50% { background: #000; color: var(--yellow); }
+  }
+  .badges {
+    display: flex; flex-wrap: wrap; gap: 4px; justify-content: center; margin: 6px 0;
+  }
+  .badge {
+    padding: 2px 6px; font-family: 'Silkscreen', monospace; font-size: 8px; letter-spacing: 1px;
+    border: 1px solid #fff; background: #000; color: #fff;
+  }
+  .badge.ns { background: #003399; color: #ffff66; border-color: #ffff66; }
+  .badge.ie { background: #0066cc; color: #fff; }
+  .badge.hot { background: #ff0000; color: #ffff00; animation: blink 1.2s steps(1) infinite; }
+  .badge.frames { background: #00aa00; color: #fff; }
+
+  .rainbow-hr {
+    height: 3px; width: 100%;
+    background: linear-gradient(90deg, #ff0000, #ff8c00, #ffd700, #39ff14, #00e5ff, #6a5acd, #ff4bd8);
+    margin: 10px 0;
+    box-shadow: 0 0 8px rgba(255,255,255,0.5);
+    border: none;
+  }
+
+  /* LAYOUT */
+  .layout {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr 1fr;
+    gap: 18px;
+    flex: 1;
+    margin-top: 8px;
+  }
+
+  /* PANELS */
+  .panel {
+    background: rgba(5, 15, 8, 0.78);
+    border: 3px outset #4a8a5a;
+    padding: 10px;
+    box-shadow:
+      0 0 0 1px rgba(57, 255, 20, 0.25),
+      0 0 14px rgba(57, 255, 20, 0.25),
+      inset 0 0 40px rgba(0, 25, 5, 0.8),
+      inset 2px 2px 0 rgba(255,255,255,0.12),
+      inset -2px -2px 0 rgba(0,0,0,0.5);
+    position: relative;
+  }
+  .panel::before, .panel::after {
+    content: ''; position: absolute;
+    width: 10px; height: 10px;
+    border: 2px solid var(--green); opacity: 0.5;
+  }
+  .panel::before { top: -2px; left: -2px; border-right: none; border-bottom: none; }
+  .panel::after { bottom: -2px; right: -2px; border-left: none; border-top: none; }
+
+  .panel-title {
+    font-family: 'Silkscreen', 'VT323', monospace;
+    font-weight: 700; font-size: 12px; color: var(--green);
+    letter-spacing: 2px; margin-bottom: 9px;
+    text-shadow: 0 0 5px rgba(57, 255, 20, 0.7);
+    padding: 3px 6px;
+    display: flex; justify-content: space-between; align-items: center;
+    text-transform: uppercase;
+    background: linear-gradient(90deg, rgba(57,255,20,0.22), transparent);
+    border-left: 3px solid var(--green);
+  }
+  .panel-title::after {
+    content: '◉ LIVE'; font-size: 9px; color: #ff5555;
+    animation: blink 1.5s infinite; letter-spacing: 1px;
+  }
+  .panel-title.gita::after { content: '◈ DAILY'; color: var(--yellow); }
+
+  .left-col, .right-col { display: flex; flex-direction: column; gap: 14px; }
+
+  /* Clock */
+  .clock-list { display: flex; flex-direction: column; gap: 4px; }
+  .clock-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 4px 8px;
+    background: rgba(0, 0, 0, 0.55);
+    border-left: 2px solid var(--green);
+    border-right: 1px solid rgba(57,255,20,0.25);
+    font-size: 15px;
+  }
+  .clock-row:nth-child(even) { background: rgba(0, 20, 5, 0.55); }
+  .clock-city { color: #d0ffc9; letter-spacing: 1px; text-transform: uppercase; font-family: 'VT323', monospace; }
+  .clock-time {
+    color: var(--green); font-family: 'VT323', monospace; font-size: 17px;
+    text-shadow: 0 0 4px rgba(57,255,20,0.7);
+    font-weight: 700; letter-spacing: 1px;
+  }
+
+  /* ============================================================== */
+  /* WEATHER CHANNEL BOX — styled exactly like the reference image    */
+  /* ============================================================== */
+  .twc-box {
+    position: relative;
+    font-family: 'VT323', monospace;
+    background:
+      linear-gradient(180deg,
+        #6a4eaf 0%,
+        #5a3d8a 15%,
+        #4a5ba8 40%,
+        #3d4a90 70%,
+        #4a5ba8 85%,
+        #6a4eaf 100%);
+    border: 3px outset #8575c7;
+    box-shadow:
+      0 0 20px rgba(120, 80, 200, 0.6),
+      inset 0 0 30px rgba(0, 0, 0, 0.3);
+    padding: 0;
+    overflow: hidden;
+    /* VCR scanline effect over the whole box */
+  }
+  .twc-box::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: repeating-linear-gradient(
+      to bottom,
+      transparent 0px,
+      transparent 2px,
+      rgba(0,0,0,0.18) 2px,
+      rgba(0,0,0,0.18) 3px
+    );
+    pointer-events: none;
+    z-index: 5;
+  }
+  .twc-box::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(90deg, rgba(255,255,255,0.04) 0%, transparent 50%, rgba(255,255,255,0.04) 100%);
+    pointer-events: none;
+    z-index: 4;
+  }
+  /* Logo + header row */
+  .twc-header {
+    display: flex;
+    align-items: stretch;
+    position: relative;
+    z-index: 2;
+  }
+  .twc-logo {
+    background: #1a4780;
+    border: 2px outset #4a7bb0;
+    color: #fff;
+    font-family: 'Silkscreen', sans-serif;
+    font-size: 10px;
+    font-weight: 900;
+    padding: 4px 8px;
+    text-align: center;
+    line-height: 1.15;
+    letter-spacing: 1px;
+    width: 78px;
+    flex-shrink: 0;
+    text-shadow: 1px 1px 0 #000;
+    margin: 6px 0 0 6px;
+    box-shadow: 0 0 6px rgba(0,0,0,0.4);
+  }
+  .twc-title-bar {
+    flex: 1;
+    background: linear-gradient(180deg, #d66820 0%, #b8490e 50%, #8a2e08 100%);
+    color: #fff8e8;
+    font-family: 'TS Block Bold', 'Press Start 2P', sans-serif;
+    font-size: 20px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    padding: 8px 12px;
+    text-shadow:
+      2px 2px 0 #3a1000,
+      0 0 8px rgba(255, 140, 50, 0.5);
+    display: flex;
+    align-items: center;
+    margin-left: 4px;
+    border-left: 2px solid #8a2e08;
+    position: relative;
+  }
+  /* cutoff corner on the orange bar (matches reference image) */
+  .twc-title-bar::after {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 0; height: 0;
+    border-style: solid;
+    border-width: 0 20px 36px 0;
+    border-color: transparent var(--twc-purple) transparent transparent;
+  }
+
+  .twc-body {
+    padding: 8px 12px 10px;
+    color: var(--twc-text);
+    font-size: 17px;
+    letter-spacing: 1px;
+    position: relative;
+    z-index: 2;
+    text-shadow:
+      1px 1px 0 #000,
+      0 0 4px rgba(0,0,0,0.6);
+  }
+  .twc-col-headers {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 0.4fr;
+    padding: 0 0 4px;
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+    margin-bottom: 4px;
+    font-size: 15px;
+    color: #e0d8ff;
+  }
+  .twc-col-headers > *:nth-child(2),
+  .twc-col-headers > *:nth-child(3) { text-align: right; }
+  .twc-row {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 0.4fr;
+    padding: 2px 0;
+    font-size: 18px;
+    line-height: 1.2;
+  }
+  .twc-row > *:nth-child(2),
+  .twc-row > *:nth-child(3) { text-align: right; }
+  .twc-row .city { font-weight: 700; color: #fff; }
+  .twc-row .cond { color: #d8d0ff; }
+  .twc-row .temp { color: #fff; font-weight: 700; }
+
+  .twc-footer {
+    background: linear-gradient(180deg, rgba(42, 36, 88, 0.8), rgba(30, 22, 70, 0.95));
+    color: #fff;
+    padding: 6px 12px;
+    font-size: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+    text-shadow: 1px 1px 0 #000;
+    border-top: 2px inset #7a6ab8;
+  }
+  .twc-footer .twc-conditions { color: #fff8e8; font-weight: 700; letter-spacing: 2px; }
+  .twc-footer .twc-datetime { color: #a8c8ff; font-family: 'VT323', monospace; font-size: 17px; }
+
+  /* Loading/error state for TWC */
+  .twc-loading { text-align: center; padding: 40px 10px; font-size: 16px; color: #d8d0ff; }
+
+  /* ============================================================== */
+
+  /* Visitor counter */
+  .visitor-counter {
+    display: flex; align-items: center; gap: 5px;
+    background: rgba(0,0,0,0.8);
+    border: 3px inset #3a6a44;
+    padding: 5px 9px;
+    width: fit-content; margin: 0 auto;
+    box-shadow: 0 0 8px rgba(57,255,20,0.3);
+  }
+  .vc-label { font-family: 'VT323', monospace; color: #d0ffc9; font-size: 14px; letter-spacing: 1px; }
+  .vc-digit {
+    display: inline-block; width: 15px;
+    background: #000; border: 1px solid #222;
+    color: var(--green); font-family: 'VT323', monospace;
+    font-size: 18px; font-weight: 700; text-align: center;
+    padding: 1px 0;
+    box-shadow: inset 0 0 3px rgba(57,255,20,0.5);
+  }
+
+  .webring {
+    background: rgba(0,0,0,0.7);
+    border: 2px outset var(--magenta);
+    padding: 6px 8px;
+    font-family: 'VT323', monospace; font-size: 13px; text-align: center; color: #fff;
+  }
+  .webring-title {
+    color: var(--magenta); font-family: 'Silkscreen', monospace; font-size: 10px;
+    letter-spacing: 2px; margin-bottom: 4px;
+    text-shadow: 0 0 4px var(--magenta);
+  }
+  .webring a { color: var(--cyan); text-decoration: underline; margin: 0 4px; }
+  .webring a:visited { color: var(--magenta); }
+
+  /* CENTER / GLOBE */
+  .center-col {
+    display: flex; flex-direction: column; align-items: center; gap: 12px;
+  }
+  .globe-arena {
+    position: relative;
+    width: min(480px, 100%);
+    aspect-ratio: 1 / 1;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .orbit-ring {
+    position: absolute; inset: 0; border-radius: 50%;
+    border: 1px dashed rgba(57, 255, 20, 0.4);
+    animation: ringSpin 40s linear infinite;
+  }
+  .orbit-ring.inner {
+    inset: 55px;
+    border: 1px dotted rgba(57, 255, 20, 0.28);
+    animation: ringSpin 30s linear infinite reverse;
+  }
+  @keyframes ringSpin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+  .globe {
+    width: 52%; height: 52%;
+    background-image: url('https://giffiles.alphacoders.com/213/213089.gif');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    filter: drop-shadow(0 0 18px rgba(57, 255, 20, 0.55))
+            drop-shadow(0 0 36px rgba(57, 255, 20, 0.25));
+    z-index: 3;
+    position: relative;
+  }
+
+  .orbit-btn {
+    position: absolute; top: 50%; left: 50%;
+    padding: 5px 11px;
+    background: rgba(0, 0, 0, 0.85);
+    border: 3px outset #4a8a5a;
+    color: var(--green);
+    font-family: 'Silkscreen', 'VT323', monospace;
+    font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
+    cursor: pointer;
+    text-transform: uppercase;
+    white-space: nowrap;
+    box-shadow: 0 0 10px rgba(57, 255, 20, 0.5), inset 0 0 6px rgba(57, 255, 20, 0.18);
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s, border-style 0.2s;
+    text-decoration: none;
+    z-index: 4;
+  }
+  .orbit-btn:hover {
+    background: var(--green); color: #000; border-style: inset;
+    box-shadow: 0 0 22px rgba(57, 255, 20, 1), 0 0 45px rgba(57, 255, 20, 0.6);
+  }
+
+  /* Headlines */
+  .headline-list { display: flex; flex-direction: column; gap: 5px; max-height: 320px; overflow-y: auto; padding-right: 2px; }
+  .headline-list::-webkit-scrollbar { width: 8px; }
+  .headline-list::-webkit-scrollbar-track { background: rgba(0,0,0,0.5); }
+  .headline-list::-webkit-scrollbar-thumb { background: var(--green); box-shadow: inset 0 0 4px rgba(0,0,0,0.6); }
+  .headline-item {
+    display: block; padding: 6px 9px;
+    background: rgba(0,0,0,0.55);
+    border-left: 3px solid var(--green);
+    color: #e9ffe4; text-decoration: none;
+    font-size: 14px; line-height: 1.25;
+    transition: all 0.2s; cursor: pointer;
+    font-family: 'VT323', monospace;
+  }
+  .headline-item:nth-child(even) { background: rgba(0, 20, 5, 0.55); }
+  .headline-item:hover {
+    background: rgba(57, 255, 20, 0.16);
+    transform: translateX(3px);
+    box-shadow: 0 0 10px rgba(57, 255, 20, 0.4);
+    color: #fff;
+  }
+  .headline-src {
+    color: var(--green); font-size: 10px; letter-spacing: 2px;
+    display: block; margin-bottom: 2px;
+    opacity: 0.85;
+    font-family: 'Silkscreen', monospace;
+  }
+  .headline-loading {
+    text-align: center; font-family: 'VT323', monospace;
+    color: var(--amber); font-size: 14px; padding: 20px 10px;
+  }
+
+  .status-grid {
+    font-family: 'VT323', monospace; font-size: 15px; line-height: 1.5;
+    color: #d0ffc9;
+  }
+  .status-grid span { color: var(--green); }
+
+  /* Gita box */
+  .gita-box {
+    background: linear-gradient(180deg, rgba(40, 10, 40, 0.85), rgba(10, 20, 30, 0.9));
+    border: 3px outset #8a4a9a;
+    padding: 12px 14px;
+    font-family: 'VT323', monospace;
+    color: #fff2cc;
+    position: relative;
+    box-shadow: 0 0 14px rgba(200, 100, 220, 0.3), inset 0 0 30px rgba(0,0,0,0.4);
+  }
+  .gita-verse {
+    font-size: 17px;
+    line-height: 1.35;
+    font-style: italic;
+    color: #fff2cc;
+    text-shadow: 0 0 6px rgba(255, 220, 120, 0.3);
+    margin: 4px 0 8px;
+  }
+  .gita-ref {
+    font-family: 'Silkscreen', monospace;
+    font-size: 10px;
+    color: var(--yellow);
+    letter-spacing: 2px;
+    text-align: right;
+    text-shadow: 0 0 4px var(--yellow);
+  }
+  .gita-ornament {
+    text-align: center;
+    color: var(--yellow);
+    font-size: 14px;
+    opacity: 0.6;
+    letter-spacing: 6px;
+  }
+
+  .now-playing {
+    border: 3px outset #3a6a44;
+    background: linear-gradient(180deg, #0d2614, #040a06);
+    padding: 7px 10px;
+    font-family: 'VT323', monospace;
+    font-size: 14px; color: #c9f7c1;
+  }
+  .now-playing .np-label {
+    color: var(--magenta); font-size: 10px; letter-spacing: 3px;
+    font-family: 'Silkscreen', monospace;
+    text-shadow: 0 0 4px var(--magenta);
+  }
+  .equalizer {
+    display: inline-flex; gap: 2px; align-items: flex-end;
+    height: 14px; vertical-align: middle; margin-left: 8px;
+  }
+  .equalizer span {
+    display: block; width: 3px;
+    background: var(--green); box-shadow: 0 0 4px var(--green);
+    animation: eq 0.9s ease-in-out infinite;
+  }
+  .equalizer span:nth-child(1){ animation-delay: 0s; }
+  .equalizer span:nth-child(2){ animation-delay: 0.15s; }
+  .equalizer span:nth-child(3){ animation-delay: 0.3s; }
+  .equalizer span:nth-child(4){ animation-delay: 0.2s; }
+  .equalizer span:nth-child(5){ animation-delay: 0.4s; }
+  @keyframes eq { 0%, 100% { height: 4px; } 50% { height: 14px; } }
+
+  .guestbook-btn {
+    display: block; width: 100%;
+    padding: 8px;
+    background: linear-gradient(180deg, var(--magenta), #aa0099);
+    color: #fff;
+    border: 3px outset var(--magenta);
+    font-family: 'Silkscreen', monospace; font-size: 11px;
+    font-weight: 700; letter-spacing: 2px;
+    text-align: center; text-decoration: none;
+    text-shadow: 1px 1px 0 rgba(0,0,0,0.6);
+    cursor: pointer;
+    animation: hueShift 3s linear infinite;
+  }
+  .guestbook-btn:hover { border-style: inset; }
+  @keyframes hueShift {
+    0%, 100% { filter: hue-rotate(0deg) brightness(1); }
+    50% { filter: hue-rotate(40deg) brightness(1.2); }
+  }
+
+  /* BETA SOFTWARE PROJECTS panel (center column, under globe) */
+  .beta-panel {
+    width: 100%;
+    background: rgba(5, 15, 8, 0.78);
+    border: 3px outset #4a8a5a;
+    padding: 10px 12px 12px;
+    box-shadow:
+      0 0 0 1px rgba(57, 255, 20, 0.25),
+      0 0 14px rgba(57, 255, 20, 0.28),
+      inset 0 0 30px rgba(0, 25, 5, 0.7),
+      inset 2px 2px 0 rgba(255,255,255,0.12),
+      inset -2px -2px 0 rgba(0,0,0,0.5);
+    position: relative;
+  }
+  .beta-panel::before, .beta-panel::after {
+    content: ''; position: absolute;
+    width: 10px; height: 10px;
+    border: 2px solid var(--green); opacity: 0.5;
+  }
+  .beta-panel::before { top: -2px; left: -2px; border-right: none; border-bottom: none; }
+  .beta-panel::after  { bottom: -2px; right: -2px; border-left: none; border-top: none; }
+
+  .beta-panel-title {
+    font-family: 'Silkscreen', 'VT323', monospace;
+    font-weight: 700; font-size: 11px;
+    color: var(--green); letter-spacing: 2px;
+    margin-bottom: 9px;
+    text-shadow: 0 0 5px rgba(57, 255, 20, 0.7);
+    padding: 3px 6px;
+    display: flex; justify-content: space-between; align-items: center;
+    text-transform: uppercase;
+    background: linear-gradient(90deg, rgba(57,255,20,0.22), transparent);
+    border-left: 3px solid var(--green);
+  }
+  .beta-panel-title::after {
+    content: '⚠ BETA';
+    font-size: 9px; color: var(--amber);
+    letter-spacing: 1px;
+    animation: blink 1.5s infinite;
+  }
+
+  .beta-btn-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
+  }
+  .beta-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 7px 6px;
+    background: rgba(0, 0, 0, 0.85);
+    border: 3px outset #4a8a5a;
+    color: var(--green);
+    font-family: 'Silkscreen', 'VT323', monospace;
+    font-size: 10px;
+    font-weight: 700; letter-spacing: 1.5px;
+    cursor: pointer;
+    text-transform: uppercase;
+    white-space: nowrap;
+    text-decoration: none;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(57, 255, 20, 0.4), inset 0 0 6px rgba(57, 255, 20, 0.15);
+    transition: background 0.15s, color 0.15s, border-style 0.15s;
+  }
+  .beta-btn:hover {
+    background: var(--green);
+    color: #000;
+    border-style: inset;
+    box-shadow: 0 0 18px rgba(57, 255, 20, 0.9);
+  }
+  @media (max-width: 700px) {
+    .beta-btn-grid { grid-template-columns: 1fr; }
+  }
+
+  /* Ticker */
+  .ticker-belt {
+    margin-top: 14px; width: 100%; overflow: hidden;
+    background: rgba(0,0,0,0.9);
+    border-top: 3px solid var(--green); border-bottom: 3px solid var(--green);
+    padding: 6px 0; position: relative; z-index: 10;
+    box-shadow: 0 0 18px rgba(57, 255, 20, 0.4), inset 0 0 20px rgba(0, 30, 10, 0.6);
+  }
+  .ticker-belt::before, .ticker-belt::after {
+    content: 'NYSE'; position: absolute; top: 50%; transform: translateY(-50%);
+    background: var(--green); color: #000;
+    font-family: 'Silkscreen', monospace; font-weight: 900; font-size: 11px;
+    padding: 4px 9px; letter-spacing: 2px; z-index: 2;
+    box-shadow: 0 0 10px rgba(57, 255, 20, 0.8);
+    border: 2px outset var(--green);
+  }
+  .ticker-belt::before { left: 0; }
+  .ticker-belt::after { right: 0; content: 'LIVE'; }
+  .ticker-track {
+    display: flex; gap: 34px;
+    animation: tickerScroll 60s linear infinite;
+    white-space: nowrap;
+    padding-left: 60px;
+  }
+  @keyframes tickerScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  .ticker-item { display: inline-flex; align-items: center; gap: 6px; font-family: 'VT323', monospace; font-size: 16px; font-weight: 700; }
+  .ticker-symbol { color: #e9ffe4; letter-spacing: 1px; }
+  .ticker-price { color: var(--green); }
+  .ticker-up { color: #39ff14; }
+  .ticker-down { color: #ff5555; }
+
+  .footer-bar {
+    margin-top: 12px; display: flex; justify-content: space-between; align-items: center;
+    color: var(--green); font-size: 11px; letter-spacing: 3px; opacity: 0.9;
+    padding: 0 6px; font-family: 'Silkscreen', 'VT323', monospace;
+  }
+  .footer-bar .best-viewed { color: var(--amber); font-size: 10px; }
+
+  .spin { display: inline-block; animation: spin 2s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .sparkle {
+    position: fixed; pointer-events: none;
+    width: 8px; height: 8px; z-index: 999;
+    font-size: 12px; color: var(--yellow);
+    text-shadow: 0 0 4px var(--yellow);
+    font-family: monospace;
+  }
+
+  @media (max-width: 1200px) {
+    .frame { padding: 30px 150px 40px 150px; }
+    .plant-border { width: 130px; background-size: 130px auto; }
+    .layout { grid-template-columns: 1fr 1.3fr 1fr; }
+  }
+  @media (max-width: 950px) {
+    .frame { padding: 20px 100px 30px 100px; }
+    .plant-border { width: 90px; background-size: 90px auto; opacity: 0.75; }
+    .layout { grid-template-columns: 1fr; }
+    .globe-arena { width: min(420px, 100%); }
+  }
+  @media (max-width: 600px) {
+    .plant-border { display: none; }
+    .frame { padding: 20px 16px 30px; }
+    .title { font-size: 40px; letter-spacing: 3px; }
+    .globe-arena { width: 300px; }
+  }
+</style>
 </head>
+<body>
 
-<body class="airbrush-wall">
-  <a class="globe left" href="index.html" aria-label="Home"></a>
-<a class="globe right" href="index.html" aria-label="Home"></a>
+<div class="vhs-bg"></div>
+<div class="stars"></div>
+<div class="vignette"></div>
 
-  <div class="crt-noise" aria-hidden="true"></div>
-  <div class="tracking-bar" aria-hidden="true"></div>
+<!-- PLANT VINE BORDERS (left & right) -->
+<div class="plant-border left"></div>
+<div class="plant-border right"></div>
 
-  <div class="app">
-    <nav class="nav" aria-label="Left navigation">
-      <a class="tab" href="music.html">music</a>
-      <a class="tab" href="museum.html">museum</a>
-      <a class="tab" href="visuals.html">visuals</a>
-      <a class="tab" href="nba.html">nba</a>
-    </nav>
+<div class="scanlines"></div>
 
-    <main class="stage">
-      <section class="panel hero">
-        <div class="titleRow">
-          <h1>MONA</h1>
-          <div class="byline">by origami ultra</div>
-        </div>
-        <div class="status">NOWHERE / EVERYWHERE<span class="cursor"></span></div>
-      </section>
-
-      <section class="panel" aria-label="World Clock Wall">
-        <div class="clockwall-header">
-  <div>WORLD CLOCK WALL</div>
-
-  <div class="clockwall-actions">
-    <button
-      id="headlinesBtn"
-      class="clockwall-tab"
-      type="button"
-      aria-expanded="false"
-      aria-controls="mona-headlines-panel"
-    >
-      HEADLINES
-    </button>
-
-    <div class="tag">SYNC: LIVE</div>
+<div class="top-banner">
+  <div class="top-banner-marquee">
+    <span style="color:var(--yellow)">★</span>
+    <span style="color:var(--green)">WELCOME TO ORIGAMI ULTRA</span> <span style="color:var(--magenta)">✦</span>
+    <span style="color:var(--cyan)">SIGN THE GUESTBOOK!</span> <span style="color:var(--yellow)">✦</span>
+    <span style="color:var(--hot-pink)">BEST VIEWED WITH NETSCAPE NAVIGATOR 4.0 @ 1024×768</span> <span style="color:var(--green)">✦</span>
+    <span style="color:var(--amber)">THIS PAGE IS A WORK IN PROGRESS ~UNDER CONSTRUCTION~</span> <span style="color:var(--magenta)">✦</span>
+    <span style="color:var(--green)">PLEASE TURN OFF POPUP BLOCKER</span> <span style="color:var(--cyan)">✦</span>
+    <span style="color:var(--yellow)">★ WEBMASTER: LIVES ★</span> <span style="color:var(--hot-pink)">✦</span>
+    <span style="color:var(--green)">CONNECTED @ 56.6K</span> ✦
   </div>
 </div>
 
-        <div class="grid">
-          <div class="clock">
-            <div class="city"><span>New York</span><span class="tz">America/New_York</span></div>
-            <div class="time" id="t-ny">--:--:--</div>
-            <div class="date" id="d-ny">---</div>
-          </div>
+<div class="frame">
 
-          <div class="clock">
-            <div class="city"><span>Socotra Island</span><span class="tz">Asia/Aden</span></div>
-            <div class="time" id="t-socotra">--:--:--</div>
-            <div class="date" id="d-socotra">---</div>
-          </div>
-
-          <div class="clock">
-            <div class="city"><span>Guam</span><span class="tz">Pacific/Guam</span></div>
-            <div class="time" id="t-guam">--:--:--</div>
-            <div class="date" id="d-guam">---</div>
-          </div>
-
-          <div class="clock">
-            <div class="city"><span>Queensland</span><span class="tz">Australia/Brisbane</span></div>
-            <div class="time" id="t-qld">--:--:--</div>
-            <div class="date" id="d-qld">---</div>
-          </div>
-
-          <div class="clock">
-            <div class="city"><span>Pyongyang</span><span class="tz">Asia/Pyongyang</span></div>
-            <div class="time" id="t-pyo">--:--:--</div>
-            <div class="date" id="d-pyo">---</div>
-          </div>
-
-          <div class="clock">
-            <div class="city"><span>Tristan da Cunha</span><span class="tz">Atlantic/St_Helena</span></div>
-            <div class="time" id="t-tristan">--:--:--</div>
-            <div class="date" id="d-tristan">---</div>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <nav class="nav" aria-label="Right navigation">
-      <a class="tab" href="agenda.html">agenda</a>
-      <a class="tab" href="shop.html">shop</a>
-      <a class="tab" href="donations.html">donations</a>
-      <a class="tab" href="https://li.sten.to/ORIGAMIULTRA" target="_blank" rel="noopener noreferrer">links</a>
-    </nav>
+  <div class="title-wrap">
+    <div class="title">ORIGAMI ULTRA</div>
+    <div class="title-bling">
+      <span class="blink" style="color:var(--hot-pink)">✦ NEW! ✦</span>
+      <span class="under-construction">⚠ UNDER CONSTRUCTION ⚠</span>
+      <span class="blink" style="color:var(--cyan)">★ HOT! ★</span>
+    </div>
+    <div class="badges">
+      <span class="badge ns">NETSCAPE NOW!</span>
+      <span class="badge ie">IE 5.0 READY</span>
+      <span class="badge hot">HOT SITE!</span>
+      <span class="badge frames">FRAMES-ENABLED</span>
+      <span class="badge">HTML 4.01</span>
+      <span class="badge" style="color: var(--hot-pink); border-color: var(--hot-pink);">WEBRING MEMBER</span>
+    </div>
   </div>
 
-  <script>
-    const clocks = [
-      { timeId:"t-ny",      dateId:"d-ny",      tz:"America/New_York" },
-      { timeId:"t-socotra", dateId:"d-socotra", tz:"Asia/Aden" },
-      { timeId:"t-guam",    dateId:"d-guam",    tz:"Pacific/Guam" },
-      { timeId:"t-qld",     dateId:"d-qld",     tz:"Australia/Brisbane" },
-      { timeId:"t-pyo",     dateId:"d-pyo",     tz:"Asia/Pyongyang" },
-      { timeId:"t-tristan", dateId:"d-tristan", tz:"Atlantic/St_Helena" }
-    ];
+  <hr class="rainbow-hr">
 
-    function makeFormatter(timeZone){
-      return {
-        time: new Intl.DateTimeFormat(undefined, {
-          timeZone, hour:"2-digit", minute:"2-digit", second:"2-digit", hour12:false
-        }),
-        date: new Intl.DateTimeFormat(undefined, {
-          timeZone, weekday:"short", year:"numeric", month:"short", day:"2-digit"
-        })
-      };
+  <div class="layout">
+
+    <!-- LEFT -->
+    <div class="left-col">
+
+      <div class="panel">
+        <div class="panel-title"><span><span class="spin">◆</span> WORLD CLOCK</span></div>
+        <div class="clock-list">
+          <div class="clock-row"><span class="clock-city">New York</span><span class="clock-time" data-tz="America/New_York">--:--:--</span></div>
+          <div class="clock-row"><span class="clock-city">Socotra Is.</span><span class="clock-time" data-tz="Asia/Aden">--:--:--</span></div>
+          <div class="clock-row"><span class="clock-city">Guam</span><span class="clock-time" data-tz="Pacific/Guam">--:--:--</span></div>
+          <div class="clock-row"><span class="clock-city">Queensland</span><span class="clock-time" data-tz="Australia/Brisbane">--:--:--</span></div>
+          <div class="clock-row"><span class="clock-city">Pyongyang</span><span class="clock-time" data-tz="Asia/Pyongyang">--:--:--</span></div>
+          <div class="clock-row"><span class="clock-city">Tristan da Cunha</span><span class="clock-time" data-tz="Atlantic/St_Helena">--:--:--</span></div>
+        </div>
+      </div>
+
+      <!-- WEATHER CHANNEL BOX -->
+      <div class="twc-box">
+        <div class="twc-header">
+          <div class="twc-logo">THE<br>WEATHER<br>CHANNEL</div>
+          <div class="twc-title-bar">REGIONAL OBSERVATIONS</div>
+        </div>
+        <div class="twc-body" id="twcBody">
+          <div class="twc-loading">▓ LOADING LOCAL DATA ▓</div>
+        </div>
+        <div class="twc-footer">
+          <div class="twc-conditions" id="twcConditions">LOADING...</div>
+          <div class="twc-datetime" id="twcDateTime">--</div>
+        </div>
+      </div>
+
+      <div class="visitor-counter">
+        <span class="vc-label">VISITORS:</span>
+        <span class="vc-digit">0</span>
+        <span class="vc-digit">0</span>
+        <span class="vc-digit">3</span>
+        <span class="vc-digit">4</span>
+        <span class="vc-digit">7</span>
+        <span class="vc-digit" id="vc6">2</span>
+        <span class="vc-digit" id="vc7">9</span>
+      </div>
+
+      <div class="webring">
+        <div class="webring-title">◆ ULTRA WEBRING ◆</div>
+        <a href="#prev">« PREV</a>|<a href="#random">RANDOM</a>|<a href="#list">LIST</a>|<a href="#next">NEXT »</a>
+      </div>
+
+    </div>
+
+    <!-- CENTER -->
+    <div class="center-col">
+      <div class="globe-arena" id="globeArena">
+        <div class="orbit-ring"></div>
+        <div class="orbit-ring inner"></div>
+        <div class="globe"></div>
+
+        <!-- 10 orbit buttons -->
+        <a href="music.html" class="orbit-btn">Music</a>
+        <a href="museum.html" class="orbit-btn">Museum</a>
+        <a href="#nba" class="orbit-btn">New Brown America</a>
+        <a href="#links" class="orbit-btn">Links</a>
+        <a href="#donate" class="orbit-btn">Donations</a>
+        <a href="resume.html" class="orbit-btn">Resume</a>
+        <a href="concepts.html" class="orbit-btn">Concepts</a>
+        <a href="publications.html" class="orbit-btn">Publications</a>
+        <a href="#shows" class="orbit-btn">Shows</a>
+        <a href="https://althindu.com/" class="orbit-btn" target="_blank" rel="noopener">Alt Hindu</a>
+      </div>
+
+      <div style="color: var(--green); font-size: 14px; letter-spacing: 4px; opacity: 0.9; text-align:center; font-family: 'VT323', monospace;">
+        <span class="blink">◂◂</span> SELECT TRANSMISSION CHANNEL <span class="blink">▸▸</span>
+      </div>
+
+      <!-- BETA SOFTWARE PROJECTS -->
+      <div class="beta-panel">
+        <div class="beta-panel-title"><span><span class="spin">◆</span> BETA SOFTWARE PROJECTS</span></div>
+        <div class="beta-btn-grid">
+          <a href="https://origamiultrax.github.io/weirdsciencefiction/" class="beta-btn" target="_blank" rel="noopener">Weird Sci Fi</a>
+          <a href="https://origamiultrax.github.io/videodroid/" class="beta-btn" target="_blank" rel="noopener">Videodroid</a>
+          <a href="https://origamiultrax.github.io/noisyimages/" class="beta-btn" target="_blank" rel="noopener">Noisy Images</a>
+          <a href="https://origamiultrax.github.io/rainforestshowroom/#/home" class="beta-btn" target="_blank" rel="noopener">Rainforest Showroom</a>
+        </div>
+      </div>
+
+      <a href="#guestbook" class="guestbook-btn">✎ SIGN THE GUESTBOOK ✎</a>
+    </div>
+
+    <!-- RIGHT -->
+    <div class="right-col">
+
+      <div class="panel">
+        <div class="panel-title"><span><span class="spin">◆</span> HEADLINES</span></div>
+        <div class="headline-list" id="headlineList">
+          <div class="headline-loading">▓ LOADING FEEDS ▓</div>
+        </div>
+      </div>
+
+      <!-- BHAGAVAD GITA DAILY VERSE -->
+      <div class="gita-box">
+        <div class="panel-title gita" style="background: linear-gradient(90deg, rgba(255,215,0,0.22), transparent); border-left-color: var(--yellow); color: var(--yellow); text-shadow: 0 0 5px rgba(255,215,0,0.7);"><span>◈ BHAGAVAD GITA</span></div>
+        <div class="gita-ornament">✦ ॐ ✦</div>
+        <div class="gita-verse" id="gitaVerse">Loading today's verse...</div>
+        <div class="gita-ref" id="gitaRef">—</div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-title"><span>▣ STATUS</span></div>
+        <div class="status-grid">
+          SIGNAL: <span>STRONG</span> <span class="blink" style="color:#ff5555">●</span><br>
+          UPLINK: <span>ACTIVE · 99.7%</span><br>
+          ROUTE: <span>ENCRYPTED</span><br>
+          NODES: <span id="nodeCount">0000</span><br>
+          FREQ: <span>108.4 MHz</span>
+        </div>
+      </div>
+
+      <div class="now-playing" id="ouPlayerFull">
+        <div class="np-label">♫ NOW PLAYING</div>
+        <div class="np-track">
+          <span class="np-title" id="npTitle">—</span>
+          <span class="equalizer" id="npEq"><span></span><span></span><span></span><span></span><span></span></span>
+        </div>
+        <div class="np-progress" id="npProgress">
+          <div class="np-progress-fill" id="npProgressFill"></div>
+        </div>
+        <div class="np-time">
+          <span id="npCurTime">0:00</span>
+          <span id="npDuration">0:00</span>
+        </div>
+        <div class="np-controls">
+          <button class="np-btn" id="npPrev" title="Previous">⏮</button>
+          <button class="np-btn np-play" id="npPlay" title="Play/Pause">▶</button>
+          <button class="np-btn" id="npNext" title="Next">⏭</button>
+          <button class="np-btn np-mute" id="npMute" title="Mute">♪</button>
+        </div>
+        <div class="np-count" id="npCount">— / —</div>
+      </div>
+
+    </div>
+  </div>
+
+  <hr class="rainbow-hr">
+
+  <div class="ticker-belt">
+    <div class="ticker-track" id="tickerTrack"></div>
+  </div>
+
+  <div class="footer-bar">
+    <span>◉ ORIGAMI ULTRA v.2.2</span>
+    <span class="best-viewed">★ BEST VIEWED AT 1024×768 ★</span>
+    <span>© EST. <span id="yr"></span></span>
+  </div>
+
+  <div style="text-align:center; margin-top:10px; font-family:'VT323',monospace; color:var(--amber); font-size:13px; letter-spacing:1px;">
+    Last updated: <span id="lastUpdated"></span> · HTML hand-coded in Notepad.exe
+  </div>
+
+</div>
+
+<script>
+/* ============================================================
+   ORBITING BUTTONS — now supports 11 buttons spaced evenly
+   ============================================================ */
+const arena = document.getElementById('globeArena');
+const buttons = Array.from(document.querySelectorAll('.orbit-btn'));
+
+// Assign evenly spaced angles to each button based on order
+buttons.forEach((btn, i) => {
+  btn.dataset.angle = (i * (360 / buttons.length));
+});
+
+function placeButton(btn, angle) {
+  const radius = arena.offsetWidth / 2 - 46;
+  const rad = (angle - 90) * Math.PI / 180;
+  const x = Math.cos(rad) * radius;
+  const y = Math.sin(rad) * radius;
+  btn.style.transform = `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`;
+}
+buttons.forEach(btn => placeButton(btn, parseFloat(btn.dataset.angle)));
+window.addEventListener('resize', () => {
+  buttons.forEach(btn => placeButton(btn, parseFloat(btn.dataset.angle)));
+});
+
+let orbitOffset = 0;
+function orbitTick() {
+  orbitOffset += 0.06;
+  buttons.forEach(btn => {
+    if (!btn.matches(':hover')) {
+      placeButton(btn, parseFloat(btn.dataset.angle) + orbitOffset);
     }
+  });
+  requestAnimationFrame(orbitTick);
+}
+requestAnimationFrame(orbitTick);
 
-    const fmt = new Map(clocks.map(c => [c.tz, makeFormatter(c.tz)]));
+/* ============================================================
+   WORLD CLOCK
+   ============================================================ */
+function updateClocks() {
+  document.querySelectorAll('[data-tz]').forEach(el => {
+    const tz = el.dataset.tz;
+    try {
+      el.textContent = new Date().toLocaleTimeString('en-GB', {
+        timeZone: tz, hour12: false,
+        hour: '2-digit', minute: '2-digit', second: '2-digit'
+      });
+    } catch(e) { el.textContent = '--:--:--'; }
+  });
+}
+updateClocks();
+setInterval(updateClocks, 1000);
 
-    function tick(){
-      const now = new Date();
-      for(const c of clocks){
-        const f = fmt.get(c.tz);
-        document.getElementById(c.timeId).textContent = f.time.format(now);
-        document.getElementById(c.dateId).textContent = f.date.format(now);
+/* ============================================================
+   STOCK TICKER
+   ============================================================ */
+const stocks = [
+  { sym: 'AAPL', base: 229.40 }, { sym: 'MSFT', base: 418.90 },
+  { sym: 'GOOGL', base: 178.30 }, { sym: 'AMZN', base: 215.60 },
+  { sym: 'TSLA', base: 342.10 }, { sym: 'NVDA', base: 138.70 },
+  { sym: 'META', base: 585.20 }, { sym: 'JPM', base: 245.80 },
+  { sym: 'WMT', base: 94.10 }, { sym: 'DIS', base: 112.40 },
+  { sym: 'NFLX', base: 822.50 }, { sym: 'BA', base: 176.30 },
+  { sym: 'KO', base: 68.20 }, { sym: 'XOM', base: 118.70 },
+  { sym: 'V', base: 312.40 }, { sym: 'PFE', base: 27.90 },
+  { sym: 'GS', base: 582.10 }, { sym: 'GE', base: 191.50 },
+  { sym: 'F', base: 10.82 }, { sym: 'T', base: 23.15 }
+];
+function buildTicker() {
+  const track = document.getElementById('tickerTrack');
+  let html = '';
+  for (let pass = 0; pass < 2; pass++) {
+    stocks.forEach(s => {
+      const delta = (Math.random() - 0.5) * 4;
+      const pct = (delta / s.base * 100).toFixed(2);
+      const price = (s.base + delta).toFixed(2);
+      const up = delta >= 0;
+      html += `<span class="ticker-item">
+        <span class="ticker-symbol">${s.sym}</span>
+        <span class="ticker-price">$${price}</span>
+        <span class="${up ? 'ticker-up' : 'ticker-down'}">${up ? '▲' : '▼'} ${Math.abs(pct)}%</span>
+      </span>`;
+    });
+  }
+  track.innerHTML = html;
+}
+buildTicker();
+setInterval(buildTicker, 8000);
+
+/* Node counter & visitor counter */
+const nodeEl = document.getElementById('nodeCount');
+setInterval(() => {
+  nodeEl.textContent = String(Math.floor(1200 + Math.random() * 300)).padStart(4, '0');
+}, 1500);
+setInterval(() => {
+  const last = document.getElementById('vc7');
+  last.textContent = (parseInt(last.textContent) + 1) % 10;
+  if (last.textContent === '0') {
+    const sixth = document.getElementById('vc6');
+    sixth.textContent = (parseInt(sixth.textContent) + 1) % 10;
+  }
+}, 3500);
+
+document.getElementById('yr').textContent = new Date().getFullYear();
+document.getElementById('lastUpdated').textContent =
+  new Date().toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' }).toUpperCase();
+
+/* ============================================================
+   CURSOR SPARKLES
+   ============================================================ */
+const sparkleChars = ['✦','★','✧','✶','·'];
+const sparkleColors = ['#ffd700','#ff4bd8','#00e5ff','#39ff14','#fff'];
+let sparkleCooldown = 0;
+document.addEventListener('mousemove', (e) => {
+  if (sparkleCooldown++ % 4 !== 0) return;
+  const s = document.createElement('span');
+  s.className = 'sparkle';
+  s.textContent = sparkleChars[Math.floor(Math.random()*sparkleChars.length)];
+  s.style.color = sparkleColors[Math.floor(Math.random()*sparkleColors.length)];
+  s.style.left = (e.clientX + (Math.random()*10 - 5)) + 'px';
+  s.style.top = (e.clientY + (Math.random()*10 - 5)) + 'px';
+  document.body.appendChild(s);
+  const start = performance.now();
+  const startY = e.clientY;
+  function anim(t) {
+    const el = t - start;
+    if (el > 800) { s.remove(); return; }
+    s.style.opacity = 1 - el/800;
+    s.style.top = (startY + el * 0.03) + 'px';
+    requestAnimationFrame(anim);
+  }
+  requestAnimationFrame(anim);
+});
+
+/* ============================================================
+   HEADLINES — live RSS from NYT, Al Jazeera, BBC via CORS proxy
+   ============================================================ */
+const FEEDS = [
+  { src: 'NYT · WORLD', url: 'https://rss.nytimes.com/services/xml/rss/nyt/World.xml', fallbackLink: 'https://www.nytimes.com/section/world' },
+  { src: 'AL JAZEERA', url: 'https://www.aljazeera.com/xml/rss/all.xml', fallbackLink: 'https://www.aljazeera.com/news/' },
+  { src: 'BBC · WORLD', url: 'https://feeds.bbci.co.uk/news/world/rss.xml', fallbackLink: 'https://www.bbc.com/news/world' }
+];
+const CORS_PROXIES = [
+  'https://api.allorigins.win/raw?url=',
+  'https://corsproxy.io/?url=',
+  'https://api.codetabs.com/v1/proxy?quest='
+];
+
+async function fetchWithFallback(url) {
+  for (const proxy of CORS_PROXIES) {
+    try {
+      const resp = await fetch(proxy + encodeURIComponent(url), { cache: 'no-cache' });
+      if (resp.ok) {
+        const text = await resp.text();
+        if (text && text.length > 100) return text;
+      }
+    } catch (e) { /* try next */ }
+  }
+  return null;
+}
+
+function parseRSS(xmlText, sourceName) {
+  try {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(xmlText, 'text/xml');
+    const items = Array.from(doc.querySelectorAll('item')).slice(0, 3);
+    return items.map(item => ({
+      src: sourceName,
+      title: (item.querySelector('title')?.textContent || '').trim(),
+      link: (item.querySelector('link')?.textContent || '').trim(),
+      date: (item.querySelector('pubDate')?.textContent || '').trim()
+    })).filter(h => h.title && h.link);
+  } catch (e) { return []; }
+}
+
+async function loadHeadlines() {
+  const list = document.getElementById('headlineList');
+  const allHeadlines = [];
+  for (const feed of FEEDS) {
+    const xml = await fetchWithFallback(feed.url);
+    if (xml) {
+      const parsed = parseRSS(xml, feed.src);
+      allHeadlines.push(...parsed);
+    } else {
+      // fallback: static link to the section
+      allHeadlines.push({
+        src: feed.src,
+        title: `Browse latest ${feed.src} headlines →`,
+        link: feed.fallbackLink,
+        date: ''
+      });
+    }
+  }
+  if (allHeadlines.length === 0) {
+    list.innerHTML = '<div class="headline-loading" style="color:#ff5555">⚠ FEED UNAVAILABLE</div>';
+    return;
+  }
+  // Interleave by source for variety
+  const bySrc = {};
+  allHeadlines.forEach(h => { (bySrc[h.src] ||= []).push(h); });
+  const interleaved = [];
+  let added = true;
+  while (added) {
+    added = false;
+    for (const src of Object.keys(bySrc)) {
+      if (bySrc[src].length > 0) {
+        interleaved.push(bySrc[src].shift());
+        added = true;
       }
     }
+  }
+  list.innerHTML = interleaved.map(h => `
+    <a class="headline-item" href="${escapeAttr(h.link)}" target="_blank" rel="noopener">
+      <span class="headline-src">▶ ${escapeHTML(h.src)}</span>
+      ${escapeHTML(truncate(h.title, 110))}
+    </a>
+  `).join('');
+}
+function escapeHTML(s) {
+  return String(s).replace(/[&<>"']/g, c =>
+    ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+function escapeAttr(s) { return escapeHTML(s); }
+function truncate(s, n) { return s.length > n ? s.slice(0, n-1) + '…' : s; }
 
-    tick();
-    setInterval(tick, 1000);
-  </script>
+loadHeadlines();
+// Re-check once an hour while page is open (keeps content fresh)
+setInterval(loadHeadlines, 60 * 60 * 1000);
+
+/* ============================================================
+   WEATHER CHANNEL BOX — NYC + boroughs, via NWS (weather.gov)
+   with Open-Meteo fallback. Refreshes every hour.
+   ============================================================ */
+// 7 NYC-area locations matching classic Weather Channel "Regional Observations"
+const NYC_LOCATIONS = [
+  { city: 'NEW YORK, NY',    lat: 40.7128, lon: -74.0060 },
+  { city: 'BROOKLYN, NY',    lat: 40.6782, lon: -73.9442 },
+  { city: 'QUEENS, NY',      lat: 40.7282, lon: -73.7949 },
+  { city: 'THE BRONX, NY',   lat: 40.8448, lon: -73.8648 },
+  { city: 'STATEN IS., NY',  lat: 40.5795, lon: -74.1502 },
+  { city: 'NEWARK, NJ',      lat: 40.7357, lon: -74.1724 },
+  { city: 'JERSEY CITY, NJ', lat: 40.7178, lon: -74.0431 }
+];
+
+// NWS short-forecast text → Weather Channel-style abbreviation
+function nwsToAbbrev(forecast) {
+  if (!forecast) return 'UNKNOWN';
+  const f = forecast.toLowerCase();
+  if (f.includes('thunderstorm') && f.includes('hail')) return 'T-STORM HAIL';
+  if (f.includes('thunderstorm')) return 'T-STORM';
+  if (f.includes('freezing rain')) return 'FRZ RAIN';
+  if (f.includes('freezing drizzle')) return 'FRZ DRIZZLE';
+  if (f.includes('heavy rain')) return 'HVY RAIN';
+  if (f.includes('heavy snow')) return 'HVY SNOW';
+  if (f.includes('rain') && f.includes('snow')) return 'RAIN/SNOW';
+  if (f.includes('snow shower')) return 'SNOW SHWRS';
+  if (f.includes('snow')) return 'SNOW';
+  if (f.includes('sleet')) return 'SLEET';
+  if (f.includes('shower')) return 'SHOWERS';
+  if (f.includes('rain') || f.includes('drizzle')) return 'RAIN';
+  if (f.includes('fog')) return 'FOG';
+  if (f.includes('haze') || f.includes('smoke')) return 'HAZY';
+  if (f.includes('windy')) return 'WINDY';
+  if (f.includes('mostly cloudy')) return 'M CLOUDY';
+  if (f.includes('partly cloudy')) return 'P CLOUDY';
+  if (f.includes('mostly sunny')) return 'M SUNNY';
+  if (f.includes('partly sunny')) return 'P SUNNY';
+  if (f.includes('cloudy') || f.includes('overcast')) return 'M CLOUDY';
+  if (f.includes('sunny')) return 'SUNNY';
+  if (f.includes('clear')) return 'CLEAR';
+  if (f.includes('fair')) return 'FAIR';
+  return forecast.split(/\s+/).slice(0, 2).join(' ').toUpperCase();
+}
+
+// Open-Meteo WMO weather codes as fallback
+function wmoToAbbrev(code, isDay) {
+  if (code === 0) return isDay ? 'CLEAR' : 'CLEAR NIGHT';
+  if (code === 1) return 'M SUNNY';
+  if (code === 2) return 'P CLOUDY';
+  if (code === 3) return 'M CLOUDY';
+  if ([45, 48].includes(code)) return 'FOG';
+  if ([51, 53, 55].includes(code)) return 'DRIZZLE';
+  if ([56, 57].includes(code)) return 'FRZ DRIZZLE';
+  if ([61, 63].includes(code)) return 'RAIN';
+  if (code === 65) return 'HVY RAIN';
+  if ([66, 67].includes(code)) return 'FRZ RAIN';
+  if ([71, 73, 75].includes(code)) return 'SNOW';
+  if (code === 77) return 'SNOW GRAINS';
+  if ([80, 81, 82].includes(code)) return 'SHOWERS';
+  if ([85, 86].includes(code)) return 'SNOW SHWRS';
+  if (code === 95) return 'T-STORM';
+  if ([96, 99].includes(code)) return 'T-STORM HAIL';
+  return 'UNKNOWN';
+}
+
+// Fetch one location's current weather from NWS (preferred) with Open-Meteo fallback.
+async function fetchLocationWeather(loc) {
+  // --- Try NWS first (official US National Weather Service, free, no key) ---
+  try {
+    const pointsResp = await fetch(
+      `https://api.weather.gov/points/${loc.lat.toFixed(4)},${loc.lon.toFixed(4)}`,
+      { headers: { 'Accept': 'application/geo+json' } }
+    );
+    if (pointsResp.ok) {
+      const pointsData = await pointsResp.json();
+      const forecastUrl = pointsData?.properties?.forecastHourly;
+      if (forecastUrl) {
+        const fcastResp = await fetch(forecastUrl, { headers: { 'Accept': 'application/geo+json' } });
+        if (fcastResp.ok) {
+          const fcast = await fcastResp.json();
+          const period = fcast?.properties?.periods?.[0];
+          if (period && typeof period.temperature === 'number') {
+            return {
+              city: loc.city,
+              temp: Math.round(period.temperatureUnit === 'C'
+                ? period.temperature * 9/5 + 32
+                : period.temperature),
+              cond: nwsToAbbrev(period.shortForecast),
+              shortForecast: period.shortForecast || ''
+            };
+          }
+        }
+      }
+    }
+  } catch (e) { /* fall through to Open-Meteo */ }
+
+  // --- Fallback: Open-Meteo ---
+  try {
+    const wxResp = await fetch(
+      `https://api.open-meteo.com/v1/forecast?latitude=${loc.lat}&longitude=${loc.lon}` +
+      `&current=temperature_2m,weather_code,is_day&temperature_unit=fahrenheit&timezone=America/New_York`
+    );
+    if (wxResp.ok) {
+      const wx = await wxResp.json();
+      if (wx?.current) {
+        return {
+          city: loc.city,
+          temp: Math.round(wx.current.temperature_2m),
+          cond: wmoToAbbrev(wx.current.weather_code, wx.current.is_day),
+          shortForecast: ''
+        };
+      }
+    }
+  } catch (e) { /* give up */ }
+
+  return null;
+}
+
+async function loadWeather() {
+  const body = document.getElementById('twcBody');
+  const condEl = document.getElementById('twcConditions');
+  const dtEl = document.getElementById('twcDateTime');
+
+  try {
+    const results = await Promise.all(NYC_LOCATIONS.map(fetchLocationWeather));
+    const rows = results.filter(Boolean);
+
+    if (rows.length === 0) throw new Error('no data');
+
+    const rowsHtml = rows.map(r => `
+      <div class="twc-row">
+        <span class="city">${escapeHTML(r.city)}</span>
+        <span class="cond">${escapeHTML(r.cond)}</span>
+        <span class="temp">${r.temp}</span>
+      </div>
+    `).join('');
+    body.innerHTML = `
+      <div class="twc-col-headers">
+        <span></span>
+        <span>WEATHER</span>
+        <span>°F</span>
+      </div>
+      ${rowsHtml}
+    `;
+
+    // Footer "conditions" = NYC's full short forecast if NWS gave one, else the abbreviation
+    const nyc = rows[0];
+    condEl.textContent = ((nyc?.shortForecast || nyc?.cond || 'UNKNOWN')).toUpperCase();
+
+    updateTWCTime();
+  } catch (err) {
+    console.error('Weather load failed', err);
+    body.innerHTML = '<div class="twc-loading" style="color:#ffc">▓ UNABLE TO REACH SATELLITE ▓</div>';
+    condEl.textContent = 'SIGNAL LOST';
+    dtEl.textContent = '--';
+  }
+}
+
+function updateTWCTime() {
+  // Always show time in New York, regardless of where the user is
+  const now = new Date();
+  const parts = now.toLocaleString('en-US', {
+    timeZone: 'America/New_York',
+    weekday: 'short', month: 'short', day: 'numeric',
+    hour: 'numeric', minute: '2-digit', second: '2-digit', hour12: true
+  });
+  // e.g. "Sun, Apr 20, 3:26:43 AM"  →  "SUN APR 20   3:26:43 AM"
+  const m = parts.match(/^(\w+),\s*(\w+)\s+(\d+),\s*(.+)$/);
+  const formatted = m
+    ? `${m[1].toUpperCase()} ${m[2].toUpperCase()} ${m[3]}   ${m[4]}`
+    : parts.toUpperCase();
+  const el = document.getElementById('twcDateTime');
+  if (el) el.textContent = formatted;
+}
+
+loadWeather();
+setInterval(updateTWCTime, 1000);
+// Refresh full weather data every hour
+setInterval(loadWeather, 60 * 60 * 1000);
+
+/* ============================================================
+   BHAGAVAD GITA — daily verse (rotates by day of year)
+   ============================================================ */
+const GITA_VERSES = [
+  { v: "You have the right to work, but never to the fruit of work. You should never engage in action for the sake of reward, nor should you long for inaction.", r: "CH. 2, V. 47" },
+  { v: "Perform your duty equipoised, O Arjuna, abandoning all attachment to success or failure. Such equanimity is called yoga.", r: "CH. 2, V. 48" },
+  { v: "The wise, engaged in devotional service, take refuge in the Lord, and free themselves from the cycle of birth and death by renouncing the fruits of action.", r: "CH. 2, V. 51" },
+  { v: "For the soul there is neither birth nor death. Nor, having once been, does he ever cease to be. He is unborn, eternal, ever-existing, undying and primeval.", r: "CH. 2, V. 20" },
+  { v: "As a person puts on new garments, giving up old ones, the soul similarly accepts new material bodies, giving up the old and useless ones.", r: "CH. 2, V. 22" },
+  { v: "That which pervades the entire body you should know to be indestructible. No one is able to destroy that imperishable soul.", r: "CH. 2, V. 17" },
+  { v: "One who is not disturbed in mind even amidst the threefold miseries or elated when there is happiness, and who is free from attachment, fear and anger, is called a sage of steady mind.", r: "CH. 2, V. 56" },
+  { v: "A person who is not disturbed by the incessant flow of desires — that enters like rivers into the ocean, which is ever being filled but is always still — can alone achieve peace.", r: "CH. 2, V. 70" },
+  { v: "Whenever and wherever there is a decline in righteousness, and a predominant rise of irreligion — at that time I descend Myself.", r: "CH. 4, V. 7" },
+  { v: "One who sees inaction in action, and action in inaction, is intelligent among men, and he is in the transcendental position, although engaged in all sorts of activities.", r: "CH. 4, V. 18" },
+  { v: "A person in full consciousness of Me, knowing Me to be the ultimate beneficiary of all sacrifices and austerities, the Supreme Lord of all planets and demigods, and the benefactor of all living entities, attains peace.", r: "CH. 5, V. 29" },
+  { v: "One who is equipoised in happiness and distress, who is situated in the self, and who sees a lump of earth, a stone and a piece of gold as equal — is called a yogi of steady mind.", r: "CH. 6, V. 8" },
+  { v: "For one who has conquered the mind, the mind is the best of friends; but for one who has failed to do so, his very mind will be the greatest enemy.", r: "CH. 6, V. 6" },
+  { v: "A yogi must always try to concentrate the mind on the Supreme Self, remaining alone in a secluded place, with the mind and body controlled, free from desires and feelings of possessiveness.", r: "CH. 6, V. 10" },
+  { v: "In this endeavor there is no loss or diminution, and a little advancement on this path can protect one from the most dangerous type of fear.", r: "CH. 2, V. 40" },
+  { v: "Out of many thousands among men, one may endeavor for perfection, and of those who have achieved perfection, hardly one knows Me in truth.", r: "CH. 7, V. 3" },
+  { v: "The mind is restless, turbulent, obstinate, and very strong — to control it is more difficult than controlling the wind. Yet by constant practice and detachment, it can indeed be restrained.", r: "CH. 6, V. 34–35" },
+  { v: "Those who always worship Me with exclusive devotion, meditating on My transcendental form — to them I carry what they lack and preserve what they have.", r: "CH. 9, V. 22" },
+  { v: "I am seated in everyone's heart, and from Me come remembrance, knowledge, and forgetfulness.", r: "CH. 15, V. 15" },
+  { v: "One who performs his duty without attachment, surrendering the results to the Supreme, is not affected by sinful action, as the lotus leaf is untouched by water.", r: "CH. 5, V. 10" },
+  { v: "Therefore, without being attached to the fruits of activities, one should act as a matter of duty, for by working without attachment one attains the Supreme.", r: "CH. 3, V. 19" },
+  { v: "Better is one's own duty, though imperfectly performed, than the duty of another well-discharged.", r: "CH. 3, V. 35" },
+  { v: "He who has no attachments can really love others, for his love is pure and divine.", r: "CH. 12, V. 13–14" },
+  { v: "Delusion arises from anger. The mind is bewildered by delusion. Reasoning is destroyed when the mind is bewildered. One falls down when reasoning is destroyed.", r: "CH. 2, V. 63" },
+  { v: "When meditation is mastered, the mind is unwavering like the flame of a lamp in a windless place.", r: "CH. 6, V. 19" },
+  { v: "The soul can never be cut to pieces by any weapon, nor burned by fire, nor moistened by water, nor withered by the wind.", r: "CH. 2, V. 23" },
+  { v: "Set thy heart upon thy work, but never on its reward. Work not for a reward; but never cease to do thy work.", r: "CH. 2, V. 47" },
+  { v: "Whatever happened, happened for the good. Whatever is happening, is happening for the good. Whatever will happen, will also happen for the good.", r: "BHAGAVAD GITA" },
+  { v: "One who sees equality everywhere, in pleasure and in pain, is a true yogi.", r: "CH. 6, V. 32" },
+  { v: "Change is the law of the universe. You can be a millionaire or a pauper in an instant.", r: "BHAGAVAD GITA" },
+  { v: "Man is made by his belief. As he believes, so he is.", r: "BHAGAVAD GITA" },
+  { v: "There is neither this world, nor the world beyond, nor happiness, for the one who doubts.", r: "CH. 4, V. 40" },
+  { v: "Abandon all varieties of dharma and simply surrender unto Me alone. I shall liberate you from all sinful reactions; do not fear.", r: "CH. 18, V. 66" },
+  { v: "Whatever action is performed by a great man, common men follow in his footsteps. Whatever standards he sets by his exemplary acts, all the world pursues.", r: "CH. 3, V. 21" },
+  { v: "He who sees Me everywhere, and sees all things in Me, never loses sight of Me, nor do I ever lose sight of him.", r: "CH. 6, V. 30" },
+  { v: "Those who are free from anger and all material desires, who are self-realized and self-disciplined, attain the Supreme.", r: "CH. 5, V. 26" },
+  { v: "Just as a blazing fire turns firewood to ashes, the fire of knowledge burns to ashes all reactions to material activities.", r: "CH. 4, V. 37" },
+  { v: "For one who sees Me everywhere and sees everything in Me, nothing is ever lost, and nothing is ever separate.", r: "CH. 6, V. 30" },
+  { v: "A true yogi observes Me in all beings, and also sees every being in Me. Indeed, the self-realized person sees Me, the same Supreme Lord, everywhere.", r: "CH. 6, V. 29" },
+  { v: "The senses are superior to the body, the mind superior to the senses; above the mind is the intellect, and above the intellect is the Atman.", r: "CH. 3, V. 42" }
+];
+
+function dayOfYear(date = new Date()) {
+  const start = new Date(date.getFullYear(), 0, 0);
+  const diff = (date - start) + ((start.getTimezoneOffset() - date.getTimezoneOffset()) * 60 * 1000);
+  return Math.floor(diff / (1000 * 60 * 60 * 24));
+}
+function setDailyVerse() {
+  const idx = dayOfYear() % GITA_VERSES.length;
+  const verse = GITA_VERSES[idx];
+  document.getElementById('gitaVerse').textContent = `"${verse.v}"`;
+  document.getElementById('gitaRef').textContent = `— ${verse.r}`;
+}
+setDailyVerse();
+// Re-check at midnight
+setInterval(setDailyVerse, 60 * 60 * 1000);
+</script>
+
+<!-- OU_PROTECTION_v1 -->
+
+<style>
+/* OU_PROTECTION_v1 — block casual right-click/drag/save */
+img {
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  user-drag: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;  /* iOS long-press save */
+  pointer-events: auto;
+}
+/* Transparent shield over any image that's inside one of these containers.
+   Covers the image so a right-click hits the shield (a div) instead of the <img>. */
+.gallery-tile, .lb-stage, .book-page, #lbMediaWrap,
+.headline-item, .logo-plate, .twc-box, .now-playing,
+.flap-face, .globe-arena .globe {
+  position: relative;
+}
+.gallery-tile::after,
+.book-page::after,
+.flap-face::after,
+.logo-plate::after,
+#lbMediaWrap::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: auto;
+  z-index: 50;
+  background: transparent;
+}
+/* But keep highlight-layer interactive in the book reader */
+.book-page .highlight-layer { z-index: 51; }
+.book-page::after { pointer-events: none; }
+/* Tile clicks still need to work for opening the lightbox; let the parent receive */
+.gallery-tile::after { pointer-events: none; }
+/* For lightbox image specifically: a real shield over the image */
+#lbMediaWrap::after { pointer-events: auto; }
+
+/* Friendly notice popup */
+.ou-protect-notice {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: rgba(0, 0, 0, 0.92);
+  color: #39ff14;
+  font-family: 'Silkscreen', 'VT323', monospace;
+  font-size: 13px;
+  letter-spacing: 2px;
+  padding: 12px 22px;
+  border: 3px outset #4a8a5a;
+  box-shadow: 0 0 16px rgba(57, 255, 20, 0.6);
+  z-index: 99999;
+  pointer-events: none;
+  opacity: 0;
+  transition: transform 0.35s ease, opacity 0.35s ease;
+  text-align: center;
+  max-width: 90vw;
+}
+.ou-protect-notice.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+.ou-protect-notice .small {
+  display: block;
+  font-size: 10px;
+  color: #ffb347;
+  margin-top: 4px;
+  letter-spacing: 1px;
+}
+</style>
+
+<script>
+/* OU_PROTECTION_v1 — block casual right-click + drag-save */
+(function() {
+  // --- Notice popup ---
+  var notice = document.createElement('div');
+  notice.className = 'ou-protect-notice';
+  notice.innerHTML = '\u00a9 ORIGAMI ULTRA \u00b7 PLEASE DON\u2019T SAVE' +
+    '<span class="small">All works copyright. Thank you for looking.</span>';
+  document.body.appendChild(notice);
+  var noticeTimeout = null;
+  function flashNotice() {
+    notice.classList.add('show');
+    if (noticeTimeout) clearTimeout(noticeTimeout);
+    noticeTimeout = setTimeout(function() {
+      notice.classList.remove('show');
+    }, 2200);
+  }
+
+  // --- Block right-click everywhere EXCEPT on real navigation links
+  //     (so people can still right-click "open in new tab" on the orbit buttons,
+  //     beta-panel buttons, headline links, etc.) ---
+  document.addEventListener('contextmenu', function(e) {
+    var t = e.target;
+    // Walk up: if there's a real <a href=...> ancestor that points to a URL,
+    // allow the context menu so users can open links in new tabs.
+    var a = t.closest && t.closest('a[href]');
+    if (a) {
+      var href = a.getAttribute('href') || '';
+      if (href && href[0] !== '#') {
+        return; // allow context menu on real links
+      }
+    }
+    e.preventDefault();
+    flashNotice();
+  }, true);
+
+  // --- Block drag (drag image to desktop) ---
+  document.addEventListener('dragstart', function(e) {
+    var t = e.target;
+    if (t && (t.tagName === 'IMG' || t.tagName === 'SVG' || t.tagName === 'VIDEO')) {
+      e.preventDefault();
+      flashNotice();
+    }
+  }, true);
+
+  // --- iOS long-press save: blocked by touch-callout CSS, but also catch here ---
+  document.addEventListener('touchstart', function(e) {
+    var t = e.target;
+    if (t && t.tagName === 'IMG') {
+      // don't preventDefault on touchstart (breaks scrolling), but the CSS handles save sheet
+    }
+  }, { passive: true });
+})();
+</script>
+
+<!-- OU_PLAYER_v1 -->
+
+<style>
+/* OU_PLAYER_v1 — global background music player */
+.now-playing .np-track {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 16px;
+  color: #c9f7c1;
+  margin-top: 2px;
+  margin-bottom: 6px;
+}
+.now-playing .np-title {
+  flex: 1;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-family: 'VT323', monospace;
+  letter-spacing: 1px;
+  color: #fff2cc;
+  text-shadow: 0 0 4px rgba(255, 220, 120, 0.4);
+}
+.now-playing .np-progress {
+  width: 100%;
+  height: 6px;
+  background: #001a05;
+  border: 1px inset #3a6a44;
+  margin: 4px 0 2px;
+  cursor: pointer;
+  position: relative;
+}
+.now-playing .np-progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #39ff14, #00e5ff);
+  box-shadow: 0 0 6px #39ff14;
+  transition: width 0.1s linear;
+}
+.now-playing .np-time {
+  display: flex;
+  justify-content: space-between;
+  font-family: 'VT323', monospace;
+  font-size: 12px;
+  color: #ffb347;
+  letter-spacing: 1px;
+  margin-bottom: 6px;
+}
+.now-playing .np-controls {
+  display: flex;
+  gap: 4px;
+  justify-content: center;
+  margin-top: 4px;
+}
+.np-btn {
+  background: rgba(0,0,0,0.85);
+  border: 2px outset #4a8a5a;
+  color: #39ff14;
+  font-family: 'Silkscreen', monospace;
+  font-size: 12px;
+  padding: 4px 9px;
+  cursor: pointer;
+  text-shadow: 0 0 4px #39ff14;
+  transition: background 0.15s, color 0.15s, border-style 0.15s;
+  min-width: 36px;
+}
+.np-btn:hover {
+  background: #39ff14;
+  color: #000;
+  border-style: inset;
+  text-shadow: none;
+}
+.np-btn.np-play {
+  font-size: 13px;
+  padding: 4px 11px;
+  border-color: #ff4bd8;
+  color: #ff4bd8;
+  text-shadow: 0 0 4px #ff4bd8;
+}
+.np-btn.np-play:hover { background: #ff4bd8; color: #000; }
+.now-playing .np-count {
+  text-align: center;
+  font-family: 'Silkscreen', monospace;
+  font-size: 9px;
+  color: #ffb347;
+  letter-spacing: 2px;
+  margin-top: 4px;
+  opacity: 0.85;
+}
+
+/* MINI-PLAYER (floating, on every non-homepage page) */
+.ou-mini-player {
+  position: fixed;
+  bottom: 14px;
+  right: 14px;
+  z-index: 9000;
+  background: rgba(5, 15, 8, 0.95);
+  border: 3px outset #4a8a5a;
+  padding: 8px 10px;
+  width: 280px;
+  max-width: calc(100vw - 28px);
+  font-family: 'VT323', monospace;
+  color: #c9f7c1;
+  box-shadow:
+    0 0 18px rgba(57, 255, 20, 0.5),
+    inset 0 0 18px rgba(0, 25, 5, 0.7);
+  user-select: none;
+}
+.ou-mini-player.collapsed { width: 56px; padding: 6px; }
+.ou-mini-player.collapsed .mp-body,
+.ou-mini-player.collapsed .mp-controls,
+.ou-mini-player.collapsed .mp-progress,
+.ou-mini-player.collapsed .mp-time,
+.ou-mini-player.collapsed .mp-label-text { display: none; }
+.ou-mini-player.collapsed .mp-toggle::before { content: '♫'; }
+.ou-mini-player .mp-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+  font-family: 'Silkscreen', monospace;
+  font-size: 9px;
+  color: #ff4bd8;
+  letter-spacing: 2px;
+  text-shadow: 0 0 4px #ff4bd8;
+}
+.ou-mini-player .mp-label-text::before { content: '♫ NOW PLAYING'; }
+.ou-mini-player .mp-toggle {
+  background: transparent;
+  border: 1px outset #4a8a5a;
+  color: #39ff14;
+  font-family: 'Silkscreen', monospace;
+  font-size: 10px;
+  cursor: pointer;
+  padding: 1px 6px;
+  min-width: 22px;
+}
+.ou-mini-player .mp-toggle::before { content: '_'; }
+.ou-mini-player .mp-toggle:hover { background: #39ff14; color: #000; }
+.ou-mini-player .mp-body {
+  font-size: 14px;
+  color: #fff2cc;
+  letter-spacing: 1px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-shadow: 0 0 4px rgba(255, 220, 120, 0.4);
+  margin-bottom: 4px;
+}
+.ou-mini-player .mp-progress {
+  width: 100%;
+  height: 4px;
+  background: #001a05;
+  border: 1px inset #3a6a44;
+  margin: 3px 0;
+  cursor: pointer;
+}
+.ou-mini-player .mp-progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #39ff14, #00e5ff);
+  box-shadow: 0 0 4px #39ff14;
+  transition: width 0.1s linear;
+}
+.ou-mini-player .mp-time {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  color: #ffb347;
+  letter-spacing: 1px;
+}
+.ou-mini-player .mp-controls {
+  display: flex;
+  gap: 3px;
+  justify-content: center;
+  margin-top: 4px;
+}
+.ou-mini-player .mp-btn {
+  background: rgba(0,0,0,0.85);
+  border: 2px outset #4a8a5a;
+  color: #39ff14;
+  font-family: 'Silkscreen', monospace;
+  font-size: 11px;
+  padding: 3px 7px;
+  cursor: pointer;
+  text-shadow: 0 0 3px #39ff14;
+  min-width: 32px;
+  transition: background 0.15s, color 0.15s, border-style 0.15s;
+}
+.ou-mini-player .mp-btn:hover { background: #39ff14; color: #000; border-style: inset; text-shadow: none; }
+.ou-mini-player .mp-btn.mp-play {
+  border-color: #ff4bd8;
+  color: #ff4bd8;
+  text-shadow: 0 0 3px #ff4bd8;
+}
+.ou-mini-player .mp-btn.mp-play:hover { background: #ff4bd8; color: #000; }
+@media (max-width: 600px) {
+  .ou-mini-player { width: 230px; }
+}
+</style>
+
+<script>
+/* OU_PLAYER_v1 — global background music player */
+(function() {
+  var TRACKS = [{"title": "APOLLO", "file": "apollo.mp3"}, {"title": "Boggis, Bunce and Bean", "file": "boggis-bunce-and-bean.mp3"}, {"title": "GOD BLE$$ AMERIKKA", "file": "god-ble-amerikka.mp3"}, {"title": "HEPHAESTUS", "file": "hephaestus.mp3"}, {"title": "Heat Death of a Heart", "file": "heat-death-of-a-heart.mp3"}, {"title": "Ice Mountain", "file": "ice-mountain.mp3"}, {"title": "No, I Have Never", "file": "no-i-have-never.mp3"}, {"title": "Waste-Management", "file": "waste-management.mp3"}, {"title": "Wunk", "file": "wunk.mp3"}, {"title": "Xizi", "file": "xizi.mp3"}, {"title": "ZEUS", "file": "zeus.mp3"}, {"title": "cryostasis aperture", "file": "cryostasis-aperture.mp3"}, {"title": "fear not, I am with you", "file": "fear-not-i-am-with-you.mp3"}, {"title": "heart throbbing", "file": "heart-throbbing.mp3"}, {"title": "iris", "file": "iris.mp3"}, {"title": "lapis", "file": "lapis.mp3"}, {"title": "let he who is without sin cast the first stone", "file": "let-he-who-is-without-sin-cast-the-first-stone.mp3"}, {"title": "lichenwake", "file": "lichenwake.mp3"}, {"title": "nose bleeds", "file": "nose-bleeds.mp3"}, {"title": "rootnoise", "file": "rootnoise.mp3"}, {"title": "rue synthèse", "file": "rue-synthese.mp3"}, {"title": "serenity-now", "file": "serenity-now.mp3"}, {"title": "sleep dealer", "file": "sleep-dealer.mp3"}, {"title": "sun bleed carousels", "file": "sun-bleed-carousels.mp3"}, {"title": "sunbeams", "file": "sunbeams.mp3"}, {"title": "title flight", "file": "title-flight.mp3"}, {"title": "trilobite circle", "file": "trilobite-circle.mp3"}, {"title": "weridcore-memories", "file": "weridcore-memories.mp3"}];
+  var STORE_KEY = 'ou_player_state_v1';
+
+  // ----- Persisted state -----
+  function loadState() {
+    try {
+      var raw = sessionStorage.getItem(STORE_KEY);
+      if (raw) {
+        var s = JSON.parse(raw);
+        if (typeof s.idx === 'number' && s.idx >= 0 && s.idx < TRACKS.length) return s;
+      }
+    } catch(e) {}
+    return { idx: 0, t: 0, playing: false, muted: false };
+  }
+  function saveState() {
+    try {
+      sessionStorage.setItem(STORE_KEY, JSON.stringify({
+        idx: state.idx,
+        t: audio.currentTime || 0,
+        playing: !audio.paused,
+        muted: audio.muted
+      }));
+    } catch(e) {}
+  }
+
+  var state = loadState();
+
+  // ----- Audio element (one per page, sound resumes via sessionStorage) -----
+  var audio = new Audio();
+  audio.preload = 'metadata';
+  audio.volume = 0.65;
+  audio.muted = state.muted;
+
+  // Resolve audio path. Files live at /audio/<file>, and we may be at any URL on
+  // GitHub Pages including subpaths. Use a relative path that works if the site
+  // is served from root or a subfolder.
+  function srcFor(idx) {
+    return 'audio/' + TRACKS[idx].file;
+  }
+
+  function loadTrack(idx, autoplay, seekTo) {
+    if (idx < 0) idx = TRACKS.length - 1;
+    if (idx >= TRACKS.length) idx = 0;
+    state.idx = idx;
+    audio.src = srcFor(idx);
+    audio.load();
+    if (typeof seekTo === 'number' && seekTo > 0) {
+      audio.addEventListener('loadedmetadata', function once() {
+        audio.removeEventListener('loadedmetadata', once);
+        try { audio.currentTime = seekTo; } catch(e) {}
+      });
+    }
+    updateUI();
+    if (autoplay) {
+      var p = audio.play();
+      if (p && p.catch) p.catch(function() {
+        // Browsers block autoplay until first user interaction
+        state.playing = false;
+        updateUI();
+      });
+    }
+    saveState();
+  }
+
+  function play() {
+    var p = audio.play();
+    if (p && p.catch) p.catch(function() {});
+  }
+  function pause() { audio.pause(); }
+  function togglePlay() { audio.paused ? play() : pause(); }
+  function next() { loadTrack((state.idx + 1) % TRACKS.length, true); }
+  function prev() {
+    // If more than 3s in, restart current; else go to previous track
+    if (audio.currentTime > 3) { audio.currentTime = 0; }
+    else { loadTrack((state.idx - 1 + TRACKS.length) % TRACKS.length, true); }
+  }
+  function toggleMute() {
+    audio.muted = !audio.muted;
+    saveState();
+    updateUI();
+  }
+
+  // Auto-advance at end
+  audio.addEventListener('ended', function() { next(); });
+  audio.addEventListener('play', function() { saveState(); updateUI(); });
+  audio.addEventListener('pause', function() { saveState(); updateUI(); });
+  audio.addEventListener('timeupdate', function() {
+    updateProgress();
+    // Persist position occasionally
+    if (Math.floor(audio.currentTime) % 3 === 0) saveState();
+  });
+  audio.addEventListener('loadedmetadata', function() { updateProgress(); });
+
+  // Save just before page navigation
+  window.addEventListener('pagehide', saveState);
+  window.addEventListener('beforeunload', saveState);
+
+  // ----- UI: full player (homepage) and mini player (everywhere else) -----
+  var fullEl = document.getElementById('ouPlayerFull');
+  var miniEl = null;
+
+  function fmtTime(s) {
+    if (!s || !isFinite(s)) return '0:00';
+    s = Math.floor(s);
+    var m = Math.floor(s / 60);
+    var sec = s % 60;
+    return m + ':' + (sec < 10 ? '0' : '') + sec;
+  }
+
+  // If no full player, build a floating mini player and attach
+  if (!fullEl) {
+    miniEl = document.createElement('div');
+    miniEl.className = 'ou-mini-player';
+    miniEl.innerHTML =
+      '<div class="mp-header">' +
+        '<span class="mp-label-text"></span>' +
+        '<button class="mp-toggle" id="mpToggle" title="Collapse/expand"></button>' +
+      '</div>' +
+      '<div class="mp-body" id="mpTitle">—</div>' +
+      '<div class="mp-progress" id="mpProgress"><div class="mp-progress-fill" id="mpProgressFill"></div></div>' +
+      '<div class="mp-time"><span id="mpCur">0:00</span><span id="mpDur">0:00</span></div>' +
+      '<div class="mp-controls">' +
+        '<button class="mp-btn" id="mpPrev" title="Previous">\u23ee</button>' +
+        '<button class="mp-btn mp-play" id="mpPlay" title="Play/Pause">\u25b6</button>' +
+        '<button class="mp-btn" id="mpNext" title="Next">\u23ed</button>' +
+        '<button class="mp-btn" id="mpMute" title="Mute">\u266a</button>' +
+      '</div>';
+    document.body.appendChild(miniEl);
+
+    // Restore collapsed state if saved
+    try {
+      if (sessionStorage.getItem('ou_player_collapsed') === '1') {
+        miniEl.classList.add('collapsed');
+      }
+    } catch(e) {}
+
+    document.getElementById('mpToggle').addEventListener('click', function() {
+      miniEl.classList.toggle('collapsed');
+      try {
+        sessionStorage.setItem('ou_player_collapsed',
+          miniEl.classList.contains('collapsed') ? '1' : '0');
+      } catch(e) {}
+    });
+    document.getElementById('mpPlay').addEventListener('click', togglePlay);
+    document.getElementById('mpNext').addEventListener('click', next);
+    document.getElementById('mpPrev').addEventListener('click', prev);
+    document.getElementById('mpMute').addEventListener('click', toggleMute);
+    document.getElementById('mpProgress').addEventListener('click', function(e) {
+      if (!audio.duration) return;
+      var r = this.getBoundingClientRect();
+      audio.currentTime = ((e.clientX - r.left) / r.width) * audio.duration;
+    });
+  } else {
+    // Full player wiring
+    document.getElementById('npPlay').addEventListener('click', togglePlay);
+    document.getElementById('npNext').addEventListener('click', next);
+    document.getElementById('npPrev').addEventListener('click', prev);
+    document.getElementById('npMute').addEventListener('click', toggleMute);
+    document.getElementById('npProgress').addEventListener('click', function(e) {
+      if (!audio.duration) return;
+      var r = this.getBoundingClientRect();
+      audio.currentTime = ((e.clientX - r.left) / r.width) * audio.duration;
+    });
+  }
+
+  function updateUI() {
+    var title = TRACKS[state.idx].title;
+    var playSym = audio.paused ? '\u25b6' : '\u2161\u2161'; // play or pause-ish
+    var muteSym = audio.muted ? '\u266b\u0338' : '\u266a';
+
+    if (fullEl) {
+      document.getElementById('npTitle').textContent = title;
+      document.getElementById('npPlay').textContent = playSym;
+      document.getElementById('npMute').textContent = muteSym;
+      document.getElementById('npMute').title = audio.muted ? 'Unmute' : 'Mute';
+      document.getElementById('npCount').textContent =
+        (state.idx + 1) + ' / ' + TRACKS.length;
+      var eq = document.getElementById('npEq');
+      if (eq) eq.style.visibility = audio.paused ? 'hidden' : 'visible';
+    }
+    if (miniEl) {
+      document.getElementById('mpTitle').textContent = title;
+      document.getElementById('mpPlay').textContent = playSym;
+      document.getElementById('mpMute').textContent = muteSym;
+      document.getElementById('mpMute').title = audio.muted ? 'Unmute' : 'Mute';
+    }
+  }
+  function updateProgress() {
+    var pct = 0;
+    if (audio.duration > 0) pct = (audio.currentTime / audio.duration) * 100;
+    if (fullEl) {
+      var ff = document.getElementById('npProgressFill');
+      if (ff) ff.style.width = pct + '%';
+      var ct = document.getElementById('npCurTime'); if (ct) ct.textContent = fmtTime(audio.currentTime);
+      var d = document.getElementById('npDuration'); if (d) d.textContent = fmtTime(audio.duration);
+    }
+    if (miniEl) {
+      var mf = document.getElementById('mpProgressFill');
+      if (mf) mf.style.width = pct + '%';
+      var mc = document.getElementById('mpCur'); if (mc) mc.textContent = fmtTime(audio.currentTime);
+      var md = document.getElementById('mpDur'); if (md) md.textContent = fmtTime(audio.duration);
+    }
+  }
+
+  // ----- Boot: load the saved track at saved position, autoplay if was playing -----
+  loadTrack(state.idx, state.playing, state.t);
+
+  // First-visit autoplay hint: browsers block autoplay before any user gesture.
+  // If we tried to autoplay and failed, attach a one-time click handler that
+  // resumes playback as soon as the user clicks anywhere.
+  function tryAutoplayOnFirstGesture() {
+    if (audio.paused && state.playing) {
+      var handler = function() {
+        document.removeEventListener('click', handler, true);
+        document.removeEventListener('keydown', handler, true);
+        play();
+      };
+      document.addEventListener('click', handler, true);
+      document.addEventListener('keydown', handler, true);
+    }
+  }
+  // Wait a tick for play() promise to settle
+  setTimeout(tryAutoplayOnFirstGesture, 200);
+
+})();
+</script>
+
+<!-- OU_PLAYLIST_v1 -->
+
+<style>
+/* OU_PLAYLIST_v1 — global playlist feature */
+.ou-playlist-toggle {
+  position: fixed;
+  bottom: 14px;
+  left: 14px;
+  z-index: 9000;
+  background: rgba(5, 15, 8, 0.95);
+  border: 3px outset #4a8a5a;
+  color: #ff4bd8;
+  font-family: 'Silkscreen', 'VT323', monospace;
+  font-size: 11px;
+  letter-spacing: 2px;
+  padding: 8px 12px;
+  cursor: pointer;
+  text-shadow: 0 0 4px #ff4bd8;
+  box-shadow:
+    0 0 14px rgba(255, 75, 216, 0.5),
+    inset 0 0 12px rgba(0, 25, 5, 0.7);
+  transition: background 0.15s, color 0.15s, border-style 0.15s;
+  display: flex; align-items: center; gap: 6px;
+  user-select: none;
+}
+.ou-playlist-toggle:hover { background: #ff4bd8; color: #000; border-style: inset; text-shadow: none; }
+.ou-playlist-toggle .pl-badge {
+  background: #ffd700;
+  color: #000;
+  padding: 1px 5px;
+  font-size: 9px;
+  border-radius: 2px;
+  min-width: 14px;
+  text-align: center;
+  text-shadow: none;
+}
+
+.ou-playlist-panel {
+  position: fixed;
+  bottom: 60px;
+  left: 14px;
+  z-index: 9001;
+  background: rgba(5, 15, 8, 0.97);
+  border: 3px outset #4a8a5a;
+  padding: 10px;
+  width: 340px;
+  max-width: calc(100vw - 28px);
+  max-height: 70vh;
+  font-family: 'VT323', monospace;
+  color: #c9f7c1;
+  box-shadow:
+    0 0 22px rgba(57, 255, 20, 0.55),
+    inset 0 0 18px rgba(0, 25, 5, 0.7);
+  display: none;
+  flex-direction: column;
+}
+.ou-playlist-panel.open { display: flex; }
+.ou-playlist-panel .pl-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 6px;
+  border-bottom: 1px solid rgba(57, 255, 20, 0.4);
+  font-family: 'Silkscreen', monospace;
+  font-size: 11px;
+  color: #ff4bd8;
+  letter-spacing: 2px;
+  text-shadow: 0 0 4px #ff4bd8;
+}
+.ou-playlist-panel .pl-close {
+  background: transparent;
+  border: 1px outset #4a8a5a;
+  color: #39ff14;
+  font-family: 'Silkscreen', monospace;
+  font-size: 10px;
+  cursor: pointer;
+  padding: 1px 6px;
+}
+.ou-playlist-panel .pl-close:hover { background: #ff1493; color: #fff; border-color: #ff1493; }
+.ou-playlist-panel .pl-list {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  margin: 6px 0;
+  font-size: 14px;
+}
+.ou-playlist-panel .pl-list:empty::before {
+  content: '» your playlist is empty';
+  display: block;
+  text-align: center;
+  color: #ffb347;
+  padding: 18px 6px;
+  font-family: 'VT323', monospace;
+  opacity: 0.75;
+  letter-spacing: 1px;
+}
+.ou-playlist-panel .pl-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 6px;
+  border-bottom: 1px dashed rgba(57, 255, 20, 0.15);
+  cursor: pointer;
+  user-select: none;
+}
+.ou-playlist-panel .pl-item:hover { background: rgba(57, 255, 20, 0.08); }
+.ou-playlist-panel .pl-item.active {
+  background: rgba(57, 255, 20, 0.15);
+  border-left: 3px solid #39ff14;
+  padding-left: 4px;
+}
+.ou-playlist-panel .pl-item .pl-pos {
+  font-family: 'Silkscreen', monospace;
+  font-size: 9px;
+  color: #ffb347;
+  min-width: 18px;
+}
+.ou-playlist-panel .pl-item .pl-meta {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.ou-playlist-panel .pl-item .pl-track {
+  color: #fff2cc;
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-shadow: 0 0 3px rgba(255, 220, 120, 0.3);
+}
+.ou-playlist-panel .pl-item .pl-album {
+  font-size: 10px;
+  color: #00e5ff;
+  font-family: 'Silkscreen', monospace;
+  letter-spacing: 1px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.ou-playlist-panel .pl-item .pl-remove {
+  background: transparent;
+  border: 1px outset #4a8a5a;
+  color: #ff4bd8;
+  font-size: 10px;
+  cursor: pointer;
+  padding: 1px 5px;
+  font-family: 'Silkscreen', monospace;
+}
+.ou-playlist-panel .pl-item .pl-remove:hover { background: #ff1493; color: #fff; }
+
+.ou-playlist-panel .pl-controls {
+  display: flex;
+  gap: 4px;
+  justify-content: center;
+  padding-top: 6px;
+  border-top: 1px solid rgba(57, 255, 20, 0.4);
+}
+.ou-playlist-panel .pl-btn {
+  background: rgba(0,0,0,0.85);
+  border: 2px outset #4a8a5a;
+  color: #39ff14;
+  font-family: 'Silkscreen', monospace;
+  font-size: 11px;
+  padding: 4px 8px;
+  cursor: pointer;
+  text-shadow: 0 0 3px #39ff14;
+  min-width: 32px;
+}
+.ou-playlist-panel .pl-btn:hover { background: #39ff14; color: #000; border-style: inset; text-shadow: none; }
+.ou-playlist-panel .pl-btn.pl-play {
+  border-color: #ff4bd8; color: #ff4bd8; text-shadow: 0 0 3px #ff4bd8;
+}
+.ou-playlist-panel .pl-btn.pl-play:hover { background: #ff4bd8; color: #000; }
+.ou-playlist-panel .pl-btn.pl-clear {
+  border-color: #ff1493; color: #ff1493; text-shadow: 0 0 3px #ff1493;
+  margin-left: auto;
+}
+.ou-playlist-panel .pl-btn.pl-clear:hover { background: #ff1493; color: #fff; }
+
+.ou-playlist-panel .pl-now {
+  font-size: 11px;
+  color: #ffd700;
+  padding: 4px 0;
+  text-align: center;
+  font-family: 'Silkscreen', monospace;
+  letter-spacing: 1px;
+  border-top: 1px dashed rgba(57, 255, 20, 0.25);
+  margin-top: 4px;
+}
+.ou-playlist-panel .pl-progress {
+  width: 100%;
+  height: 3px;
+  background: #001a05;
+  border: 1px inset #3a6a44;
+  margin: 3px 0;
+  cursor: pointer;
+}
+.ou-playlist-panel .pl-progress-fill {
+  height: 100%; width: 0%;
+  background: linear-gradient(90deg, #ff4bd8, #00e5ff);
+  box-shadow: 0 0 4px #ff4bd8;
+}
+
+/* Track-row "+ add" button (album pages only) */
+.track .pl-add-btn {
+  background: rgba(0,0,0,0.5);
+  border: 1px outset #4a8a5a;
+  color: #ff4bd8;
+  font-family: 'Silkscreen', monospace;
+  font-size: 9px;
+  padding: 1px 6px;
+  cursor: pointer;
+  margin-left: 8px;
+  text-shadow: 0 0 3px #ff4bd8;
+  letter-spacing: 1px;
+  white-space: nowrap;
+}
+.track .pl-add-btn:hover { background: #ff4bd8; color: #000; border-style: inset; text-shadow: none; }
+.track .pl-add-btn.added { background: #39ff14; color: #000; border-color: #39ff14; text-shadow: none; }
+</style>
+
+<script>
+/* OU_PLAYLIST_v1 — global playlist */
+(function() {
+  const STORE_KEY = 'ou_playlist_v1';
+
+  function load() {
+    try {
+      const raw = localStorage.getItem(STORE_KEY);
+      if (raw) return JSON.parse(raw);
+    } catch(e) {}
+    return { items: [], idx: 0, t: 0, playing: false };
+  }
+  function save() {
+    try { localStorage.setItem(STORE_KEY, JSON.stringify(state)); } catch(e) {}
+  }
+
+  let state = load();
+  const audio = new Audio();
+  audio.preload = 'metadata';
+  audio.volume = 0.85;
+
+  // ----- UI: toggle button + panel -----
+  const btn = document.createElement('button');
+  btn.className = 'ou-playlist-toggle';
+  btn.innerHTML = '\u266B PLAYLIST <span class="pl-badge" id="plBadge">0</span>';
+  btn.title = 'Open your playlist';
+  document.body.appendChild(btn);
+
+  const panel = document.createElement('div');
+  panel.className = 'ou-playlist-panel';
+  panel.innerHTML =
+    '<div class="pl-header">' +
+      '<span>\u266B YOUR PLAYLIST</span>' +
+      '<button class="pl-close" id="plClose">CLOSE</button>' +
+    '</div>' +
+    '<div class="pl-list" id="plList"></div>' +
+    '<div class="pl-now" id="plNow">\u2014</div>' +
+    '<div class="pl-progress" id="plProgress"><div class="pl-progress-fill" id="plFill"></div></div>' +
+    '<div class="pl-controls">' +
+      '<button class="pl-btn" id="plPrev">\u23ee</button>' +
+      '<button class="pl-btn pl-play" id="plPlay">\u25b6</button>' +
+      '<button class="pl-btn" id="plNext">\u23ed</button>' +
+      '<button class="pl-btn pl-clear" id="plClear">CLEAR</button>' +
+    '</div>';
+  document.body.appendChild(panel);
+
+  btn.addEventListener('click', () => { panel.classList.toggle('open'); render(); });
+  document.getElementById('plClose').addEventListener('click', () => panel.classList.remove('open'));
+  document.getElementById('plPlay').addEventListener('click', togglePlay);
+  document.getElementById('plPrev').addEventListener('click', prev);
+  document.getElementById('plNext').addEventListener('click', next);
+  document.getElementById('plClear').addEventListener('click', clear);
+  document.getElementById('plProgress').addEventListener('click', function(e) {
+    if (!audio.duration) return;
+    const r = this.getBoundingClientRect();
+    audio.currentTime = ((e.clientX - r.left) / r.width) * audio.duration;
+  });
+
+  // ----- Public API: page code calls window.OUPlaylist.add(item) -----
+  window.OUPlaylist = {
+    add: function(item) {
+      // item = {file, title, album, slug}
+      // Skip if duplicate
+      const exists = state.items.some(x => x.file === item.file);
+      if (exists) return false;
+      state.items.push(item);
+      save();
+      updateBadge();
+      flashFeedback('+ added to playlist');
+      return true;
+    },
+    has: function(file) {
+      return state.items.some(x => x.file === file);
+    },
+    remove: function(file) {
+      const i = state.items.findIndex(x => x.file === file);
+      if (i >= 0) {
+        state.items.splice(i, 1);
+        if (state.idx >= state.items.length) state.idx = Math.max(0, state.items.length - 1);
+        save();
+        updateBadge();
+        render();
+      }
+    },
+    open: function() { panel.classList.add('open'); render(); }
+  };
+
+  function updateBadge() {
+    document.getElementById('plBadge').textContent = state.items.length;
+  }
+  updateBadge();
+
+  function fmtTime(s) {
+    if (!s || !isFinite(s)) return '0:00';
+    s = Math.floor(s);
+    const m = Math.floor(s / 60); const sec = s % 60;
+    return m + ':' + (sec < 10 ? '0' : '') + sec;
+  }
+
+  function render() {
+    const list = document.getElementById('plList');
+    list.innerHTML = '';
+    state.items.forEach((it, i) => {
+      const row = document.createElement('div');
+      row.className = 'pl-item' + (i === state.idx ? ' active' : '');
+      row.innerHTML =
+        '<span class="pl-pos">' + String(i+1).padStart(2,'0') + '</span>' +
+        '<div class="pl-meta">' +
+          '<div class="pl-track">' + escapeHtml(it.title) + '</div>' +
+          '<div class="pl-album">' + escapeHtml(it.album || '') + '</div>' +
+        '</div>' +
+        '<button class="pl-remove" data-i="' + i + '">\u2715</button>';
+      row.addEventListener('click', (e) => {
+        if (e.target.classList.contains('pl-remove')) return;
+        state.idx = i;
+        loadAndPlay();
+      });
+      const rem = row.querySelector('.pl-remove');
+      rem.addEventListener('click', (e) => {
+        e.stopPropagation();
+        state.items.splice(i, 1);
+        if (state.idx >= state.items.length) state.idx = Math.max(0, state.items.length - 1);
+        save();
+        updateBadge();
+        render();
+      });
+      list.appendChild(row);
+    });
+    const now = state.items[state.idx];
+    document.getElementById('plNow').textContent = now ? '\u266b ' + now.title : '\u2014';
+    document.getElementById('plPlay').textContent = audio.paused ? '\u25b6' : '\u2161\u2161';
+  }
+  function escapeHtml(s) {
+    return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  }
+
+  function pauseBackgroundMusic() {
+    // The global background player exposes its audio via the sessionStorage key
+    // ou_player_state_v1, but the cleanest way is: tell other audio elements to pause
+    document.querySelectorAll('audio').forEach(a => {
+      if (a !== audio && !a.paused) a.pause();
+    });
+  }
+
+  function loadAndPlay() {
+    if (!state.items.length) return;
+    if (state.idx >= state.items.length) state.idx = 0;
+    const it = state.items[state.idx];
+    audio.src = it.file;
+    audio.load();
+    pauseBackgroundMusic();
+    const p = audio.play();
+    if (p && p.catch) p.catch(() => {});
+    save();
+    render();
+  }
+  function togglePlay() {
+    if (!state.items.length) return;
+    if (!audio.src || audio.src === window.location.href) { loadAndPlay(); return; }
+    if (audio.paused) {
+      pauseBackgroundMusic();
+      audio.play().catch(() => {});
+    } else {
+      audio.pause();
+    }
+    render();
+  }
+  function next() {
+    if (!state.items.length) return;
+    state.idx = (state.idx + 1) % state.items.length;
+    loadAndPlay();
+  }
+  function prev() {
+    if (!state.items.length) return;
+    if (audio.currentTime > 3) { audio.currentTime = 0; return; }
+    state.idx = (state.idx - 1 + state.items.length) % state.items.length;
+    loadAndPlay();
+  }
+  function clear() {
+    if (!confirm('Clear your entire playlist?')) return;
+    audio.pause();
+    state = { items: [], idx: 0, t: 0, playing: false };
+    save();
+    updateBadge();
+    render();
+  }
+
+  audio.addEventListener('ended', next);
+  audio.addEventListener('play',  render);
+  audio.addEventListener('pause', render);
+  audio.addEventListener('timeupdate', () => {
+    if (!audio.duration) return;
+    document.getElementById('plFill').style.width = (audio.currentTime / audio.duration * 100) + '%';
+  });
+
+  // ----- Feedback tooltip when a track is added -----
+  let feedbackEl = null;
+  function flashFeedback(msg) {
+    if (!feedbackEl) {
+      feedbackEl = document.createElement('div');
+      feedbackEl.style.cssText = 'position:fixed;bottom:60px;left:14px;background:rgba(0,0,0,0.92);color:#39ff14;font-family:Silkscreen,monospace;font-size:11px;letter-spacing:2px;padding:6px 12px;border:2px outset #4a8a5a;z-index:9999;pointer-events:none;opacity:0;transition:opacity 0.3s;text-shadow:0 0 4px #39ff14;box-shadow:0 0 12px rgba(57,255,20,0.5);';
+      document.body.appendChild(feedbackEl);
+    }
+    feedbackEl.textContent = msg;
+    feedbackEl.style.opacity = '1';
+    clearTimeout(feedbackEl._t);
+    feedbackEl._t = setTimeout(() => { feedbackEl.style.opacity = '0'; }, 1500);
+  }
+
+  // ----- On album pages, inject "+ ADD" buttons next to each track -----
+  // (only if window.__ALBUM__ exists, which is set by album-*.html pages)
+  function injectAddButtons() {
+    if (!window.__ALBUM__) return;
+    const album = window.__ALBUM__;
+    const tracks = album.tracks || [];
+    const rows = document.querySelectorAll('.track');
+    rows.forEach((row, i) => {
+      if (row.querySelector('.pl-add-btn')) return;
+      const trackData = tracks[i];
+      if (!trackData) return;
+      const addBtn = document.createElement('button');
+      addBtn.className = 'pl-add-btn';
+      const inPlaylist = window.OUPlaylist.has(trackData.file);
+      addBtn.textContent = inPlaylist ? '\u2713 ADDED' : '+ ADD';
+      if (inPlaylist) addBtn.classList.add('added');
+      addBtn.title = 'Add to playlist';
+      addBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const ok = window.OUPlaylist.add({
+          file: trackData.file,
+          title: trackData.title.replace(/^\s*\d{1,2}\s*[-\u2013\u2014]*\s*/, '').trim(),
+          album: album.title,
+          slug: album.slug,
+        });
+        if (ok) {
+          addBtn.textContent = '\u2713 ADDED';
+          addBtn.classList.add('added');
+        } else {
+          addBtn.textContent = '\u2713 IN PLAYLIST';
+          addBtn.classList.add('added');
+        }
+      });
+      row.appendChild(addBtn);
+    });
+  }
+
+  // Run after the album page's own scripts populate the tracklist
+  if (window.__ALBUM__) {
+    // Wait for the track DOM to be present
+    let attempts = 0;
+    const tryInject = () => {
+      if (document.querySelectorAll('.track').length > 0 || attempts++ > 50) {
+        injectAddButtons();
+      } else {
+        setTimeout(tryInject, 100);
+      }
+    };
+    tryInject();
+  }
+})();
+</script>
+
 </body>
 </html>

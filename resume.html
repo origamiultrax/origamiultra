@@ -1,0 +1,1436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>::: ORIGAMI ULTRA ::: Resume :::</title>
+<link href="https://fonts.googleapis.com/css2?family=VT323&family=Share+Tech+Mono&family=Press+Start+2P&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  @font-face {
+    font-family: 'TS Block Bold';
+    src: url('TS_Block_Bold.ttf') format('truetype');
+    font-weight: bold; font-style: normal; font-display: swap;
+  }
+
+  :root {
+    --green: #39ff14;
+    --green-soft: rgba(57, 255, 20, 0.55);
+    --green-dim: rgba(57, 255, 20, 0.18);
+    --amber: #ffb347;
+    --magenta: #ff4bd8;
+    --cyan: #00e5ff;
+    --yellow: #ffd700;
+    --hot-pink: #ff1493;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    min-height: 100vh; background: #000; color: #e9ffe4;
+    font-family: 'VT323', 'Share Tech Mono', monospace;
+    overflow-x: hidden;
+  }
+  @keyframes blink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
+  .blink { animation: blink 1s steps(1) infinite; }
+
+  .vhs-bg {
+    position: fixed; inset: 0;
+    background-image: url('https://cinepacks.store/cdn/shop/products/vhs_600x.gif?v=1636656783');
+    background-size: cover; background-position: center;
+    opacity: 0.55; z-index: 0; filter: saturate(1.15) contrast(1.05);
+  }
+  .stars {
+    position: fixed; inset: 0; z-index: 1; pointer-events: none;
+    background-image:
+      radial-gradient(1px 1px at 12% 34%, #fff, transparent),
+      radial-gradient(1px 1px at 34% 78%, #fff, transparent),
+      radial-gradient(1px 1px at 56% 22%, var(--cyan), transparent),
+      radial-gradient(1px 1px at 78% 56%, #fff, transparent),
+      radial-gradient(1px 1px at 91% 12%, var(--magenta), transparent),
+      radial-gradient(1px 1px at 8% 88%, #fff, transparent),
+      radial-gradient(1px 1px at 43% 11%, var(--yellow), transparent),
+      radial-gradient(1px 1px at 67% 91%, #fff, transparent);
+    animation: twinkle 3s steps(2) infinite;
+  }
+  @keyframes twinkle { 0%, 100% { opacity: 0.85; } 50% { opacity: 0.3; } }
+  .scanlines {
+    position: fixed; inset: 0;
+    background: repeating-linear-gradient(to bottom, rgba(0,0,0,0.22) 0px, rgba(0,0,0,0.22) 1px, transparent 1px, transparent 3px);
+    z-index: 4; pointer-events: none; mix-blend-mode: multiply;
+  }
+  .vignette {
+    position: fixed; inset: 0;
+    background: radial-gradient(ellipse at center, transparent 25%, rgba(0,0,0,0.75) 100%);
+    z-index: 2; pointer-events: none;
+  }
+  .plant-border {
+    position: fixed; top: 0; bottom: 0; width: 170px;
+    z-index: 18; pointer-events: none;
+    background-image: url('plant_vine.png');
+    background-repeat: repeat-y; background-size: 170px auto;
+    filter: drop-shadow(0 0 12px rgba(57, 255, 20, 0.45)) drop-shadow(0 0 4px rgba(0, 0, 0, 0.6));
+    opacity: 0.92;
+  }
+  .plant-border.left { left: 0; background-position: left top; }
+  .plant-border.right { right: 0; transform: scaleX(-1); background-position: left top; }
+
+  .top-banner {
+    position: relative; z-index: 6;
+    background: linear-gradient(90deg, #000, #001a00, #000);
+    border-bottom: 2px solid var(--green);
+    padding: 4px 0; overflow: hidden;
+    box-shadow: 0 0 12px rgba(57,255,20,0.6);
+  }
+  .top-banner-marquee {
+    display: inline-block; white-space: nowrap;
+    animation: scrollLeft 45s linear infinite;
+    font-family: 'VT323', monospace; font-size: 18px; letter-spacing: 2px;
+  }
+  @keyframes scrollLeft {
+    from { transform: translateX(100vw); }
+    to { transform: translateX(-100%); }
+  }
+
+  .frame {
+    position: relative; z-index: 5; min-height: 100vh;
+    padding: 20px 200px 60px 200px;
+    display: flex; flex-direction: column;
+  }
+
+  /* Nav row */
+  .nav-row {
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 10px; margin-bottom: 8px; flex-wrap: wrap;
+  }
+  .nav-left, .nav-right { display: flex; gap: 8px; }
+  .nav-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 7px 14px;
+    background: rgba(0, 0, 0, 0.85);
+    border: 3px outset #4a8a5a;
+    color: var(--green);
+    font-family: 'Silkscreen', monospace;
+    font-size: 11px; font-weight: 700; letter-spacing: 2px;
+    cursor: pointer; text-transform: uppercase;
+    text-decoration: none; white-space: nowrap;
+    box-shadow: 0 0 10px rgba(57, 255, 20, 0.4), inset 0 0 6px rgba(57, 255, 20, 0.15);
+    transition: background 0.15s, color 0.15s, border-style 0.15s;
+  }
+  .nav-btn:hover { background: var(--green); color: #000; border-style: inset; box-shadow: 0 0 18px rgba(57, 255, 20, 0.9); }
+  .nav-btn.home { border-color: #c98aff; color: var(--magenta); box-shadow: 0 0 10px rgba(255,75,216,0.4), inset 0 0 6px rgba(255,75,216,0.15); }
+  .nav-btn.home:hover { background: var(--magenta); color: #000; border-color: var(--magenta); box-shadow: 0 0 18px rgba(255,75,216,0.9); }
+  .nav-btn.concepts { border-color: var(--cyan); color: var(--cyan); box-shadow: 0 0 10px rgba(0,229,255,0.4), inset 0 0 6px rgba(0,229,255,0.15); }
+  .nav-btn.concepts:hover { background: var(--cyan); color: #000; border-color: var(--cyan); box-shadow: 0 0 18px rgba(0,229,255,0.9); }
+  .nav-breadcrumb {
+    font-family: 'VT323', monospace;
+    color: var(--amber); font-size: 16px; letter-spacing: 2px;
+    text-shadow: 0 0 5px rgba(255, 179, 71, 0.5);
+  }
+
+  .title-wrap { text-align: center; margin: 10px 0 18px; }
+  .title {
+    font-family: 'TS Block Bold', 'Press Start 2P', sans-serif;
+    font-size: clamp(44px, 6vw, 100px);
+    font-weight: bold; letter-spacing: 8px;
+    color: #d4ffcf; line-height: 1;
+    text-shadow:
+      0 0 3px #39ff14, 0 0 10px #39ff14,
+      0 0 22px rgba(57,255,20,0.85),
+      0 0 42px rgba(57,255,20,0.55),
+      4px 4px 0 rgba(0,0,0,0.8);
+    animation: titleFlicker 5s infinite;
+  }
+  @keyframes titleFlicker {
+    0%, 100% { opacity: 1; }
+    93% { opacity: 1; }
+    94% { opacity: 0.72; }
+    95% { opacity: 1; }
+    97% { opacity: 0.88; }
+  }
+  .subtitle {
+    font-family: 'VT323', monospace; color: var(--green);
+    font-size: 17px; letter-spacing: 4px; margin-top: 4px; opacity: 0.85;
+  }
+  .rainbow-hr {
+    height: 3px; width: 100%;
+    background: linear-gradient(90deg, #ff0000, #ff8c00, #ffd700, #39ff14, #00e5ff, #6a5acd, #ff4bd8);
+    margin: 12px 0 20px;
+    box-shadow: 0 0 8px rgba(255,255,255,0.5);
+    border: none;
+  }
+
+  /* RESUME ENTRY CARDS */
+  .resume-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    max-width: 880px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .entry-card {
+    background: rgba(5, 15, 8, 0.78);
+    border: 3px outset #4a8a5a;
+    padding: 22px 28px 26px;
+    position: relative;
+    box-shadow:
+      0 0 0 1px rgba(57, 255, 20, 0.25),
+      0 0 18px rgba(57, 255, 20, 0.3),
+      inset 0 0 40px rgba(0, 25, 5, 0.7),
+      inset 2px 2px 0 rgba(255,255,255,0.12),
+      inset -2px -2px 0 rgba(0,0,0,0.5);
+  }
+  .entry-card::before, .entry-card::after {
+    content: ''; position: absolute;
+    width: 12px; height: 12px;
+    border: 2px solid var(--green); opacity: 0.5;
+  }
+  .entry-card::before { top: -2px; left: -2px; border-right: none; border-bottom: none; }
+  .entry-card::after  { bottom: -2px; right: -2px; border-left: none; border-top: none; }
+
+  .entry-title {
+    font-family: 'TS Block Bold', 'Press Start 2P', sans-serif;
+    font-size: clamp(26px, 3.4vw, 44px);
+    letter-spacing: 3px;
+    color: #d4ffcf;
+    text-shadow: 0 0 6px rgba(57,255,20,0.7), 2px 2px 0 #000;
+    text-align: center;
+    margin-bottom: 18px;
+    line-height: 1.1;
+  }
+
+  /* Logo plate — light/cream background so navy + red logo reads well */
+  .logo-plate {
+    background: linear-gradient(180deg, #f2ead6, #d9d0b4);
+    border: 3px outset #b8a878;
+    padding: 24px 30px;
+    margin: 0 auto 18px;
+    max-width: 580px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow:
+      0 0 18px rgba(57, 255, 20, 0.25),
+      inset 0 0 0 1px rgba(255,255,255,0.5),
+      inset 0 -4px 12px rgba(0,0,0,0.15);
+  }
+  .logo-plate svg, .logo-plate img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+  .logo-plate.compact { max-width: 220px; padding: 18px; }
+  .logo-plate.compact img { max-width: 140px; }
+
+  .entry-role {
+    font-family: 'VT323', monospace;
+    font-size: 22px;
+    color: #e9ffe4;
+    text-align: center;
+    letter-spacing: 3px;
+    text-shadow: 0 0 5px rgba(57,255,20,0.45), 1px 1px 0 #000;
+    margin-bottom: 4px;
+  }
+
+  /* External link button matching beta-btn style */
+  .entry-link-row { text-align: center; margin-top: 14px; }
+  .entry-link {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 9px 18px;
+    background: rgba(0, 0, 0, 0.85);
+    border: 3px outset #4a8a5a;
+    color: var(--green);
+    font-family: 'Silkscreen', 'VT323', monospace;
+    font-size: 12px; font-weight: 700; letter-spacing: 2px;
+    cursor: pointer; text-transform: uppercase;
+    text-decoration: none; white-space: nowrap;
+    box-shadow: 0 0 12px rgba(57, 255, 20, 0.45), inset 0 0 6px rgba(57, 255, 20, 0.15);
+    transition: background 0.15s, color 0.15s, border-style 0.15s, box-shadow 0.15s;
+  }
+  .entry-link:hover {
+    background: var(--green); color: #000; border-style: inset;
+    box-shadow: 0 0 22px rgba(57, 255, 20, 1);
+  }
+  .entry-link .ext { font-size: 10px; opacity: 0.75; }
+
+  .footer-bar {
+    margin-top: 30px;
+    display: flex; justify-content: space-between; align-items: center;
+    color: var(--green); font-size: 11px; letter-spacing: 3px;
+    opacity: 0.85; padding: 0 6px;
+    font-family: 'Silkscreen', 'VT323', monospace;
+  }
+  .footer-bar .best-viewed { color: var(--amber); font-size: 10px; }
+
+  .sparkle {
+    position: fixed; pointer-events: none;
+    z-index: 999; font-size: 12px;
+    text-shadow: 0 0 4px currentColor;
+    font-family: monospace;
+  }
+
+  @media (max-width: 1200px) {
+    .frame { padding: 20px 150px 40px 150px; }
+    .plant-border { width: 130px; background-size: 130px auto; }
+  }
+  @media (max-width: 950px) {
+    .frame { padding: 16px 100px 30px 100px; }
+    .plant-border { width: 90px; background-size: 90px auto; opacity: 0.75; }
+  }
+  @media (max-width: 600px) {
+    .plant-border { display: none; }
+    .frame { padding: 16px 12px 30px; }
+    .title { font-size: 42px; letter-spacing: 4px; }
+    .entry-card { padding: 18px 16px 22px; }
+    .logo-plate { padding: 16px 18px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="vhs-bg"></div>
+<div class="stars"></div>
+<div class="vignette"></div>
+<div class="plant-border left"></div>
+<div class="plant-border right"></div>
+<div class="scanlines"></div>
+
+<div class="top-banner">
+  <div class="top-banner-marquee">
+    <span style="color:var(--yellow)">★</span>
+    <span style="color:var(--green)">RESUME / EXPERIENCE</span> <span style="color:var(--magenta)">✦</span>
+    <span style="color:var(--cyan)">SELECT POSITION TO LEARN MORE</span> <span style="color:var(--yellow)">✦</span>
+    <span style="color:var(--hot-pink)">UPDATED CONTINUOUSLY</span> <span style="color:var(--green)">✦</span>
+  </div>
+</div>
+
+<div class="frame">
+
+  <div class="nav-row">
+    <div class="nav-left">
+      <a href="index.html" class="nav-btn home">⌂ HOME</a>
+      <a href="concepts.html" class="nav-btn concepts">▣ CONCEPTS</a>
+    </div>
+    <div class="nav-breadcrumb">RESUME</div>
+    <div class="nav-right" style="width:80px"></div>
+  </div>
+
+  <div class="title-wrap">
+    <div class="title">RESUME</div>
+    <div class="subtitle">// EXPERIENCE LOG · EST. 1999 //</div>
+  </div>
+
+  <hr class="rainbow-hr">
+
+  <div class="resume-stack">
+
+    <!-- ENTRY 1 — WINTRICH 4 NEW YORK -->
+    <div class="entry-card">
+      <div class="entry-title">WINTRICH 4 NEW YORK</div>
+      <div class="logo-plate">
+        <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyBpZD0iTGF5ZXJfMiIgZGF0YS1uYW1lPSJMYXllciAyIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMTc2Ljg1IDYxNy4wNSI+CiAgPGRlZnM+CiAgICA8c3R5bGU+CiAgICAgIC5jbHMtMSB7CiAgICAgICAgZmlsbDogIzBiM2M1ZDsKICAgICAgfQoKICAgICAgLmNscy0yIHsKICAgICAgICBmaWxsOiAjZGYyYzE4OwogICAgICB9CiAgICA8L3N0eWxlPgogIDwvZGVmcz4KICA8ZyBpZD0iTGF5ZXJfMi0yIiBkYXRhLW5hbWU9IkxheWVyIDIiPgogICAgPGc+CiAgICAgIDxwYXRoIGNsYXNzPSJjbHMtMSIgZD0iTTEzNy4wMSw0NjIuMmwtMTkuMTYtMjY3LjE0aC0uNjRsLTE3LjU3LDI2Ny4xNGgtNTMuOThMMCwuMDJoNTQuNjFsMTguMjEsMjc0LjIyaC42NEw5Mi45NC4wMmg1MS43NGwxOC41MiwyNzIuMjloLjY0TDE4Mi42OC4wMmg1Mi43bC00NS4zNSw0NjIuMThoLTUzLjAyWiIvPgogICAgICA8Zz4KICAgICAgICA8cGF0aCBjbGFzcz0iY2xzLTIiIGQ9Ik00NDguMDQsNjE1Ljc5aC0zNS4yOGwtNDYuOTgtNzAuOTJ2NzAuOTJoLTM1LjI4di0xMjYuOWgzNS4yOGw0Ni45OCw3MS44MnYtNzEuODJoMzUuMjh2MTI2LjlaIi8+CiAgICAgICAgPHBhdGggY2xhc3M9ImNscy0yIiBkPSJNNTYzLjQyLDU3Mi40MWgtNjYuNzhjLjM2LDUuNTIsMS44OSw5LjYzLDQuNTksMTIuMzNzNi4xNSw0LjA1LDEwLjM1LDQuMDVjNS44OCwwLDEwLjA4LTIuNjQsMTIuNi03LjkyaDM3LjYyYy0xLjU2LDYuOTYtNC41OSwxMy4xNy05LjA5LDE4LjYzcy0xMC4xNyw5Ljc1LTE3LjAxLDEyLjg3LTE0LjQsNC42OC0yMi42OCw0LjY4Yy05Ljk2LDAtMTguODEtMi4xLTI2LjU1LTYuM3MtMTMuOC0xMC4yLTE4LjE4LTE4LTYuNTctMTYuOTgtNi41Ny0yNy41NCwyLjE2LTE5LjcxLDYuNDgtMjcuNDVjNC4zMi03Ljc0LDEwLjM1LTEzLjcxLDE4LjA5LTE3LjkxLDcuNzQtNC4yLDE2LjY1LTYuMywyNi43My02LjNzMTguNzgsMi4wNCwyNi40Niw2LjEyLDEzLjY4LDkuOTMsMTgsMTcuNTUsNi40OCwxNi41OSw2LjQ4LDI2LjkxYzAsMi43Ni0uMTgsNS41Mi0uNTQsOC4yOGgwWk01MjcuOTYsNTU1LjMxYzAtNC4zMi0xLjQ0LTcuNzEtNC4zMi0xMC4xNy0yLjg4LTIuNDYtNi40OC0zLjY5LTEwLjgtMy42OXMtNy44NiwxLjE3LTEwLjYyLDMuNTEtNC41Niw1Ljc5LTUuNCwxMC4zNWgzMS4xNFoiLz4KICAgICAgICA8cGF0aCBjbGFzcz0iY2xzLTIiIGQ9Ik03MjcuMjIsNTE0LjgxbC0yNS43NCwxMDAuOThoLTM5LjZsLTE0LjA0LTYxLjItMTQuNTgsNjEuMmgtMzkuNDJsLTI1LjU2LTEwMC45OGgzNS4xbDExLjM0LDY2Ljk2LDE0Ljk0LTY2Ljk2aDM3LjhsMTUuNDgsNjcuMTQsMTEuMTYtNjcuMTRoMzMuMTJaIi8+CiAgICAgICAgPHBhdGggY2xhc3M9ImNscy0yIiBkPSJNODg3LjA2LDQ4OC44OWwtNDQuNjQsODYuNTh2NDAuMzJoLTM1LjQ2di00MC4zMmwtNDQuNjQtODYuNThoNDAuMzJsMjIuMzIsNDguOTYsMjIuMzItNDguOTZoMzkuNzhaIi8+CiAgICAgICAgPHBhdGggY2xhc3M9ImNscy0yIiBkPSJNODk2LjY4LDYxMC43NWMtNy45OC00LjItMTQuMjUtMTAuMi0xOC44MS0xOHMtNi44NC0xNi45OC02Ljg0LTI3LjU0LDIuMzEtMTkuNTYsNi45My0yNy4zNiwxMC45Mi0xMy44LDE4LjktMThjNy45OC00LjIsMTcuMDEtNi4zLDI3LjA5LTYuM3MxOS4xMSwyLjEsMjcuMDksNi4zYzcuOTgsNC4yLDE0LjI4LDEwLjIsMTguOSwxOHM2LjkzLDE2LjkyLDYuOTMsMjcuMzYtMi4zMSwxOS41OS02LjkzLDI3LjQ1LTEwLjk1LDEzLjg5LTE4Ljk5LDE4LjA5LTE3LjEsNi4zLTI3LjE4LDYuMy0xOS4xMS0yLjEtMjcuMDktNi4zaDBaTTkzNi4xLDU4MC45NmMzLjMtMy42Niw0Ljk1LTguOTEsNC45NS0xNS43NXMtMS42NS0xMi4wNi00Ljk1LTE1LjY2LTcuMzUtNS40LTEyLjE1LTUuNC04LjgyLDEuOC0xMi4wNiw1LjRjLTMuMjQsMy42LTQuODYsOC44Mi00Ljg2LDE1LjY2czEuNTYsMTIuMjQsNC42OCwxNS44NGMzLjEyLDMuNiw3LjE0LDUuNCwxMi4wNiw1LjRzOS4wMy0xLjgzLDEyLjMzLTUuNDloMFoiLz4KICAgICAgICA8cGF0aCBjbGFzcz0iY2xzLTIiIGQ9Ik0xMDM5Ljg3LDUxOC45NWM1LjY0LTMuMzYsMTEuNy01LjA0LDE4LjE4LTUuMDR2MzcuNjJoLTkuOWMtNy42OCwwLTEzLjM4LDEuNS0xNy4xLDQuNXMtNS41OCw4LjIyLTUuNTgsMTUuNjZ2NDQuMWgtMzUuMjh2LTEwMC45OGgzNS4yOHYxNy44MmMzLjk2LTUuNzYsOC43Ni0xMC4zMiwxNC40LTEzLjY4aDBaIi8+CiAgICAgICAgPHBhdGggY2xhc3M9ImNscy0yIiBkPSJNMTEzMy44Myw2MTUuNzlsLTI3LjktNDEuNHY0MS40aC0zNS4yOHYtMTMzLjJoMzUuMjh2NzEuODJsMjcuOS0zOS42aDQyLjNsLTM5Ljc4LDUwLjc2LDQwLjUsNTAuMjJoLTQzLjAyWiIvPgogICAgICA8L2c+CiAgICAgIDxnPgogICAgICAgIDxwYXRoIGNsYXNzPSJjbHMtMiIgZD0iTTExMS41MSw1ODYuMTNjMC0xMC4xMSw3LjQ4LTE1LjksMTUuMjctMTUuOSw0LjYzLDAsOS4xNiwyLjg0LDkuMTYsNy42OSwwLDQtMy4xNiw2Ljk1LTYuNzQsNi45NXMtNC4xMS0xLjc5LTYuODUtMS43OWMtMiwwLTMuNDgsMS42OS0zLjQ4LDQuNTMsMCw1LjY5LDQuNjMsOS41OSwxMS42OSw5LjU5LDcuNDgsMCwxMi4zMi01LjE2LDE1LjA2LTE2LjU0bDEwLjAxLTQwLjU1aC01LjY5bDEuNTgtNi43NGg1LjY5bC41My0yLjIxYzMuOS0xNS44LDE2LjY0LTI0LjU0LDMwLjAyLTI0LjU0LDYuMzIsMCwxMS4zOCwzLjE2LDExLjM4LDguMzIsMCw0LjUzLTIuOTUsNy42OS03LjY5LDcuNjktNy4xNiwwLTYuMjEtOC40My05LjY5LTguNDMtMi40MiwwLTMuNzksMi40Mi00LjYzLDZsLTMuMzcsMTMuMTdoOC41M2wtMS41OCw2Ljc0aC04LjY0bC04LjIxLDMzLjcxYy01LjE2LDIxLjE3LTE2LjMzLDMwLjEyLTMxLjcxLDMwLjEyLTEyLjU0LDAtMjAuNjUtNy4wNi0yMC42NS0xNy44aDBaIi8+CiAgICAgICAgPHBhdGggY2xhc3M9ImNscy0yIiBkPSJNMjM1LjQ4LDU1My43OWMwLDE3LjE3LTEyLjg1LDI5LjctMzAuNjUsMjkuNy0xNi4yMiwwLTI1LjYtOS42OS0yNS42LTIyLjEyLDAtMTcuMDYsMTIuODUtMjkuNiwzMC42NS0yOS42LDE2LjIyLDAsMjUuNiw5LjY5LDI1LjYsMjIuMDFoMFpNMjE5LjY5LDU0OC4yMWMwLTYuMTEtMi41My0xMC4xMS05LjE2LTEwLjExLTExLjE3LDAtMTUuNDgsMjAuOTYtMTUuNDgsMjguODYsMCw2LjIxLDIuNTMsMTAuMjIsOS4xNiwxMC4yMiwxMS4yNywwLDE1LjQ4LTIxLjA3LDE1LjQ4LTI4Ljk3WiIvPgogICAgICAgIDxwYXRoIGNsYXNzPSJjbHMtMiIgZD0iTTIzMy4zOCw1ODEuOTFsMS4xNi00LjQyYzQuODUtLjUzLDYtMS40Nyw2Ljc0LTQuNjNsNi4yMS0yNC45NmMuNTMtMi4yMS4yMS0zLjE2LTEuNjktMy4xNmgtMy4yNmwxLjA1LTQuMTEsMTguMzMtOC44NWg2LjExbC0xLjQ3LDUuNzljMy42OS0zLjM3LDguODUtNS43OSwxMy40OC01Ljc5LDUuMTYsMCw4LjExLDIuNzQsOC4xMSw3LjI3LDAsNS45LTQuMTEsOS40OC04LjY0LDkuNDgtNi40MiwwLTUuMTYtNS40OC04LjY0LTUuNDgtMi4xMSwwLTQuNDIsMS4wNS02LjUzLDMuNThsLTYuNTMsMjYuMjNjLS43NCwzLjE2LS4xLDQuMTEsNC42Myw0LjYzbC0xLjE2LDQuNDJoLTI3LjkxLjAxWiIvPgogICAgICA8L2c+CiAgICAgIDxnPgogICAgICAgIDxwYXRoIGNsYXNzPSJjbHMtMSIgZD0iTTU0Ny4xNCw1NS40aC0zOS4xNVYuM2gxMzMuNHY1NS4xaC0zOS4xNXY0MDYuODZoLTU1LjFWNTUuNGgwWiIvPgogICAgICAgIDxwYXRoIGNsYXNzPSJjbHMtMSIgZD0iTTcxMC4xMiwzMzEuMTh2MTMxLjA4aC01NS4xVi4zaDU1LjF2OC43YzcuNTQtNi4wOSwxNy42OS04LjcsMzAuNDUtOC43LDMyLjE5LDAsNDcuODUsMTYuMjQsNDcuODUsNjYuN3YxNDYuNzRjMCw0Mi45Mi0xMS4zMSw2MS4xOS0zNC44LDY1LjU0bDM0LjgsMTgyLjk5aC01NS4xbC0yMy4yLTEzMS4wOGgwWk03MTAuMTIsNjIuMzV2MTU2LjMxYzAsNy4yNSwzLjc3LDEyLjQ3LDExLjYsMTIuNDdzMTEuNi01LjIyLDExLjYtMTIuNDdWNjIuMzVjMC03LjI1LTMuNzctMTIuNzYtMTEuNi0xMi43NnMtMTEuNiw1LjUxLTExLjYsMTIuNzZaIi8+CiAgICAgICAgPHBhdGggY2xhc3M9ImNscy0xIiBkPSJNODEwLjQ2LjNoNTUuMXY0NjEuOTZoLTU1LjFWLjNaIi8+CiAgICAgICAgPHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMTAyMC4xMywzNDAuNDZ2NTUuMWMwLDQ0LjY2LTIyLjA0LDY2LjctNjYuNyw2Ni43cy02Ni43LTIyLjA0LTY2LjctNjYuN1Y2Ni43YzAtNDQuNjYsMjIuMDQtNjYuNyw2Ni43LTY2LjdzNjYuNywyMi4wNCw2Ni43LDY2Ljd2NTQuNTJoLTU1LjF2LTYwLjMyYzAtNy44My0zLjc3LTExLjYtMTEuNi0xMS42cy0xMS42LDMuNzctMTEuNiwxMS42djM0MC40NWMwLDcuODMsMy43NywxMS42LDExLjYsMTEuNnMxMS42LTMuNzcsMTEuNi0xMS42di02MC45aDU1LjFaIi8+CiAgICAgICAgPHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMTA0MC4xMy4zaDU1LjF2MjAzLjI5aDIzLjJWLjNoNTUuMXY0NjEuOTZoLTU1LjF2LTIwMy41OGgtMjMuMnYyMDMuNThoLTU1LjFWLjNaIi8+CiAgICAgIDwvZz4KICAgICAgPHBhdGggY2xhc3M9ImNscy0xIiBkPSJNNDQ5Ljc0LDQ2Mi4xMWwtNzIuNTUtMzA4LjkzaC0uOTZ2MzA4LjkzaC00NS4xNlYwaDU3LjE3bDU5LjU3LDI2MC4wMWguOTZWMGg0NS42NHY0NjIuMTFoLTQ0LjY4LjAxWiIvPgogICAgICA8cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik0yNTEuMTguMjRoNTUuMXY0NjEuOTZoLTU1LjFWLjI0WiIvPgogICAgPC9nPgogIDwvZz4KPC9zdmc+" alt="Wintrich 4 New York logo">
+      </div>
+      <div class="entry-role">Creative Strategist</div>
+    </div>
+
+    <!-- ENTRY 2 — NYU COLLEGE REPUBLICANS -->
+    <div class="entry-card">
+      <div class="entry-title">NYU COLLEGE REPUBLICANS</div>
+      <div class="logo-plate compact">
+        <img src="data:image/png;base64,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" alt="NYU College Republicans logo">
+      </div>
+      <div class="entry-role">President &amp; Creative Director of NYU College Republicans</div>
+      <div class="entry-link-row">
+        <a href="https://nyucr.com/" class="entry-link" target="_blank" rel="noopener">
+          VISIT NYUCR.COM <span class="ext">↗</span>
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer-bar">
+    <span>◉ ORIGAMI ULTRA · RESUME</span>
+    <span class="best-viewed">★ ARCHIVE v.1.0 ★</span>
+    <span>© EST. <span id="yr"></span></span>
+  </div>
+
+</div>
+
+<script>
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+/* Sparkle cursor trail (matches site-wide style) */
+const sparkleChars = ['✦','★','✧','✶','·'];
+const sparkleColors = ['#ffd700','#ff4bd8','#00e5ff','#39ff14','#fff'];
+let sparkleCooldown = 0;
+document.addEventListener('mousemove', function(e) {
+  if (sparkleCooldown++ % 4 !== 0) return;
+  const s = document.createElement('span');
+  s.className = 'sparkle';
+  s.textContent = sparkleChars[Math.floor(Math.random()*sparkleChars.length)];
+  s.style.color = sparkleColors[Math.floor(Math.random()*sparkleColors.length)];
+  s.style.left = (e.clientX + (Math.random()*10 - 5)) + 'px';
+  s.style.top = (e.clientY + (Math.random()*10 - 5)) + 'px';
+  document.body.appendChild(s);
+  const start = performance.now();
+  const startY = e.clientY;
+  function anim(t) {
+    const el = t - start;
+    if (el > 800) { s.remove(); return; }
+    s.style.opacity = 1 - el/800;
+    s.style.top = (startY + el * 0.03) + 'px';
+    requestAnimationFrame(anim);
+  }
+  requestAnimationFrame(anim);
+});
+</script>
+
+<!-- OU_PROTECTION_v1 -->
+
+<style>
+/* OU_PROTECTION_v1 — block casual right-click/drag/save */
+img {
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  user-drag: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;  /* iOS long-press save */
+  pointer-events: auto;
+}
+/* Transparent shield over any image that's inside one of these containers.
+   Covers the image so a right-click hits the shield (a div) instead of the <img>. */
+.gallery-tile, .lb-stage, .book-page, #lbMediaWrap,
+.headline-item, .logo-plate, .twc-box, .now-playing,
+.flap-face, .globe-arena .globe {
+  position: relative;
+}
+.gallery-tile::after,
+.book-page::after,
+.flap-face::after,
+.logo-plate::after,
+#lbMediaWrap::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: auto;
+  z-index: 50;
+  background: transparent;
+}
+/* But keep highlight-layer interactive in the book reader */
+.book-page .highlight-layer { z-index: 51; }
+.book-page::after { pointer-events: none; }
+/* Tile clicks still need to work for opening the lightbox; let the parent receive */
+.gallery-tile::after { pointer-events: none; }
+/* For lightbox image specifically: a real shield over the image */
+#lbMediaWrap::after { pointer-events: auto; }
+
+/* Friendly notice popup */
+.ou-protect-notice {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: rgba(0, 0, 0, 0.92);
+  color: #39ff14;
+  font-family: 'Silkscreen', 'VT323', monospace;
+  font-size: 13px;
+  letter-spacing: 2px;
+  padding: 12px 22px;
+  border: 3px outset #4a8a5a;
+  box-shadow: 0 0 16px rgba(57, 255, 20, 0.6);
+  z-index: 99999;
+  pointer-events: none;
+  opacity: 0;
+  transition: transform 0.35s ease, opacity 0.35s ease;
+  text-align: center;
+  max-width: 90vw;
+}
+.ou-protect-notice.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+.ou-protect-notice .small {
+  display: block;
+  font-size: 10px;
+  color: #ffb347;
+  margin-top: 4px;
+  letter-spacing: 1px;
+}
+</style>
+
+<script>
+/* OU_PROTECTION_v1 — block casual right-click + drag-save */
+(function() {
+  // --- Notice popup ---
+  var notice = document.createElement('div');
+  notice.className = 'ou-protect-notice';
+  notice.innerHTML = '\u00a9 ORIGAMI ULTRA \u00b7 PLEASE DON\u2019T SAVE' +
+    '<span class="small">All works copyright. Thank you for looking.</span>';
+  document.body.appendChild(notice);
+  var noticeTimeout = null;
+  function flashNotice() {
+    notice.classList.add('show');
+    if (noticeTimeout) clearTimeout(noticeTimeout);
+    noticeTimeout = setTimeout(function() {
+      notice.classList.remove('show');
+    }, 2200);
+  }
+
+  // --- Block right-click everywhere EXCEPT on real navigation links
+  //     (so people can still right-click "open in new tab" on the orbit buttons,
+  //     beta-panel buttons, headline links, etc.) ---
+  document.addEventListener('contextmenu', function(e) {
+    var t = e.target;
+    // Walk up: if there's a real <a href=...> ancestor that points to a URL,
+    // allow the context menu so users can open links in new tabs.
+    var a = t.closest && t.closest('a[href]');
+    if (a) {
+      var href = a.getAttribute('href') || '';
+      if (href && href[0] !== '#') {
+        return; // allow context menu on real links
+      }
+    }
+    e.preventDefault();
+    flashNotice();
+  }, true);
+
+  // --- Block drag (drag image to desktop) ---
+  document.addEventListener('dragstart', function(e) {
+    var t = e.target;
+    if (t && (t.tagName === 'IMG' || t.tagName === 'SVG' || t.tagName === 'VIDEO')) {
+      e.preventDefault();
+      flashNotice();
+    }
+  }, true);
+
+  // --- iOS long-press save: blocked by touch-callout CSS, but also catch here ---
+  document.addEventListener('touchstart', function(e) {
+    var t = e.target;
+    if (t && t.tagName === 'IMG') {
+      // don't preventDefault on touchstart (breaks scrolling), but the CSS handles save sheet
+    }
+  }, { passive: true });
+})();
+</script>
+
+<!-- OU_PLAYER_v1 -->
+
+<style>
+/* OU_PLAYER_v1 — global background music player */
+.now-playing .np-track {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 16px;
+  color: #c9f7c1;
+  margin-top: 2px;
+  margin-bottom: 6px;
+}
+.now-playing .np-title {
+  flex: 1;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-family: 'VT323', monospace;
+  letter-spacing: 1px;
+  color: #fff2cc;
+  text-shadow: 0 0 4px rgba(255, 220, 120, 0.4);
+}
+.now-playing .np-progress {
+  width: 100%;
+  height: 6px;
+  background: #001a05;
+  border: 1px inset #3a6a44;
+  margin: 4px 0 2px;
+  cursor: pointer;
+  position: relative;
+}
+.now-playing .np-progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #39ff14, #00e5ff);
+  box-shadow: 0 0 6px #39ff14;
+  transition: width 0.1s linear;
+}
+.now-playing .np-time {
+  display: flex;
+  justify-content: space-between;
+  font-family: 'VT323', monospace;
+  font-size: 12px;
+  color: #ffb347;
+  letter-spacing: 1px;
+  margin-bottom: 6px;
+}
+.now-playing .np-controls {
+  display: flex;
+  gap: 4px;
+  justify-content: center;
+  margin-top: 4px;
+}
+.np-btn {
+  background: rgba(0,0,0,0.85);
+  border: 2px outset #4a8a5a;
+  color: #39ff14;
+  font-family: 'Silkscreen', monospace;
+  font-size: 12px;
+  padding: 4px 9px;
+  cursor: pointer;
+  text-shadow: 0 0 4px #39ff14;
+  transition: background 0.15s, color 0.15s, border-style 0.15s;
+  min-width: 36px;
+}
+.np-btn:hover {
+  background: #39ff14;
+  color: #000;
+  border-style: inset;
+  text-shadow: none;
+}
+.np-btn.np-play {
+  font-size: 13px;
+  padding: 4px 11px;
+  border-color: #ff4bd8;
+  color: #ff4bd8;
+  text-shadow: 0 0 4px #ff4bd8;
+}
+.np-btn.np-play:hover { background: #ff4bd8; color: #000; }
+.now-playing .np-count {
+  text-align: center;
+  font-family: 'Silkscreen', monospace;
+  font-size: 9px;
+  color: #ffb347;
+  letter-spacing: 2px;
+  margin-top: 4px;
+  opacity: 0.85;
+}
+
+/* MINI-PLAYER (floating, on every non-homepage page) */
+.ou-mini-player {
+  position: fixed;
+  bottom: 14px;
+  right: 14px;
+  z-index: 9000;
+  background: rgba(5, 15, 8, 0.95);
+  border: 3px outset #4a8a5a;
+  padding: 8px 10px;
+  width: 280px;
+  max-width: calc(100vw - 28px);
+  font-family: 'VT323', monospace;
+  color: #c9f7c1;
+  box-shadow:
+    0 0 18px rgba(57, 255, 20, 0.5),
+    inset 0 0 18px rgba(0, 25, 5, 0.7);
+  user-select: none;
+}
+.ou-mini-player.collapsed { width: 56px; padding: 6px; }
+.ou-mini-player.collapsed .mp-body,
+.ou-mini-player.collapsed .mp-controls,
+.ou-mini-player.collapsed .mp-progress,
+.ou-mini-player.collapsed .mp-time,
+.ou-mini-player.collapsed .mp-label-text { display: none; }
+.ou-mini-player.collapsed .mp-toggle::before { content: '♫'; }
+.ou-mini-player .mp-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+  font-family: 'Silkscreen', monospace;
+  font-size: 9px;
+  color: #ff4bd8;
+  letter-spacing: 2px;
+  text-shadow: 0 0 4px #ff4bd8;
+}
+.ou-mini-player .mp-label-text::before { content: '♫ NOW PLAYING'; }
+.ou-mini-player .mp-toggle {
+  background: transparent;
+  border: 1px outset #4a8a5a;
+  color: #39ff14;
+  font-family: 'Silkscreen', monospace;
+  font-size: 10px;
+  cursor: pointer;
+  padding: 1px 6px;
+  min-width: 22px;
+}
+.ou-mini-player .mp-toggle::before { content: '_'; }
+.ou-mini-player .mp-toggle:hover { background: #39ff14; color: #000; }
+.ou-mini-player .mp-body {
+  font-size: 14px;
+  color: #fff2cc;
+  letter-spacing: 1px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-shadow: 0 0 4px rgba(255, 220, 120, 0.4);
+  margin-bottom: 4px;
+}
+.ou-mini-player .mp-progress {
+  width: 100%;
+  height: 4px;
+  background: #001a05;
+  border: 1px inset #3a6a44;
+  margin: 3px 0;
+  cursor: pointer;
+}
+.ou-mini-player .mp-progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #39ff14, #00e5ff);
+  box-shadow: 0 0 4px #39ff14;
+  transition: width 0.1s linear;
+}
+.ou-mini-player .mp-time {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  color: #ffb347;
+  letter-spacing: 1px;
+}
+.ou-mini-player .mp-controls {
+  display: flex;
+  gap: 3px;
+  justify-content: center;
+  margin-top: 4px;
+}
+.ou-mini-player .mp-btn {
+  background: rgba(0,0,0,0.85);
+  border: 2px outset #4a8a5a;
+  color: #39ff14;
+  font-family: 'Silkscreen', monospace;
+  font-size: 11px;
+  padding: 3px 7px;
+  cursor: pointer;
+  text-shadow: 0 0 3px #39ff14;
+  min-width: 32px;
+  transition: background 0.15s, color 0.15s, border-style 0.15s;
+}
+.ou-mini-player .mp-btn:hover { background: #39ff14; color: #000; border-style: inset; text-shadow: none; }
+.ou-mini-player .mp-btn.mp-play {
+  border-color: #ff4bd8;
+  color: #ff4bd8;
+  text-shadow: 0 0 3px #ff4bd8;
+}
+.ou-mini-player .mp-btn.mp-play:hover { background: #ff4bd8; color: #000; }
+@media (max-width: 600px) {
+  .ou-mini-player { width: 230px; }
+}
+</style>
+
+<script>
+/* OU_PLAYER_v1 — global background music player */
+(function() {
+  var TRACKS = [{"title": "APOLLO", "file": "apollo.mp3"}, {"title": "Boggis, Bunce and Bean", "file": "boggis-bunce-and-bean.mp3"}, {"title": "GOD BLE$$ AMERIKKA", "file": "god-ble-amerikka.mp3"}, {"title": "HEPHAESTUS", "file": "hephaestus.mp3"}, {"title": "Heat Death of a Heart", "file": "heat-death-of-a-heart.mp3"}, {"title": "Ice Mountain", "file": "ice-mountain.mp3"}, {"title": "No, I Have Never", "file": "no-i-have-never.mp3"}, {"title": "Waste-Management", "file": "waste-management.mp3"}, {"title": "Wunk", "file": "wunk.mp3"}, {"title": "Xizi", "file": "xizi.mp3"}, {"title": "ZEUS", "file": "zeus.mp3"}, {"title": "cryostasis aperture", "file": "cryostasis-aperture.mp3"}, {"title": "fear not, I am with you", "file": "fear-not-i-am-with-you.mp3"}, {"title": "heart throbbing", "file": "heart-throbbing.mp3"}, {"title": "iris", "file": "iris.mp3"}, {"title": "lapis", "file": "lapis.mp3"}, {"title": "let he who is without sin cast the first stone", "file": "let-he-who-is-without-sin-cast-the-first-stone.mp3"}, {"title": "lichenwake", "file": "lichenwake.mp3"}, {"title": "nose bleeds", "file": "nose-bleeds.mp3"}, {"title": "rootnoise", "file": "rootnoise.mp3"}, {"title": "rue synthèse", "file": "rue-synthese.mp3"}, {"title": "serenity-now", "file": "serenity-now.mp3"}, {"title": "sleep dealer", "file": "sleep-dealer.mp3"}, {"title": "sun bleed carousels", "file": "sun-bleed-carousels.mp3"}, {"title": "sunbeams", "file": "sunbeams.mp3"}, {"title": "title flight", "file": "title-flight.mp3"}, {"title": "trilobite circle", "file": "trilobite-circle.mp3"}, {"title": "weridcore-memories", "file": "weridcore-memories.mp3"}];
+  var STORE_KEY = 'ou_player_state_v1';
+
+  // ----- Persisted state -----
+  function loadState() {
+    try {
+      var raw = sessionStorage.getItem(STORE_KEY);
+      if (raw) {
+        var s = JSON.parse(raw);
+        if (typeof s.idx === 'number' && s.idx >= 0 && s.idx < TRACKS.length) return s;
+      }
+    } catch(e) {}
+    return { idx: 0, t: 0, playing: false, muted: false };
+  }
+  function saveState() {
+    try {
+      sessionStorage.setItem(STORE_KEY, JSON.stringify({
+        idx: state.idx,
+        t: audio.currentTime || 0,
+        playing: !audio.paused,
+        muted: audio.muted
+      }));
+    } catch(e) {}
+  }
+
+  var state = loadState();
+
+  // ----- Audio element (one per page, sound resumes via sessionStorage) -----
+  var audio = new Audio();
+  audio.preload = 'metadata';
+  audio.volume = 0.65;
+  audio.muted = state.muted;
+
+  // Resolve audio path. Files live at /audio/<file>, and we may be at any URL on
+  // GitHub Pages including subpaths. Use a relative path that works if the site
+  // is served from root or a subfolder.
+  function srcFor(idx) {
+    return 'audio/' + TRACKS[idx].file;
+  }
+
+  function loadTrack(idx, autoplay, seekTo) {
+    if (idx < 0) idx = TRACKS.length - 1;
+    if (idx >= TRACKS.length) idx = 0;
+    state.idx = idx;
+    audio.src = srcFor(idx);
+    audio.load();
+    if (typeof seekTo === 'number' && seekTo > 0) {
+      audio.addEventListener('loadedmetadata', function once() {
+        audio.removeEventListener('loadedmetadata', once);
+        try { audio.currentTime = seekTo; } catch(e) {}
+      });
+    }
+    updateUI();
+    if (autoplay) {
+      var p = audio.play();
+      if (p && p.catch) p.catch(function() {
+        // Browsers block autoplay until first user interaction
+        state.playing = false;
+        updateUI();
+      });
+    }
+    saveState();
+  }
+
+  function play() {
+    var p = audio.play();
+    if (p && p.catch) p.catch(function() {});
+  }
+  function pause() { audio.pause(); }
+  function togglePlay() { audio.paused ? play() : pause(); }
+  function next() { loadTrack((state.idx + 1) % TRACKS.length, true); }
+  function prev() {
+    // If more than 3s in, restart current; else go to previous track
+    if (audio.currentTime > 3) { audio.currentTime = 0; }
+    else { loadTrack((state.idx - 1 + TRACKS.length) % TRACKS.length, true); }
+  }
+  function toggleMute() {
+    audio.muted = !audio.muted;
+    saveState();
+    updateUI();
+  }
+
+  // Auto-advance at end
+  audio.addEventListener('ended', function() { next(); });
+  audio.addEventListener('play', function() { saveState(); updateUI(); });
+  audio.addEventListener('pause', function() { saveState(); updateUI(); });
+  audio.addEventListener('timeupdate', function() {
+    updateProgress();
+    // Persist position occasionally
+    if (Math.floor(audio.currentTime) % 3 === 0) saveState();
+  });
+  audio.addEventListener('loadedmetadata', function() { updateProgress(); });
+
+  // Save just before page navigation
+  window.addEventListener('pagehide', saveState);
+  window.addEventListener('beforeunload', saveState);
+
+  // ----- UI: full player (homepage) and mini player (everywhere else) -----
+  var fullEl = document.getElementById('ouPlayerFull');
+  var miniEl = null;
+
+  function fmtTime(s) {
+    if (!s || !isFinite(s)) return '0:00';
+    s = Math.floor(s);
+    var m = Math.floor(s / 60);
+    var sec = s % 60;
+    return m + ':' + (sec < 10 ? '0' : '') + sec;
+  }
+
+  // If no full player, build a floating mini player and attach
+  if (!fullEl) {
+    miniEl = document.createElement('div');
+    miniEl.className = 'ou-mini-player';
+    miniEl.innerHTML =
+      '<div class="mp-header">' +
+        '<span class="mp-label-text"></span>' +
+        '<button class="mp-toggle" id="mpToggle" title="Collapse/expand"></button>' +
+      '</div>' +
+      '<div class="mp-body" id="mpTitle">—</div>' +
+      '<div class="mp-progress" id="mpProgress"><div class="mp-progress-fill" id="mpProgressFill"></div></div>' +
+      '<div class="mp-time"><span id="mpCur">0:00</span><span id="mpDur">0:00</span></div>' +
+      '<div class="mp-controls">' +
+        '<button class="mp-btn" id="mpPrev" title="Previous">\u23ee</button>' +
+        '<button class="mp-btn mp-play" id="mpPlay" title="Play/Pause">\u25b6</button>' +
+        '<button class="mp-btn" id="mpNext" title="Next">\u23ed</button>' +
+        '<button class="mp-btn" id="mpMute" title="Mute">\u266a</button>' +
+      '</div>';
+    document.body.appendChild(miniEl);
+
+    // Restore collapsed state if saved
+    try {
+      if (sessionStorage.getItem('ou_player_collapsed') === '1') {
+        miniEl.classList.add('collapsed');
+      }
+    } catch(e) {}
+
+    document.getElementById('mpToggle').addEventListener('click', function() {
+      miniEl.classList.toggle('collapsed');
+      try {
+        sessionStorage.setItem('ou_player_collapsed',
+          miniEl.classList.contains('collapsed') ? '1' : '0');
+      } catch(e) {}
+    });
+    document.getElementById('mpPlay').addEventListener('click', togglePlay);
+    document.getElementById('mpNext').addEventListener('click', next);
+    document.getElementById('mpPrev').addEventListener('click', prev);
+    document.getElementById('mpMute').addEventListener('click', toggleMute);
+    document.getElementById('mpProgress').addEventListener('click', function(e) {
+      if (!audio.duration) return;
+      var r = this.getBoundingClientRect();
+      audio.currentTime = ((e.clientX - r.left) / r.width) * audio.duration;
+    });
+  } else {
+    // Full player wiring
+    document.getElementById('npPlay').addEventListener('click', togglePlay);
+    document.getElementById('npNext').addEventListener('click', next);
+    document.getElementById('npPrev').addEventListener('click', prev);
+    document.getElementById('npMute').addEventListener('click', toggleMute);
+    document.getElementById('npProgress').addEventListener('click', function(e) {
+      if (!audio.duration) return;
+      var r = this.getBoundingClientRect();
+      audio.currentTime = ((e.clientX - r.left) / r.width) * audio.duration;
+    });
+  }
+
+  function updateUI() {
+    var title = TRACKS[state.idx].title;
+    var playSym = audio.paused ? '\u25b6' : '\u2161\u2161'; // play or pause-ish
+    var muteSym = audio.muted ? '\u266b\u0338' : '\u266a';
+
+    if (fullEl) {
+      document.getElementById('npTitle').textContent = title;
+      document.getElementById('npPlay').textContent = playSym;
+      document.getElementById('npMute').textContent = muteSym;
+      document.getElementById('npMute').title = audio.muted ? 'Unmute' : 'Mute';
+      document.getElementById('npCount').textContent =
+        (state.idx + 1) + ' / ' + TRACKS.length;
+      var eq = document.getElementById('npEq');
+      if (eq) eq.style.visibility = audio.paused ? 'hidden' : 'visible';
+    }
+    if (miniEl) {
+      document.getElementById('mpTitle').textContent = title;
+      document.getElementById('mpPlay').textContent = playSym;
+      document.getElementById('mpMute').textContent = muteSym;
+      document.getElementById('mpMute').title = audio.muted ? 'Unmute' : 'Mute';
+    }
+  }
+  function updateProgress() {
+    var pct = 0;
+    if (audio.duration > 0) pct = (audio.currentTime / audio.duration) * 100;
+    if (fullEl) {
+      var ff = document.getElementById('npProgressFill');
+      if (ff) ff.style.width = pct + '%';
+      var ct = document.getElementById('npCurTime'); if (ct) ct.textContent = fmtTime(audio.currentTime);
+      var d = document.getElementById('npDuration'); if (d) d.textContent = fmtTime(audio.duration);
+    }
+    if (miniEl) {
+      var mf = document.getElementById('mpProgressFill');
+      if (mf) mf.style.width = pct + '%';
+      var mc = document.getElementById('mpCur'); if (mc) mc.textContent = fmtTime(audio.currentTime);
+      var md = document.getElementById('mpDur'); if (md) md.textContent = fmtTime(audio.duration);
+    }
+  }
+
+  // ----- Boot: load the saved track at saved position, autoplay if was playing -----
+  loadTrack(state.idx, state.playing, state.t);
+
+  // First-visit autoplay hint: browsers block autoplay before any user gesture.
+  // If we tried to autoplay and failed, attach a one-time click handler that
+  // resumes playback as soon as the user clicks anywhere.
+  function tryAutoplayOnFirstGesture() {
+    if (audio.paused && state.playing) {
+      var handler = function() {
+        document.removeEventListener('click', handler, true);
+        document.removeEventListener('keydown', handler, true);
+        play();
+      };
+      document.addEventListener('click', handler, true);
+      document.addEventListener('keydown', handler, true);
+    }
+  }
+  // Wait a tick for play() promise to settle
+  setTimeout(tryAutoplayOnFirstGesture, 200);
+
+})();
+</script>
+
+<!-- OU_PLAYLIST_v1 -->
+
+<style>
+/* OU_PLAYLIST_v1 — global playlist feature */
+.ou-playlist-toggle {
+  position: fixed;
+  bottom: 14px;
+  left: 14px;
+  z-index: 9000;
+  background: rgba(5, 15, 8, 0.95);
+  border: 3px outset #4a8a5a;
+  color: #ff4bd8;
+  font-family: 'Silkscreen', 'VT323', monospace;
+  font-size: 11px;
+  letter-spacing: 2px;
+  padding: 8px 12px;
+  cursor: pointer;
+  text-shadow: 0 0 4px #ff4bd8;
+  box-shadow:
+    0 0 14px rgba(255, 75, 216, 0.5),
+    inset 0 0 12px rgba(0, 25, 5, 0.7);
+  transition: background 0.15s, color 0.15s, border-style 0.15s;
+  display: flex; align-items: center; gap: 6px;
+  user-select: none;
+}
+.ou-playlist-toggle:hover { background: #ff4bd8; color: #000; border-style: inset; text-shadow: none; }
+.ou-playlist-toggle .pl-badge {
+  background: #ffd700;
+  color: #000;
+  padding: 1px 5px;
+  font-size: 9px;
+  border-radius: 2px;
+  min-width: 14px;
+  text-align: center;
+  text-shadow: none;
+}
+
+.ou-playlist-panel {
+  position: fixed;
+  bottom: 60px;
+  left: 14px;
+  z-index: 9001;
+  background: rgba(5, 15, 8, 0.97);
+  border: 3px outset #4a8a5a;
+  padding: 10px;
+  width: 340px;
+  max-width: calc(100vw - 28px);
+  max-height: 70vh;
+  font-family: 'VT323', monospace;
+  color: #c9f7c1;
+  box-shadow:
+    0 0 22px rgba(57, 255, 20, 0.55),
+    inset 0 0 18px rgba(0, 25, 5, 0.7);
+  display: none;
+  flex-direction: column;
+}
+.ou-playlist-panel.open { display: flex; }
+.ou-playlist-panel .pl-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 6px;
+  border-bottom: 1px solid rgba(57, 255, 20, 0.4);
+  font-family: 'Silkscreen', monospace;
+  font-size: 11px;
+  color: #ff4bd8;
+  letter-spacing: 2px;
+  text-shadow: 0 0 4px #ff4bd8;
+}
+.ou-playlist-panel .pl-close {
+  background: transparent;
+  border: 1px outset #4a8a5a;
+  color: #39ff14;
+  font-family: 'Silkscreen', monospace;
+  font-size: 10px;
+  cursor: pointer;
+  padding: 1px 6px;
+}
+.ou-playlist-panel .pl-close:hover { background: #ff1493; color: #fff; border-color: #ff1493; }
+.ou-playlist-panel .pl-list {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  margin: 6px 0;
+  font-size: 14px;
+}
+.ou-playlist-panel .pl-list:empty::before {
+  content: '» your playlist is empty';
+  display: block;
+  text-align: center;
+  color: #ffb347;
+  padding: 18px 6px;
+  font-family: 'VT323', monospace;
+  opacity: 0.75;
+  letter-spacing: 1px;
+}
+.ou-playlist-panel .pl-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 6px;
+  border-bottom: 1px dashed rgba(57, 255, 20, 0.15);
+  cursor: pointer;
+  user-select: none;
+}
+.ou-playlist-panel .pl-item:hover { background: rgba(57, 255, 20, 0.08); }
+.ou-playlist-panel .pl-item.active {
+  background: rgba(57, 255, 20, 0.15);
+  border-left: 3px solid #39ff14;
+  padding-left: 4px;
+}
+.ou-playlist-panel .pl-item .pl-pos {
+  font-family: 'Silkscreen', monospace;
+  font-size: 9px;
+  color: #ffb347;
+  min-width: 18px;
+}
+.ou-playlist-panel .pl-item .pl-meta {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.ou-playlist-panel .pl-item .pl-track {
+  color: #fff2cc;
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-shadow: 0 0 3px rgba(255, 220, 120, 0.3);
+}
+.ou-playlist-panel .pl-item .pl-album {
+  font-size: 10px;
+  color: #00e5ff;
+  font-family: 'Silkscreen', monospace;
+  letter-spacing: 1px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.ou-playlist-panel .pl-item .pl-remove {
+  background: transparent;
+  border: 1px outset #4a8a5a;
+  color: #ff4bd8;
+  font-size: 10px;
+  cursor: pointer;
+  padding: 1px 5px;
+  font-family: 'Silkscreen', monospace;
+}
+.ou-playlist-panel .pl-item .pl-remove:hover { background: #ff1493; color: #fff; }
+
+.ou-playlist-panel .pl-controls {
+  display: flex;
+  gap: 4px;
+  justify-content: center;
+  padding-top: 6px;
+  border-top: 1px solid rgba(57, 255, 20, 0.4);
+}
+.ou-playlist-panel .pl-btn {
+  background: rgba(0,0,0,0.85);
+  border: 2px outset #4a8a5a;
+  color: #39ff14;
+  font-family: 'Silkscreen', monospace;
+  font-size: 11px;
+  padding: 4px 8px;
+  cursor: pointer;
+  text-shadow: 0 0 3px #39ff14;
+  min-width: 32px;
+}
+.ou-playlist-panel .pl-btn:hover { background: #39ff14; color: #000; border-style: inset; text-shadow: none; }
+.ou-playlist-panel .pl-btn.pl-play {
+  border-color: #ff4bd8; color: #ff4bd8; text-shadow: 0 0 3px #ff4bd8;
+}
+.ou-playlist-panel .pl-btn.pl-play:hover { background: #ff4bd8; color: #000; }
+.ou-playlist-panel .pl-btn.pl-clear {
+  border-color: #ff1493; color: #ff1493; text-shadow: 0 0 3px #ff1493;
+  margin-left: auto;
+}
+.ou-playlist-panel .pl-btn.pl-clear:hover { background: #ff1493; color: #fff; }
+
+.ou-playlist-panel .pl-now {
+  font-size: 11px;
+  color: #ffd700;
+  padding: 4px 0;
+  text-align: center;
+  font-family: 'Silkscreen', monospace;
+  letter-spacing: 1px;
+  border-top: 1px dashed rgba(57, 255, 20, 0.25);
+  margin-top: 4px;
+}
+.ou-playlist-panel .pl-progress {
+  width: 100%;
+  height: 3px;
+  background: #001a05;
+  border: 1px inset #3a6a44;
+  margin: 3px 0;
+  cursor: pointer;
+}
+.ou-playlist-panel .pl-progress-fill {
+  height: 100%; width: 0%;
+  background: linear-gradient(90deg, #ff4bd8, #00e5ff);
+  box-shadow: 0 0 4px #ff4bd8;
+}
+
+/* Track-row "+ add" button (album pages only) */
+.track .pl-add-btn {
+  background: rgba(0,0,0,0.5);
+  border: 1px outset #4a8a5a;
+  color: #ff4bd8;
+  font-family: 'Silkscreen', monospace;
+  font-size: 9px;
+  padding: 1px 6px;
+  cursor: pointer;
+  margin-left: 8px;
+  text-shadow: 0 0 3px #ff4bd8;
+  letter-spacing: 1px;
+  white-space: nowrap;
+}
+.track .pl-add-btn:hover { background: #ff4bd8; color: #000; border-style: inset; text-shadow: none; }
+.track .pl-add-btn.added { background: #39ff14; color: #000; border-color: #39ff14; text-shadow: none; }
+</style>
+
+<script>
+/* OU_PLAYLIST_v1 — global playlist */
+(function() {
+  const STORE_KEY = 'ou_playlist_v1';
+
+  function load() {
+    try {
+      const raw = localStorage.getItem(STORE_KEY);
+      if (raw) return JSON.parse(raw);
+    } catch(e) {}
+    return { items: [], idx: 0, t: 0, playing: false };
+  }
+  function save() {
+    try { localStorage.setItem(STORE_KEY, JSON.stringify(state)); } catch(e) {}
+  }
+
+  let state = load();
+  const audio = new Audio();
+  audio.preload = 'metadata';
+  audio.volume = 0.85;
+
+  // ----- UI: toggle button + panel -----
+  const btn = document.createElement('button');
+  btn.className = 'ou-playlist-toggle';
+  btn.innerHTML = '\u266B PLAYLIST <span class="pl-badge" id="plBadge">0</span>';
+  btn.title = 'Open your playlist';
+  document.body.appendChild(btn);
+
+  const panel = document.createElement('div');
+  panel.className = 'ou-playlist-panel';
+  panel.innerHTML =
+    '<div class="pl-header">' +
+      '<span>\u266B YOUR PLAYLIST</span>' +
+      '<button class="pl-close" id="plClose">CLOSE</button>' +
+    '</div>' +
+    '<div class="pl-list" id="plList"></div>' +
+    '<div class="pl-now" id="plNow">\u2014</div>' +
+    '<div class="pl-progress" id="plProgress"><div class="pl-progress-fill" id="plFill"></div></div>' +
+    '<div class="pl-controls">' +
+      '<button class="pl-btn" id="plPrev">\u23ee</button>' +
+      '<button class="pl-btn pl-play" id="plPlay">\u25b6</button>' +
+      '<button class="pl-btn" id="plNext">\u23ed</button>' +
+      '<button class="pl-btn pl-clear" id="plClear">CLEAR</button>' +
+    '</div>';
+  document.body.appendChild(panel);
+
+  btn.addEventListener('click', () => { panel.classList.toggle('open'); render(); });
+  document.getElementById('plClose').addEventListener('click', () => panel.classList.remove('open'));
+  document.getElementById('plPlay').addEventListener('click', togglePlay);
+  document.getElementById('plPrev').addEventListener('click', prev);
+  document.getElementById('plNext').addEventListener('click', next);
+  document.getElementById('plClear').addEventListener('click', clear);
+  document.getElementById('plProgress').addEventListener('click', function(e) {
+    if (!audio.duration) return;
+    const r = this.getBoundingClientRect();
+    audio.currentTime = ((e.clientX - r.left) / r.width) * audio.duration;
+  });
+
+  // ----- Public API: page code calls window.OUPlaylist.add(item) -----
+  window.OUPlaylist = {
+    add: function(item) {
+      // item = {file, title, album, slug}
+      // Skip if duplicate
+      const exists = state.items.some(x => x.file === item.file);
+      if (exists) return false;
+      state.items.push(item);
+      save();
+      updateBadge();
+      flashFeedback('+ added to playlist');
+      return true;
+    },
+    has: function(file) {
+      return state.items.some(x => x.file === file);
+    },
+    remove: function(file) {
+      const i = state.items.findIndex(x => x.file === file);
+      if (i >= 0) {
+        state.items.splice(i, 1);
+        if (state.idx >= state.items.length) state.idx = Math.max(0, state.items.length - 1);
+        save();
+        updateBadge();
+        render();
+      }
+    },
+    open: function() { panel.classList.add('open'); render(); }
+  };
+
+  function updateBadge() {
+    document.getElementById('plBadge').textContent = state.items.length;
+  }
+  updateBadge();
+
+  function fmtTime(s) {
+    if (!s || !isFinite(s)) return '0:00';
+    s = Math.floor(s);
+    const m = Math.floor(s / 60); const sec = s % 60;
+    return m + ':' + (sec < 10 ? '0' : '') + sec;
+  }
+
+  function render() {
+    const list = document.getElementById('plList');
+    list.innerHTML = '';
+    state.items.forEach((it, i) => {
+      const row = document.createElement('div');
+      row.className = 'pl-item' + (i === state.idx ? ' active' : '');
+      row.innerHTML =
+        '<span class="pl-pos">' + String(i+1).padStart(2,'0') + '</span>' +
+        '<div class="pl-meta">' +
+          '<div class="pl-track">' + escapeHtml(it.title) + '</div>' +
+          '<div class="pl-album">' + escapeHtml(it.album || '') + '</div>' +
+        '</div>' +
+        '<button class="pl-remove" data-i="' + i + '">\u2715</button>';
+      row.addEventListener('click', (e) => {
+        if (e.target.classList.contains('pl-remove')) return;
+        state.idx = i;
+        loadAndPlay();
+      });
+      const rem = row.querySelector('.pl-remove');
+      rem.addEventListener('click', (e) => {
+        e.stopPropagation();
+        state.items.splice(i, 1);
+        if (state.idx >= state.items.length) state.idx = Math.max(0, state.items.length - 1);
+        save();
+        updateBadge();
+        render();
+      });
+      list.appendChild(row);
+    });
+    const now = state.items[state.idx];
+    document.getElementById('plNow').textContent = now ? '\u266b ' + now.title : '\u2014';
+    document.getElementById('plPlay').textContent = audio.paused ? '\u25b6' : '\u2161\u2161';
+  }
+  function escapeHtml(s) {
+    return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  }
+
+  function pauseBackgroundMusic() {
+    // The global background player exposes its audio via the sessionStorage key
+    // ou_player_state_v1, but the cleanest way is: tell other audio elements to pause
+    document.querySelectorAll('audio').forEach(a => {
+      if (a !== audio && !a.paused) a.pause();
+    });
+  }
+
+  function loadAndPlay() {
+    if (!state.items.length) return;
+    if (state.idx >= state.items.length) state.idx = 0;
+    const it = state.items[state.idx];
+    audio.src = it.file;
+    audio.load();
+    pauseBackgroundMusic();
+    const p = audio.play();
+    if (p && p.catch) p.catch(() => {});
+    save();
+    render();
+  }
+  function togglePlay() {
+    if (!state.items.length) return;
+    if (!audio.src || audio.src === window.location.href) { loadAndPlay(); return; }
+    if (audio.paused) {
+      pauseBackgroundMusic();
+      audio.play().catch(() => {});
+    } else {
+      audio.pause();
+    }
+    render();
+  }
+  function next() {
+    if (!state.items.length) return;
+    state.idx = (state.idx + 1) % state.items.length;
+    loadAndPlay();
+  }
+  function prev() {
+    if (!state.items.length) return;
+    if (audio.currentTime > 3) { audio.currentTime = 0; return; }
+    state.idx = (state.idx - 1 + state.items.length) % state.items.length;
+    loadAndPlay();
+  }
+  function clear() {
+    if (!confirm('Clear your entire playlist?')) return;
+    audio.pause();
+    state = { items: [], idx: 0, t: 0, playing: false };
+    save();
+    updateBadge();
+    render();
+  }
+
+  audio.addEventListener('ended', next);
+  audio.addEventListener('play',  render);
+  audio.addEventListener('pause', render);
+  audio.addEventListener('timeupdate', () => {
+    if (!audio.duration) return;
+    document.getElementById('plFill').style.width = (audio.currentTime / audio.duration * 100) + '%';
+  });
+
+  // ----- Feedback tooltip when a track is added -----
+  let feedbackEl = null;
+  function flashFeedback(msg) {
+    if (!feedbackEl) {
+      feedbackEl = document.createElement('div');
+      feedbackEl.style.cssText = 'position:fixed;bottom:60px;left:14px;background:rgba(0,0,0,0.92);color:#39ff14;font-family:Silkscreen,monospace;font-size:11px;letter-spacing:2px;padding:6px 12px;border:2px outset #4a8a5a;z-index:9999;pointer-events:none;opacity:0;transition:opacity 0.3s;text-shadow:0 0 4px #39ff14;box-shadow:0 0 12px rgba(57,255,20,0.5);';
+      document.body.appendChild(feedbackEl);
+    }
+    feedbackEl.textContent = msg;
+    feedbackEl.style.opacity = '1';
+    clearTimeout(feedbackEl._t);
+    feedbackEl._t = setTimeout(() => { feedbackEl.style.opacity = '0'; }, 1500);
+  }
+
+  // ----- On album pages, inject "+ ADD" buttons next to each track -----
+  // (only if window.__ALBUM__ exists, which is set by album-*.html pages)
+  function injectAddButtons() {
+    if (!window.__ALBUM__) return;
+    const album = window.__ALBUM__;
+    const tracks = album.tracks || [];
+    const rows = document.querySelectorAll('.track');
+    rows.forEach((row, i) => {
+      if (row.querySelector('.pl-add-btn')) return;
+      const trackData = tracks[i];
+      if (!trackData) return;
+      const addBtn = document.createElement('button');
+      addBtn.className = 'pl-add-btn';
+      const inPlaylist = window.OUPlaylist.has(trackData.file);
+      addBtn.textContent = inPlaylist ? '\u2713 ADDED' : '+ ADD';
+      if (inPlaylist) addBtn.classList.add('added');
+      addBtn.title = 'Add to playlist';
+      addBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const ok = window.OUPlaylist.add({
+          file: trackData.file,
+          title: trackData.title.replace(/^\s*\d{1,2}\s*[-\u2013\u2014]*\s*/, '').trim(),
+          album: album.title,
+          slug: album.slug,
+        });
+        if (ok) {
+          addBtn.textContent = '\u2713 ADDED';
+          addBtn.classList.add('added');
+        } else {
+          addBtn.textContent = '\u2713 IN PLAYLIST';
+          addBtn.classList.add('added');
+        }
+      });
+      row.appendChild(addBtn);
+    });
+  }
+
+  // Run after the album page's own scripts populate the tracklist
+  if (window.__ALBUM__) {
+    // Wait for the track DOM to be present
+    let attempts = 0;
+    const tryInject = () => {
+      if (document.querySelectorAll('.track').length > 0 || attempts++ > 50) {
+        injectAddButtons();
+      } else {
+        setTimeout(tryInject, 100);
+      }
+    };
+    tryInject();
+  }
+})();
+</script>
+
+</body>
+</html>
