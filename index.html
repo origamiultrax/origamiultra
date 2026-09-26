@@ -938,7 +938,7 @@
           <div class="clock-row"><span class="clock-city">Guam</span><span class="clock-time" data-tz="Pacific/Guam">--:--:--</span></div>
           <div class="clock-row"><span class="clock-city">Queensland</span><span class="clock-time" data-tz="Australia/Brisbane">--:--:--</span></div>
           <div class="clock-row"><span class="clock-city">Pyongyang</span><span class="clock-time" data-tz="Asia/Pyongyang">--:--:--</span></div>
-          <div class="clock-row"><span class="clock-city">Tristan da Cunha</span><span class="clock-time" data-tz="Atlantic/St_Helena">--:--:--</span></div>
+          <div class="clock-row"><span class="clock-city">Marie Byrd Land</span><span class="clock-time" data-tz="Antarctica/McMurdo">--:--:--</span></div>
         </div>
       </div>
 
@@ -985,10 +985,8 @@
         <!-- 10 orbit buttons -->
         <a href="music.html" class="orbit-btn">Music</a>
         <a href="museum.html" class="orbit-btn">Museum</a>
-        <a href="resume.html" class="orbit-btn">Resume</a>
         <a href="concepts.html" class="orbit-btn">Concepts</a>
         <a href="publications.html" class="orbit-btn">Publications</a>
-        <a href="https://althindu.com/" class="orbit-btn" target="_blank" rel="noopener">Alt Hindu</a>
       </div>
 
       <div style="color: var(--green); font-size: 14px; letter-spacing: 4px; opacity: 0.9; text-align:center; font-family: 'VT323', monospace;">
@@ -1003,6 +1001,7 @@
           <a href="https://origamiultrax.github.io/videodroid/" class="beta-btn" target="_blank" rel="noopener">Videodroid</a>
           <a href="https://origamiultrax.github.io/noisyimages/" class="beta-btn" target="_blank" rel="noopener">Noisy Images</a>
           <a href="https://origamiultrax.github.io/rainforestshowroom/#/home" class="beta-btn" target="_blank" rel="noopener">Rainforest Showroom</a>
+          <a href="https://cityscapes.world/" class="beta-btn" target="_blank" rel="noopener" style="grid-column: 1 / -1;">Cityscapes</a>
         </div>
       </div>
 
@@ -1013,17 +1012,8 @@
           <a href="https://www.instagram.com/origamixultra/" class="social-btn social-btn--ig" target="_blank" rel="noopener">
             <span class="social-ico">◉</span> INSTAGRAM
           </a>
-          <a href="https://open.spotify.com/artist/502DZZNFWb6yx9p3K7cdku" class="social-btn social-btn--spotify" target="_blank" rel="noopener">
-            <span class="social-ico">♪</span> SPOTIFY
-          </a>
-          <a href="https://music.apple.com/us/artist/origami-ultra/1679681146" class="social-btn social-btn--apple" target="_blank" rel="noopener">
-            <span class="social-ico">♫</span> APPLE MUSIC
-          </a>
           <a href="https://internetjunklesinc.bandcamp.com/" class="social-btn social-btn--bandcamp" target="_blank" rel="noopener">
             <span class="social-ico">▶</span> BANDCAMP
-          </a>
-          <a href="https://www.youtube.com/@prodorigamiultra/featured" class="social-btn social-btn--youtube" target="_blank" rel="noopener">
-            <span class="social-ico">▶</span> YOUTUBE
           </a>
         </div>
       </div>
@@ -1041,9 +1031,9 @@
         </div>
       </div>
 
-      <!-- BHAGAVAD GITA DAILY VERSE -->
+      <!-- RIGVEDA DAILY VERSE -->
       <div class="gita-box">
-        <div class="panel-title gita" style="background: linear-gradient(90deg, rgba(255,215,0,0.22), transparent); border-left-color: var(--yellow); color: var(--yellow); text-shadow: 0 0 5px rgba(255,215,0,0.7);"><span>◈ BHAGAVAD GITA</span></div>
+        <div class="panel-title gita" style="background: linear-gradient(90deg, rgba(255,215,0,0.22), transparent); border-left-color: var(--yellow); color: var(--yellow); text-shadow: 0 0 5px rgba(255,215,0,0.7);"><span>◈ RIGVEDA</span></div>
         <div class="gita-ornament">✦ ॐ ✦</div>
         <div class="gita-verse" id="gitaVerse">Loading today's verse...</div>
         <div class="gita-ref" id="gitaRef">—</div>
@@ -1514,49 +1504,32 @@ setInterval(updateTWCTime, 1000);
 setInterval(loadWeather, 60 * 60 * 1000);
 
 /* ============================================================
-   BHAGAVAD GITA — daily verse (rotates by day of year)
+   RIGVEDA — daily verse (rotates by day of year)
    ============================================================ */
 const GITA_VERSES = [
-  { v: "You have the right to work, but never to the fruit of work. You should never engage in action for the sake of reward, nor should you long for inaction.", r: "CH. 2, V. 47" },
-  { v: "Perform your duty equipoised, O Arjuna, abandoning all attachment to success or failure. Such equanimity is called yoga.", r: "CH. 2, V. 48" },
-  { v: "The wise, engaged in devotional service, take refuge in the Lord, and free themselves from the cycle of birth and death by renouncing the fruits of action.", r: "CH. 2, V. 51" },
-  { v: "For the soul there is neither birth nor death. Nor, having once been, does he ever cease to be. He is unborn, eternal, ever-existing, undying and primeval.", r: "CH. 2, V. 20" },
-  { v: "As a person puts on new garments, giving up old ones, the soul similarly accepts new material bodies, giving up the old and useless ones.", r: "CH. 2, V. 22" },
-  { v: "That which pervades the entire body you should know to be indestructible. No one is able to destroy that imperishable soul.", r: "CH. 2, V. 17" },
-  { v: "One who is not disturbed in mind even amidst the threefold miseries or elated when there is happiness, and who is free from attachment, fear and anger, is called a sage of steady mind.", r: "CH. 2, V. 56" },
-  { v: "A person who is not disturbed by the incessant flow of desires — that enters like rivers into the ocean, which is ever being filled but is always still — can alone achieve peace.", r: "CH. 2, V. 70" },
-  { v: "Whenever and wherever there is a decline in righteousness, and a predominant rise of irreligion — at that time I descend Myself.", r: "CH. 4, V. 7" },
-  { v: "One who sees inaction in action, and action in inaction, is intelligent among men, and he is in the transcendental position, although engaged in all sorts of activities.", r: "CH. 4, V. 18" },
-  { v: "A person in full consciousness of Me, knowing Me to be the ultimate beneficiary of all sacrifices and austerities, the Supreme Lord of all planets and demigods, and the benefactor of all living entities, attains peace.", r: "CH. 5, V. 29" },
-  { v: "One who is equipoised in happiness and distress, who is situated in the self, and who sees a lump of earth, a stone and a piece of gold as equal — is called a yogi of steady mind.", r: "CH. 6, V. 8" },
-  { v: "For one who has conquered the mind, the mind is the best of friends; but for one who has failed to do so, his very mind will be the greatest enemy.", r: "CH. 6, V. 6" },
-  { v: "A yogi must always try to concentrate the mind on the Supreme Self, remaining alone in a secluded place, with the mind and body controlled, free from desires and feelings of possessiveness.", r: "CH. 6, V. 10" },
-  { v: "In this endeavor there is no loss or diminution, and a little advancement on this path can protect one from the most dangerous type of fear.", r: "CH. 2, V. 40" },
-  { v: "Out of many thousands among men, one may endeavor for perfection, and of those who have achieved perfection, hardly one knows Me in truth.", r: "CH. 7, V. 3" },
-  { v: "The mind is restless, turbulent, obstinate, and very strong — to control it is more difficult than controlling the wind. Yet by constant practice and detachment, it can indeed be restrained.", r: "CH. 6, V. 34–35" },
-  { v: "Those who always worship Me with exclusive devotion, meditating on My transcendental form — to them I carry what they lack and preserve what they have.", r: "CH. 9, V. 22" },
-  { v: "I am seated in everyone's heart, and from Me come remembrance, knowledge, and forgetfulness.", r: "CH. 15, V. 15" },
-  { v: "One who performs his duty without attachment, surrendering the results to the Supreme, is not affected by sinful action, as the lotus leaf is untouched by water.", r: "CH. 5, V. 10" },
-  { v: "Therefore, without being attached to the fruits of activities, one should act as a matter of duty, for by working without attachment one attains the Supreme.", r: "CH. 3, V. 19" },
-  { v: "Better is one's own duty, though imperfectly performed, than the duty of another well-discharged.", r: "CH. 3, V. 35" },
-  { v: "He who has no attachments can really love others, for his love is pure and divine.", r: "CH. 12, V. 13–14" },
-  { v: "Delusion arises from anger. The mind is bewildered by delusion. Reasoning is destroyed when the mind is bewildered. One falls down when reasoning is destroyed.", r: "CH. 2, V. 63" },
-  { v: "When meditation is mastered, the mind is unwavering like the flame of a lamp in a windless place.", r: "CH. 6, V. 19" },
-  { v: "The soul can never be cut to pieces by any weapon, nor burned by fire, nor moistened by water, nor withered by the wind.", r: "CH. 2, V. 23" },
-  { v: "Set thy heart upon thy work, but never on its reward. Work not for a reward; but never cease to do thy work.", r: "CH. 2, V. 47" },
-  { v: "Whatever happened, happened for the good. Whatever is happening, is happening for the good. Whatever will happen, will also happen for the good.", r: "BHAGAVAD GITA" },
-  { v: "One who sees equality everywhere, in pleasure and in pain, is a true yogi.", r: "CH. 6, V. 32" },
-  { v: "Change is the law of the universe. You can be a millionaire or a pauper in an instant.", r: "BHAGAVAD GITA" },
-  { v: "Man is made by his belief. As he believes, so he is.", r: "BHAGAVAD GITA" },
-  { v: "There is neither this world, nor the world beyond, nor happiness, for the one who doubts.", r: "CH. 4, V. 40" },
-  { v: "Abandon all varieties of dharma and simply surrender unto Me alone. I shall liberate you from all sinful reactions; do not fear.", r: "CH. 18, V. 66" },
-  { v: "Whatever action is performed by a great man, common men follow in his footsteps. Whatever standards he sets by his exemplary acts, all the world pursues.", r: "CH. 3, V. 21" },
-  { v: "He who sees Me everywhere, and sees all things in Me, never loses sight of Me, nor do I ever lose sight of him.", r: "CH. 6, V. 30" },
-  { v: "Those who are free from anger and all material desires, who are self-realized and self-disciplined, attain the Supreme.", r: "CH. 5, V. 26" },
-  { v: "Just as a blazing fire turns firewood to ashes, the fire of knowledge burns to ashes all reactions to material activities.", r: "CH. 4, V. 37" },
-  { v: "For one who sees Me everywhere and sees everything in Me, nothing is ever lost, and nothing is ever separate.", r: "CH. 6, V. 30" },
-  { v: "A true yogi observes Me in all beings, and also sees every being in Me. Indeed, the self-realized person sees Me, the same Supreme Lord, everywhere.", r: "CH. 6, V. 29" },
-  { v: "The senses are superior to the body, the mind superior to the senses; above the mind is the intellect, and above the intellect is the Atman.", r: "CH. 3, V. 42" }
+  { v: "Let noble thoughts come to us from every side.", r: "RIGVEDA 1.89.1" },
+  { v: "Truth is one; the wise call it by many names.", r: "RIGVEDA 1.164.46" },
+  { v: "Then was not non-existent nor existent: there was no realm of air, no sky beyond it.", r: "RIGVEDA 10.129.1" },
+  { v: "Darkness there was: at first concealed in darkness, this All was indiscriminated chaos.", r: "RIGVEDA 10.129.3" },
+  { v: "Thereafter rose Desire in the beginning, Desire, the primal seed and germ of Spirit.", r: "RIGVEDA 10.129.4" },
+  { v: "Who verily knows and who can here declare it, whence it was born and whence comes this creation?", r: "RIGVEDA 10.129.6" },
+  { v: "He, the first origin of this creation, whose eye controls this world in highest heaven, he verily knows it, or perhaps he knows not.", r: "RIGVEDA 10.129.7" },
+  { v: "In the beginning rose Hiranyagarbha, born only Lord of all created beings. He fixed and holds up this earth and heaven.", r: "RIGVEDA 10.121.1" },
+  { v: "A thousand heads hath Purusha, a thousand eyes, a thousand feet.", r: "RIGVEDA 10.90.1" },
+  { v: "This Purusha is all that yet hath been and all that is to be.", r: "RIGVEDA 10.90.2" },
+  { v: "May we attain that excellent glory of Savitar the God: so may he stimulate our prayers.", r: "RIGVEDA 3.62.10" },
+  { v: "Two birds with fair wings, knit with bonds of friendship, in the same sheltering tree have found a refuge. One eats the sweet fruit; the other, eating not, looks on.", r: "RIGVEDA 1.164.20" },
+  { v: "Assemble, speak together: let your minds be all of one accord.", r: "RIGVEDA 10.191.2" },
+  { v: "One and the same be your resolve, and be your minds of one accord. United be the thoughts of all, that all may happily agree.", r: "RIGVEDA 10.191.4" },
+  { v: "The riches of the liberal never waste away, while he who will not give finds none to comfort him.", r: "RIGVEDA 10.117.1" },
+  { v: "He who eats alone is all sin.", r: "RIGVEDA 10.117.6" },
+  { v: "No one is superior, none inferior; all are brothers marching forward to prosperity.", r: "RIGVEDA 5.60.5" },
+  { v: "The winds waft sweets, the rivers pour sweets for the man who keeps the Law.", r: "RIGVEDA 1.90.6" },
+  { v: "Arise! The breath, the life, again hath reached us: darkness hath passed away, and light approacheth.", r: "RIGVEDA 1.113.16" },
+  { v: "Be to us easy of approach, even as a father to his son.", r: "RIGVEDA 1.1.9" },
+  { v: "We worship the three-eyed One, fragrant, who nourishes all. As the cucumber from its stem, may I be freed from death, not from immortality.", r: "RIGVEDA 7.59.12" },
+  { v: "I travel with the Rudras and the Vasus, with the Adityas and All-Gods I wander.", r: "RIGVEDA 10.125.1" },
+  { v: "My ears open to hear, my eyes to see; the light set within my heart expands, and my mind wanders far.", r: "RIGVEDA 6.9.6" }
 ];
 
 function dayOfYear(date = new Date()) {
