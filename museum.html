@@ -237,6 +237,17 @@
     color: var(--amber); letter-spacing: 1px; opacity: 0.85;
   }
 
+  .museum-section-heading {
+    display: flex; align-items: center; gap: 14px;
+    width: 100%; max-width: 760px; margin: 26px auto 0; padding: 0 12px; box-sizing: border-box;
+    font-family: 'Silkscreen', monospace; font-size: 15px; letter-spacing: 4px;
+    color: var(--amber); text-shadow: 0 0 6px rgba(255,179,71,0.6); white-space: nowrap;
+  }
+  .museum-section-heading::before, .museum-section-heading::after {
+    content: ''; flex: 1; height: 2px; opacity: 0.6;
+    background: linear-gradient(90deg, transparent, var(--amber), transparent);
+  }
+  @media (max-width: 600px) { .museum-section-heading { font-size: 11px; letter-spacing: 2px; } }
 </style>
 </head>
 <body>
@@ -280,85 +291,6 @@
   <div class="page-hint">◆ SELECT AN EXHIBITION TO ENTER ◆</div>
 
   <div class="folder-grid">
-    
-    <a class="folder-item" href="museum-fit-pics.html">
-      <div class="folder-icon-wrap">
-        
-    <svg viewBox="0 0 120 100" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <linearGradient id="g7a3a1a" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stop-color="#9a4a2a"/>
-          <stop offset="1" stop-color="#7a3a1a"/>
-        </linearGradient>
-      </defs>
-      <!-- Tab -->
-      <path d="M 6 20 L 44 20 L 52 30 L 114 30 L 114 90 L 6 90 Z"
-            fill="#9a4a2a" stroke="#ffd9a6" stroke-width="1.2" stroke-linejoin="miter" opacity="0.9"/>
-      <!-- Front face -->
-      <path d="M 6 30 L 114 30 L 114 90 L 6 90 Z"
-            fill="url(#g7a3a1a)" stroke="#ffd9a6" stroke-width="1.2"/>
-      <!-- Highlight -->
-      <line x1="9" y1="33" x2="111" y2="33" stroke="#ffd9a6" stroke-width="1" opacity="0.5"/>
-      <line x1="9" y1="87" x2="111" y2="87" stroke="#000" stroke-width="0.6" opacity="0.6"/>
-    </svg>
-    
-      </div>
-      <div class="folder-label">Fit Pics</div>
-      <div class="folder-meta">54 ITEMS</div>
-    </a>
-    
-    <a class="folder-item" href="museum-grafx-design.html">
-      <div class="folder-icon-wrap">
-        
-    <svg viewBox="0 0 120 100" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <linearGradient id="g1a2a5a" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stop-color="#2a3a7a"/>
-          <stop offset="1" stop-color="#1a2a5a"/>
-        </linearGradient>
-      </defs>
-      <!-- Tab -->
-      <path d="M 6 20 L 44 20 L 52 30 L 114 30 L 114 90 L 6 90 Z"
-            fill="#2a3a7a" stroke="#a6d4ff" stroke-width="1.2" stroke-linejoin="miter" opacity="0.9"/>
-      <!-- Front face -->
-      <path d="M 6 30 L 114 30 L 114 90 L 6 90 Z"
-            fill="url(#g1a2a5a)" stroke="#a6d4ff" stroke-width="1.2"/>
-      <!-- Highlight -->
-      <line x1="9" y1="33" x2="111" y2="33" stroke="#a6d4ff" stroke-width="1" opacity="0.5"/>
-      <line x1="9" y1="87" x2="111" y2="87" stroke="#000" stroke-width="0.6" opacity="0.6"/>
-    </svg>
-    
-      </div>
-      <div class="folder-label">ORAMICS&nbsp;- GRAFX DESIGN</div>
-      <div class="folder-meta">88 ITEMS</div>
-    </a>
-    
-    <a class="folder-item" href="museum-liminal-spaces.html">
-      <div class="folder-icon-wrap">
-        
-    <svg viewBox="0 0 120 100" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <linearGradient id="g2a0a3a" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stop-color="#3a1a4a"/>
-          <stop offset="1" stop-color="#2a0a3a"/>
-        </linearGradient>
-      </defs>
-      <!-- Tab -->
-      <path d="M 6 20 L 44 20 L 52 30 L 114 30 L 114 90 L 6 90 Z"
-            fill="#3a1a4a" stroke="#d4a6ff" stroke-width="1.2" stroke-linejoin="miter" opacity="0.9"/>
-      <!-- Front face -->
-      <path d="M 6 30 L 114 30 L 114 90 L 6 90 Z"
-            fill="url(#g2a0a3a)" stroke="#d4a6ff" stroke-width="1.2"/>
-      <!-- Highlight -->
-      <line x1="9" y1="33" x2="111" y2="33" stroke="#d4a6ff" stroke-width="1" opacity="0.5"/>
-      <line x1="9" y1="87" x2="111" y2="87" stroke="#000" stroke-width="0.6" opacity="0.6"/>
-    </svg>
-    
-      </div>
-      <div class="folder-label">Liminal Spaces</div>
-      <div class="folder-meta">60 ITEMS</div>
-    </a>
-
     <a class="folder-item" href="museum-visuals.html">
       <div class="folder-icon-wrap">
         
@@ -386,7 +318,88 @@
       <div class="folder-label">Visuals</div>
       <div class="folder-meta">20 VIDEOS</div>
     </a>
+    <a class="folder-item" href="museum-grafx-design.html">
+      <div class="folder-icon-wrap">
         
+    <svg viewBox="0 0 120 100" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="g1a2a5a" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#2a3a7a"/>
+          <stop offset="1" stop-color="#1a2a5a"/>
+        </linearGradient>
+      </defs>
+      <!-- Tab -->
+      <path d="M 6 20 L 44 20 L 52 30 L 114 30 L 114 90 L 6 90 Z"
+            fill="#2a3a7a" stroke="#a6d4ff" stroke-width="1.2" stroke-linejoin="miter" opacity="0.9"/>
+      <!-- Front face -->
+      <path d="M 6 30 L 114 30 L 114 90 L 6 90 Z"
+            fill="url(#g1a2a5a)" stroke="#a6d4ff" stroke-width="1.2"/>
+      <!-- Highlight -->
+      <line x1="9" y1="33" x2="111" y2="33" stroke="#a6d4ff" stroke-width="1" opacity="0.5"/>
+      <line x1="9" y1="87" x2="111" y2="87" stroke="#000" stroke-width="0.6" opacity="0.6"/>
+    </svg>
+    
+      </div>
+      <div class="folder-label">ORAMICS&nbsp;- GRAFX DESIGN</div>
+      <div class="folder-meta">88 ITEMS</div>
+    </a>
+  </div>
+
+  <div class="museum-section-heading">◆ PHOTOGRAPHY ◆</div>
+
+  <div class="folder-grid">
+    <a class="folder-item" href="museum-lower-levels.html">
+      <div class="folder-icon-wrap">
+        
+    <svg viewBox="0 0 120 100" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="g4a3408" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#7a5a1a"/>
+          <stop offset="1" stop-color="#4a3408"/>
+        </linearGradient>
+      </defs>
+      <!-- Tab -->
+      <path d="M 6 20 L 44 20 L 52 30 L 114 30 L 114 90 L 6 90 Z"
+            fill="#7a5a1a" stroke="#ffd98a" stroke-width="1.2" stroke-linejoin="miter" opacity="0.9"/>
+      <!-- Front face -->
+      <path d="M 6 30 L 114 30 L 114 90 L 6 90 Z"
+            fill="url(#g4a3408)" stroke="#ffd98a" stroke-width="1.2"/>
+      <!-- Highlight -->
+      <line x1="9" y1="33" x2="111" y2="33" stroke="#ffd98a" stroke-width="1" opacity="0.5"/>
+      <line x1="9" y1="87" x2="111" y2="87" stroke="#000" stroke-width="0.6" opacity="0.6"/>
+      <!-- Descending stairs -->
+      <polyline points="40,47 52,47 52,56 64,56 64,65 76,65 76,74 84,74" fill="none" stroke="#ffd98a" stroke-width="3" opacity="0.8"/>
+    </svg>
+    
+      </div>
+      <div class="folder-label">LOWER LEVELS</div>
+      <div class="folder-meta">73 ITEMS</div>
+    </a>
+    <a class="folder-item" href="museum-liminal-spaces.html">
+      <div class="folder-icon-wrap">
+        
+    <svg viewBox="0 0 120 100" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="g2a0a3a" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#3a1a4a"/>
+          <stop offset="1" stop-color="#2a0a3a"/>
+        </linearGradient>
+      </defs>
+      <!-- Tab -->
+      <path d="M 6 20 L 44 20 L 52 30 L 114 30 L 114 90 L 6 90 Z"
+            fill="#3a1a4a" stroke="#d4a6ff" stroke-width="1.2" stroke-linejoin="miter" opacity="0.9"/>
+      <!-- Front face -->
+      <path d="M 6 30 L 114 30 L 114 90 L 6 90 Z"
+            fill="url(#g2a0a3a)" stroke="#d4a6ff" stroke-width="1.2"/>
+      <!-- Highlight -->
+      <line x1="9" y1="33" x2="111" y2="33" stroke="#d4a6ff" stroke-width="1" opacity="0.5"/>
+      <line x1="9" y1="87" x2="111" y2="87" stroke="#000" stroke-width="0.6" opacity="0.6"/>
+    </svg>
+    
+      </div>
+      <div class="folder-label">Liminal Spaces</div>
+      <div class="folder-meta">60 ITEMS</div>
+    </a>
   </div>
 
   <div class="footer-bar">
