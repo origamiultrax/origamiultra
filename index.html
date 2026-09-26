@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>::: ORIGAMI ULTRA ::: Welcome! :::</title>
 
-<link href="https://fonts.googleapis.com/css2?family=VT323&family=Share+Tech+Mono&family=Press+Start+2P&family=Silkscreen:wght@400;700&family=Micro+5&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=VT323&family=Share+Tech+Mono&family=Press+Start+2P&family=Silkscreen:wght@400;700&family=Micro+5&family=Barlow+Condensed:wght@500;600&display=swap" rel="stylesheet">
 
 <style>
   @font-face {
@@ -261,21 +261,65 @@
   .left-col, .right-col { display: flex; flex-direction: column; gap: 14px; }
 
   /* Clock */
-  .clock-list { display: flex; flex-direction: column; gap: 4px; }
-  .clock-row {
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 4px 8px;
-    background: rgba(0, 0, 0, 0.55);
-    border-left: 2px solid var(--green);
-    border-right: 1px solid rgba(57,255,20,0.25);
-    font-size: 15px;
+  /* ===== WORLD CLOCK — split-flap departures board ===== */
+  .fids {
+    container-type: inline-size;
+    background: #0a0b0e;
+    border: 6px solid #71757c;
+    border-top-color: #a3a7ae; border-left-color: #8b8f96; border-right-color: #5b5f66; border-bottom-color: #4a4d53;
+    box-shadow: 0 0 0 1px #000, 0 0 16px rgba(57,255,20,0.22), 6px 6px 0 rgba(0,0,0,0.6);
+    padding-bottom: 8px;
   }
-  .clock-row:nth-child(even) { background: rgba(0, 20, 5, 0.55); }
-  .clock-city { color: #d0ffc9; letter-spacing: 1px; text-transform: uppercase; font-family: 'VT323', monospace; }
-  .clock-time {
-    color: var(--green); font-family: 'VT323', monospace; font-size: 17px;
-    text-shadow: 0 0 4px rgba(57,255,20,0.7);
-    font-weight: 700; letter-spacing: 1px;
+  .fids-head {
+    display: flex; align-items: center; gap: 9px; gap: 2.4cqw;
+    padding: 8px 10px; padding: 2.2cqw 2.6cqw;
+    background: linear-gradient(#1a1b20, #0c0d10);
+    border-bottom: 1px solid #2b2d33;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  }
+  .fids-icon {
+    flex: 0 0 auto; display: flex; align-items: center; justify-content: center;
+    width: 30px; height: 24px; width: 8cqw; height: 6.4cqw;
+    border: 2px solid #e8e8e8; background: #000; color: #fff;
+  }
+  .fids-icon svg { width: 78%; height: 78%; }
+  .fids-title {
+    flex: 1; min-width: 0; white-space: nowrap; overflow: hidden;
+    color: #fff; font-size: 14px; font-size: 3.55cqw; line-height: 1;
+  }
+  .fids-title b { font-weight: 700; margin-right: 5px; margin-right: 1.5cqw; }
+  .fids-title b:last-child { margin-right: 0; }
+  .fids-star { color: #f2e6b6; margin-right: 5px; margin-right: 1.5cqw; }
+  .fids-now {
+    flex: 0 0 auto; display: grid; grid-template-columns: repeat(5, 1fr); gap: 1px;
+    padding: 2px; background: #000; border: 1px solid #3c3f47;
+  }
+  .fids-now .fc { width: 12px; height: 18px; width: 3.1cqw; height: 4.9cqw; font-size: 15px; font-size: 4.1cqw; }
+  .fids-cols {
+    display: grid; grid-template-columns: repeat(28, 1fr); column-gap: 1px; column-gap: 0.26cqw;
+    padding: 7px 10px 6px; padding: 1.9cqw 2.6cqw 1.5cqw;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-weight: 700;
+    font-size: 9px; font-size: 2.35cqw; line-height: 1.15; color: #e9e9e9; white-space: nowrap;
+  }
+  .fids-rows { display: flex; flex-direction: column; gap: 3px; gap: 0.8cqw; padding: 0 10px; padding: 0 2.6cqw; }
+  .fids-row {
+    display: grid; grid-template-columns: repeat(28, 1fr); column-gap: 1px; column-gap: 0.26cqw;
+    height: 24px; height: 6.3cqw;
+    background: #07080b; box-shadow: 0 1px 0 #000;
+  }
+  .fc {
+    display: flex; align-items: center; justify-content: center; overflow: hidden;
+    font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-weight: 500;
+    font-size: 21px; font-size: 5.5cqw; line-height: 1;
+    color: #f2e6b6; text-shadow: 0 0 2px rgba(255,236,180,0.35);
+    background: linear-gradient(to bottom, #333849 0%, #2b2f3e 48%, #111319 48%, #111319 53%, #292d3b 53%, #22252f 100%);
+    border-radius: 1px; transform-origin: 50% 50%; backface-visibility: hidden;
+  }
+  .fc.flip { animation: fcFlip 0.26s ease-in-out; }
+  @keyframes fcFlip {
+    0%   { transform: perspective(160px) rotateX(0deg); }
+    50%  { transform: perspective(160px) rotateX(-88deg); filter: brightness(0.6); }
+    100% { transform: perspective(160px) rotateX(0deg); }
   }
 
   /* ============================================================== */
@@ -517,12 +561,6 @@
     text-align: center; font-family: 'VT323', monospace;
     color: var(--amber); font-size: 14px; padding: 20px 10px;
   }
-
-  .status-grid {
-    font-family: 'VT323', monospace; font-size: 15px; line-height: 1.5;
-    color: #d0ffc9;
-  }
-  .status-grid span { color: var(--green); }
 
   /* Gita box */
   .gita-box {
@@ -980,16 +1018,21 @@
     <!-- LEFT -->
     <div class="left-col">
 
-      <div class="panel">
-        <div class="panel-title"><span><span class="spin">◆</span> WORLD CLOCK</span></div>
-        <div class="clock-list">
-          <div class="clock-row"><span class="clock-city">New York</span><span class="clock-time" data-tz="America/New_York">--:--:--</span></div>
-          <div class="clock-row"><span class="clock-city">Socotra Is.</span><span class="clock-time" data-tz="Asia/Aden">--:--:--</span></div>
-          <div class="clock-row"><span class="clock-city">Guam</span><span class="clock-time" data-tz="Pacific/Guam">--:--:--</span></div>
-          <div class="clock-row"><span class="clock-city">Queensland</span><span class="clock-time" data-tz="Australia/Brisbane">--:--:--</span></div>
-          <div class="clock-row"><span class="clock-city">Pyongyang</span><span class="clock-time" data-tz="Asia/Pyongyang">--:--:--</span></div>
-          <div class="clock-row"><span class="clock-city">Marie Byrd Land</span><span class="clock-time" data-tz="Antarctica/McMurdo">--:--:--</span></div>
+      <!-- WORLD CLOCK — split-flap departures board -->
+      <div class="fids" role="region" aria-label="World clock">
+        <div class="fids-head">
+          <span class="fids-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M2.2 17.2 4 18.3 9.1 15.9 8.4 20.4 9.9 21 13.6 14.7 19.6 11.7C21.1 10.9 21.9 9.7 21.4 8.9 20.9 8.1 19.5 8.4 18.1 9.2L12.2 12.2 5.3 9.8 3.9 10.5 8.9 13.9 4.7 16.1 2.9 15.3Z" fill="currentColor"/><path d="M2 22.2H22" stroke="currentColor" stroke-width="1.6"/></svg>
+          </span>
+          <span class="fids-title"><b>World Clock</b><span class="fids-star">★</span><b>Terminal OU</b></span>
+          <span class="fids-now" id="fidsNow" aria-label="New York time"></span>
         </div>
+        <div class="fids-cols" aria-hidden="true">
+          <span style="grid-column: 1 / span 6;">Flight</span>
+          <span style="grid-column: 8 / span 15;">to</span>
+          <span style="grid-column: 24 / span 5;">local time</span>
+        </div>
+        <div class="fids-rows" id="fidsRows"></div>
       </div>
 
       <!-- WEATHER CHANNEL BOX -->
@@ -1087,17 +1130,6 @@
         <div class="gita-ref" id="gitaRef">—</div>
       </div>
 
-      <div class="panel">
-        <div class="panel-title"><span>▣ STATUS</span></div>
-        <div class="status-grid">
-          SIGNAL: <span>STRONG</span> <span class="blink" style="color:#ff5555">●</span><br>
-          UPLINK: <span>ACTIVE · 99.7%</span><br>
-          ROUTE: <span>ENCRYPTED</span><br>
-          NODES: <span id="nodeCount">0000</span><br>
-          FREQ: <span>108.4 MHz</span>
-        </div>
-      </div>
-
       <div class="now-playing" id="ouPlayerFull">
         <div class="np-label">♫ NOW PLAYING</div>
         <div class="np-track">
@@ -1178,21 +1210,66 @@ function orbitTick() {
 requestAnimationFrame(orbitTick);
 
 /* ============================================================
-   WORLD CLOCK
+   WORLD CLOCK — split-flap departures board
    ============================================================ */
-function updateClocks() {
-  document.querySelectorAll('[data-tz]').forEach(el => {
-    const tz = el.dataset.tz;
-    try {
-      el.textContent = new Date().toLocaleTimeString('en-GB', {
-        timeZone: tz, hour12: false,
-        hour: '2-digit', minute: '2-digit', second: '2-digit'
-      });
-    } catch(e) { el.textContent = '--:--:--'; }
+(function () {
+  var CITIES = [
+    ['OU 212', 'New York',        'America/New_York'],
+    ['OU 967', 'Socotra Is.',     'Asia/Aden'],
+    ['OU 671', 'Guam',            'Pacific/Guam'],
+    ['OU 617', 'Queensland',      'Australia/Brisbane'],
+    ['OU 850', 'Pyongyang',       'Asia/Pyongyang'],
+    ['OU 672', 'Marie Byrd Land', 'Antarctica/McMurdo']
+  ];
+  var W = [6, 15, 5], CH = 'ABCDEFGHIJKLMNOPRSTUVWYZabcdeghiklmnoprstuy0123456789';
+  var rowsEl = document.getElementById('fidsRows'), nowEl = document.getElementById('fidsNow');
+  if (!rowsEl || !nowEl) return;
+  function hhmm(tz) {
+    try { return new Date().toLocaleTimeString('en-GB', { timeZone: tz, hour12: false, hour: '2-digit', minute: '2-digit' }); }
+    catch (e) { return '--:--'; }
+  }
+  function pad(t, n) { t = String(t).slice(0, n); while (t.length < n) t += ' '; return t; }
+  function line(c) { return pad(c[0], W[0]) + ' ' + pad(c[1], W[1]) + ' ' + pad(hhmm(c[2]), W[2]); }
+  function cells(parent, n) {
+    var out = [];
+    for (var i = 0; i < n; i++) { var el = document.createElement('span'); el.className = 'fc'; parent.appendChild(el); out.push(el); }
+    return out;
+  }
+  function set(cell, ch, anim) {
+    ch = ch === ' ' ? '' : ch;
+    if (cell.textContent === ch) return;
+    cell.textContent = ch;
+    if (anim) { cell.classList.remove('flip'); void cell.offsetWidth; cell.classList.add('flip'); }
+  }
+  function settle(cell, ch, delay) {            // flaps shuffle once on load, then land
+    if (ch === ' ') return;
+    var steps = 2 + Math.floor(Math.random() * 5), k = 0;
+    setTimeout(function tick() {
+      if (k++ < steps) { set(cell, CH.charAt(Math.floor(Math.random() * CH.length)), true); setTimeout(tick, 80); }
+      else set(cell, ch, true);
+    }, delay);
+  }
+  var rows = CITIES.map(function (c) {
+    var r = document.createElement('div'); r.className = 'fids-row'; rowsEl.appendChild(r);
+    return cells(r, W[0] + W[1] + W[2] + 2);
   });
-}
-updateClocks();
-setInterval(updateClocks, 1000);
+  var nowCells = cells(nowEl, 5);
+  function draw(first) {
+    CITIES.forEach(function (c, i) {
+      var t = line(c);
+      rows[i].forEach(function (cell, j) { first ? settle(cell, t.charAt(j), Math.random() * 450) : set(cell, t.charAt(j), true); });
+      rows[i][0].parentNode.setAttribute('aria-label', c[1] + ' ' + hhmm(c[2]));
+    });
+    var n = hhmm('America/New_York');
+    nowCells.forEach(function (cell, j) { first ? settle(cell, n.charAt(j), Math.random() * 450) : set(cell, n.charAt(j), true); });
+  }
+  draw(true);
+  var lastMin = new Date().getMinutes();
+  setInterval(function () {
+    var m = new Date().getMinutes();
+    if (m !== lastMin) { lastMin = m; draw(false); }
+  }, 1000);
+})();
 
 /* ============================================================
    STOCK TICKER
@@ -1229,12 +1306,6 @@ function buildTicker() {
 }
 buildTicker();
 setInterval(buildTicker, 8000);
-
-/* Node counter */
-const nodeEl = document.getElementById('nodeCount');
-setInterval(() => {
-  nodeEl.textContent = String(Math.floor(1200 + Math.random() * 300)).padStart(4, '0');
-}, 1500);
 
 document.getElementById('yr').textContent = new Date().getFullYear();
 document.getElementById('lastUpdated').textContent =
