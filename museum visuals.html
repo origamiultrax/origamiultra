@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>::: ORIGAMI ULTRA ::: Museum :::</title>
+<title>::: ORIGAMI ULTRA ::: Visuals :::</title>
 <link href="https://fonts.googleapis.com/css2?family=VT323&family=Share+Tech+Mono&family=Press+Start+2P&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
 <style>
 
@@ -198,10 +198,11 @@
 
 
   .folder-grid {
-    display: flex; flex-wrap: wrap; justify-content: center;
-    gap: 30px; padding: 30px 10px 20px; max-width: 1100px; margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 280px));
+    gap: 40px; justify-content: center;
+    padding: 30px 10px 20px; max-width: 1000px; margin: 0 auto;
   }
-  .folder-grid .folder-item { width: 220px; }
   .folder-item {
     display: flex; flex-direction: column; align-items: center;
     gap: 12px; padding: 18px 12px; cursor: pointer;
@@ -231,24 +232,116 @@
     text-shadow: 0 0 5px rgba(57,255,20,0.6), 1px 1px 0 #000;
     padding: 3px 10px; background: rgba(0,0,0,0.4);
   }
-  .folder-label--long { font-size: 15px; letter-spacing: 1px; line-height: 1.2; }
   .folder-item:hover .folder-label { background: var(--green); color: #000; text-shadow: none; }
   .folder-meta {
     font-family: 'Silkscreen', monospace; font-size: 10px;
     color: var(--amber); letter-spacing: 1px; opacity: 0.85;
   }
 
-  .museum-section-heading {
-    display: flex; align-items: center; gap: 14px;
-    width: 100%; max-width: 760px; margin: 26px auto 0; padding: 0 12px; box-sizing: border-box;
-    font-family: 'Silkscreen', monospace; font-size: 15px; letter-spacing: 4px;
-    color: var(--amber); text-shadow: 0 0 6px rgba(255,179,71,0.6); white-space: nowrap;
+
+  /* ===== VISUALS PAGE ===== */
+  .vis-section { max-width: 1100px; width: 100%; margin: 0 auto 38px; }
+  .section-heading {
+    display: flex; align-items: center; gap: 12px;
+    margin: 10px auto 22px; padding: 0 12px;
+    font-family: 'Silkscreen', monospace; font-size: 13px;
+    color: var(--amber); letter-spacing: 3px; white-space: nowrap;
+    text-shadow: 0 0 6px rgba(255,179,71,0.6);
   }
-  .museum-section-heading::before, .museum-section-heading::after {
-    content: ''; flex: 1; height: 2px; opacity: 0.6;
+  .section-heading::before, .section-heading::after {
+    content: ''; flex: 1; height: 2px;
     background: linear-gradient(90deg, transparent, var(--amber), transparent);
+    opacity: 0.6;
   }
-  @media (max-width: 600px) { .museum-section-heading { font-size: 11px; letter-spacing: 2px; } }
+  .vid {
+    display: flex; flex-direction: column; gap: 12px;
+    padding: 12px; text-decoration: none; color: inherit;
+    border: 1px dashed transparent; border-radius: 4px;
+    transition: background 0.15s, border-color 0.15s, box-shadow 0.15s;
+  }
+  .vid:hover {
+    background: rgba(57, 255, 20, 0.08);
+    border-color: var(--green);
+    box-shadow: 0 0 16px rgba(57, 255, 20, 0.35);
+  }
+  .vid-thumb {
+    position: relative; width: 100%; aspect-ratio: 16 / 9;
+    overflow: hidden; background: #000;
+    border: 3px outset #4a8a5a;
+    box-shadow: 0 0 14px rgba(57,255,20,0.35), 4px 4px 0 rgba(0,0,0,0.6);
+  }
+  .vid-thumb img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+    filter: saturate(1.1) contrast(1.05);
+    transition: transform 0.3s ease, filter 0.3s ease;
+  }
+  .vid-thumb::after {
+    content: ''; position: absolute; inset: 0; pointer-events: none; z-index: 1;
+    background: repeating-linear-gradient(to bottom, rgba(0,0,0,0.18) 0px, rgba(0,0,0,0.18) 1px, transparent 1px, transparent 3px);
+  }
+  .vid:hover .vid-thumb img { transform: scale(1.04); filter: saturate(1.3) contrast(1.1) brightness(1.08); }
+  .vid-play {
+    position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+    z-index: 2; pointer-events: none;
+    width: 64px; height: 44px; display: flex; align-items: center; justify-content: center;
+    background: rgba(0,0,0,0.78); border: 2px solid var(--green);
+    color: var(--green); font-size: 20px; padding-left: 3px;
+    box-shadow: 0 0 14px rgba(57,255,20,0.7);
+    transition: all 0.15s ease;
+  }
+  .vid:hover .vid-play {
+    background: var(--magenta); border-color: var(--magenta); color: #000;
+    box-shadow: 0 0 22px rgba(255,75,216,0.9);
+  }
+  .vid-tag {
+    position: absolute; top: 6px; right: 6px; z-index: 2; pointer-events: none;
+    font-family: 'Silkscreen', monospace; font-size: 9px; letter-spacing: 1px;
+    color: #000; background: var(--green); padding: 2px 6px;
+    opacity: 0; transition: opacity 0.15s ease;
+  }
+  .vid:hover .vid-tag { opacity: 1; }
+  .vid-title {
+    font-family: 'TS Block Bold', 'Press Start 2P', monospace;
+    color: #d4ffcf; font-size: 19px; letter-spacing: 1px; line-height: 1.2;
+    text-shadow: 0 0 5px rgba(57,255,20,0.6), 1px 1px 0 #000;
+  }
+  .vid-caption {
+    font-family: 'VT323', monospace; font-size: 19px; line-height: 1.3;
+    color: #c9f7c1; opacity: 0.92;
+  }
+  .vid-caption em { font-style: italic; color: var(--amber); }
+
+  /* Visual album: one featured screen, centered */
+  .feature-wrap { max-width: 760px; margin: 0 auto; }
+  .vid-feature { align-items: center; text-align: center; }
+  .vid-feature .vid-title { font-size: 26px; }
+  .vid-feature .vid-play { width: 84px; height: 58px; font-size: 28px; }
+
+  /* Films: 3 across */
+  .films-grid {
+    display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px; align-items: start;
+  }
+
+  /* Bumpers: 5 across, thumbnails only */
+  .bumper-grid {
+    display: grid; grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 14px;
+  }
+  .vid-bumper { padding: 6px; gap: 0; }
+  .vid-bumper .vid-play { width: 42px; height: 30px; font-size: 14px; }
+  .vid-bumper .vid-thumb { border-width: 2px; }
+
+  @media (max-width: 950px) {
+    .films-grid { grid-template-columns: 1fr; max-width: 560px; margin: 0 auto; }
+    .bumper-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  }
+  @media (max-width: 600px) {
+    .bumper-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .section-heading { font-size: 10px; letter-spacing: 2px; }
+    .vid-feature .vid-title { font-size: 20px; }
+  }
+
 </style>
 </head>
 <body>
@@ -263,10 +356,10 @@
 <div class="top-banner">
   <div class="top-banner-marquee">
     <span style="color:var(--yellow)">★</span>
-    <span style="color:var(--green)">MUSEUM</span> <span style="color:var(--magenta)">✦</span>
-    <span style="color:var(--cyan)">SELECT EXHIBITION TO BROWSE</span> <span style="color:var(--yellow)">✦</span>
+    <span style="color:var(--green)">VISUALS</span> <span style="color:var(--magenta)">✦</span>
+    <span style="color:var(--cyan)">VISUAL ALBUMS · FILMS · X-PERIMENTAL BUMPERS</span> <span style="color:var(--yellow)">✦</span>
     <span style="color:var(--hot-pink)">ALL WORKS © ORIGAMI ULTRA</span> <span style="color:var(--green)">✦</span>
-    <span style="color:var(--amber)">PLEASE DO NOT TOUCH</span> <span style="color:var(--magenta)">✦</span>
+    <span style="color:var(--amber)">PRESS PLAY</span> <span style="color:var(--magenta)">✦</span>
   </div>
 </div>
 
@@ -276,140 +369,82 @@
   <div class="nav-row">
     <div class="nav-left">
       <a href="index.html" class="nav-btn home">⌂ HOME</a>
-      <a href="concepts.html" class="nav-btn back">▣ CONCEPTS</a>
+      <a href="museum.html" class="nav-btn back">◀ MUSEUM</a>
     </div>
-    <div class="nav-breadcrumb">MUSEUM</div>
+    <div class="nav-breadcrumb"><a href="museum.html">MUSEUM</a><span class="sep">›</span>VISUALS</div>
     <div class="nav-right" style="width:180px"></div>
   </div>
 
   <div class="title-wrap">
-    <div class="title">MUSEUM</div>
-    <div class="subtitle">// VISUAL ARCHIVE //</div>
+    <div class="title">VISUALS</div>
+    <div class="subtitle">// MOVING IMAGE ARCHIVE //</div>
   </div>
 
   <hr class="rainbow-hr">
 
-  <div class="page-hint">◆ SELECT AN EXHIBITION TO ENTER ◆</div>
+  <div class="page-hint">◆ PRESS ANY SCREEN TO WATCH ON YOUTUBE ◆</div>
 
-  <div class="folder-grid">
-    <a class="folder-item" href="museum-visuals.html">
-      <div class="folder-icon-wrap">
-        
-    <svg viewBox="0 0 120 100" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <linearGradient id="g0a3a3a" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stop-color="#1a5a5a"/>
-          <stop offset="1" stop-color="#0a3a3a"/>
-        </linearGradient>
-      </defs>
-      <!-- Tab -->
-      <path d="M 6 20 L 44 20 L 52 30 L 114 30 L 114 90 L 6 90 Z"
-            fill="#1a5a5a" stroke="#a6fff4" stroke-width="1.2" stroke-linejoin="miter" opacity="0.9"/>
-      <!-- Front face -->
-      <path d="M 6 30 L 114 30 L 114 90 L 6 90 Z"
-            fill="url(#g0a3a3a)" stroke="#a6fff4" stroke-width="1.2"/>
-      <!-- Highlight -->
-      <line x1="9" y1="33" x2="111" y2="33" stroke="#a6fff4" stroke-width="1" opacity="0.5"/>
-      <line x1="9" y1="87" x2="111" y2="87" stroke="#000" stroke-width="0.6" opacity="0.6"/>
-      <!-- Play glyph -->
-      <polygon points="52,47 52,75 74,61" fill="#a6fff4" opacity="0.85"/>
-    </svg>
-    
-      </div>
-      <div class="folder-label">Visuals</div>
-      <div class="folder-meta">21 VIDEOS</div>
-    </a>
-    <a class="folder-item" href="museum-grafx-design.html">
-      <div class="folder-icon-wrap">
-        
-    <svg viewBox="0 0 120 100" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <linearGradient id="g1a2a5a" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stop-color="#2a3a7a"/>
-          <stop offset="1" stop-color="#1a2a5a"/>
-        </linearGradient>
-      </defs>
-      <!-- Tab -->
-      <path d="M 6 20 L 44 20 L 52 30 L 114 30 L 114 90 L 6 90 Z"
-            fill="#2a3a7a" stroke="#a6d4ff" stroke-width="1.2" stroke-linejoin="miter" opacity="0.9"/>
-      <!-- Front face -->
-      <path d="M 6 30 L 114 30 L 114 90 L 6 90 Z"
-            fill="url(#g1a2a5a)" stroke="#a6d4ff" stroke-width="1.2"/>
-      <!-- Highlight -->
-      <line x1="9" y1="33" x2="111" y2="33" stroke="#a6d4ff" stroke-width="1" opacity="0.5"/>
-      <line x1="9" y1="87" x2="111" y2="87" stroke="#000" stroke-width="0.6" opacity="0.6"/>
-    </svg>
-    
-      </div>
-      <div class="folder-label">ORAMICS&nbsp;- GRAFX DESIGN</div>
-      <div class="folder-meta">88 ITEMS</div>
-    </a>
-  </div>
+  <section class="vis-section">
+    <div class="section-heading">◆ VISUAL ALBUMS ◆</div>
+    <div class="feature-wrap">
+      <a class="vid vid-feature" href="https://youtu.be/IOvbzTobxHQ?si=uAQSV_CmDCgb682P" target="_blank" rel="noopener">
+        <div class="vid-thumb"><img src="https://i.ytimg.com/vi/IOvbzTobxHQ/hqdefault.jpg" data-hi="https://i.ytimg.com/vi/IOvbzTobxHQ/maxresdefault.jpg" alt="Sun&#x27;s Getting Low - Visual Album" loading="lazy"><span class="vid-tag">YOUTUBE ↗</span><span class="vid-play">▶</span></div>
+        <div class="vid-title">Sun's Getting Low - Visual Album</div>
+        <div class="vid-caption">The Official Visual Experience for the "Sun's Getting Low" Instrumental Album!</div>
+      </a>
+    </div>
+  </section>
 
-  <div class="museum-section-heading">◆ PHOTOGRAPHY ◆</div>
+  <section class="vis-section">
+    <div class="section-heading">◆ FILMS ◆</div>
+    <div class="films-grid">
+      <a class="vid vid-film" href="https://youtu.be/0Bt3q7Li8zA?si=c_Iad3DMK7nU51xS" target="_blank" rel="noopener">
+        <div class="vid-thumb"><img src="https://i.ytimg.com/vi/0Bt3q7Li8zA/hqdefault.jpg" data-hi="https://i.ytimg.com/vi/0Bt3q7Li8zA/maxresdefault.jpg" alt="COLD OUTSIDE" loading="lazy"><span class="vid-tag">YOUTUBE ↗</span><span class="vid-play">▶</span></div>
+        <div class="vid-title">COLD OUTSIDE</div>
+        <div class="vid-caption">An experimental hauntological film following a mallwalker through his final days wandering his local mall, where once-familiar passageways begin to betray the presence of past inhabitants, until their lingering spirits draw him toward a piano store and his memories erupt in a violent wash of color.</div>
+      </a>
+      <a class="vid vid-film" href="https://youtu.be/MzY4Zzz9ohY?si=YBxit2i1x9LQ9_YI" target="_blank" rel="noopener">
+        <div class="vid-thumb"><img src="https://i.ytimg.com/vi/MzY4Zzz9ohY/hqdefault.jpg" data-hi="https://i.ytimg.com/vi/MzY4Zzz9ohY/maxresdefault.jpg" alt="More Over Oligarchs" loading="lazy"><span class="vid-tag">YOUTUBE ↗</span><span class="vid-play">▶</span></div>
+        <div class="vid-title">More Over Oligarchs</div>
+        <div class="vid-caption">An ambient expressionist film following a lone wanderer from the countryside into suburban America, searching for solace in the overlooked back alleys and drifting field recordings of everyday life.</div>
+      </a>
+      <a class="vid vid-film" href="https://youtu.be/MSGPWjxTDUg?si=ckmdxpIf6R55h9Z4" target="_blank" rel="noopener">
+        <div class="vid-thumb"><img src="https://i.ytimg.com/vi/MSGPWjxTDUg/hqdefault.jpg" data-hi="https://i.ytimg.com/vi/MSGPWjxTDUg/maxresdefault.jpg" alt="But I Can Still Repent Though, Right?" loading="lazy"><span class="vid-tag">YOUTUBE ↗</span><span class="vid-play">▶</span></div>
+        <div class="vid-title">But I Can Still Repent Though, Right?</div>
+        <div class="vid-caption">Exploring the hidden sin that is embedded into modern religious culture, <em>But I Can Still Repent Though, Right?</em> is a silent film that uses progressive ambient music to tell the stories of 3 sinners that struggle with their vices vs their faith</div>
+      </a>
+      <a class="vid vid-film" href="https://youtu.be/ZhdDISXy_Vs?si=pw7_CcCRKq1YXaE3" target="_blank" rel="noopener">
+        <div class="vid-thumb"><img src="https://i.ytimg.com/vi/ZhdDISXy_Vs/hqdefault.jpg" data-hi="https://i.ytimg.com/vi/ZhdDISXy_Vs/maxresdefault.jpg" alt="Dante Crow" loading="lazy"><span class="vid-tag">YOUTUBE ↗</span><span class="vid-play">▶</span></div>
+        <div class="vid-title">Dante Crow</div>
+        <div class="vid-caption">A surreal superhero satire that exaggerates the brooding archetypes of Dark Age comics through the style of 2010s YouTube skits, gradually collapsing its hyper-serious tone into meme language by the end credits.</div>
+      </a>
+    </div>
+  </section>
 
-  <div class="folder-grid">
-    <a class="folder-item" href="museum-ambient-dreamscapes.html">
-      <div class="folder-icon-wrap">
-        
-    <svg viewBox="0 0 120 100" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <linearGradient id="g3e1450" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stop-color="#6a2a7a"/>
-          <stop offset="1" stop-color="#3e1450"/>
-        </linearGradient>
-      </defs>
-      <!-- Tab -->
-      <path d="M 6 20 L 44 20 L 52 30 L 114 30 L 114 90 L 6 90 Z"
-            fill="#6a2a7a" stroke="#ffb3f5" stroke-width="1.2" stroke-linejoin="miter" opacity="0.9"/>
-      <!-- Front face -->
-      <path d="M 6 30 L 114 30 L 114 90 L 6 90 Z"
-            fill="url(#g3e1450)" stroke="#ffb3f5" stroke-width="1.2"/>
-      <!-- Highlight -->
-      <line x1="9" y1="33" x2="111" y2="33" stroke="#ffb3f5" stroke-width="1" opacity="0.5"/>
-      <line x1="9" y1="87" x2="111" y2="87" stroke="#000" stroke-width="0.6" opacity="0.6"/>
-      <!-- Crescent moon + stars -->
-      <path d="M 64 46 A 15 15 0 0 0 64 76 A 9 15 0 0 1 64 46 Z" fill="#ffb3f5" opacity="0.9"/>
-      <circle cx="76" cy="52" r="1.6" fill="#ffe8fb"/>
-      <circle cx="82" cy="64" r="1.2" fill="#ffe8fb"/>
-      <circle cx="46" cy="50" r="1.2" fill="#ffe8fb"/>
-    </svg>
-    
-      </div>
-      <div class="folder-label folder-label--long">International Collection of Ambient Dreamscapes</div>
-      <div class="folder-meta">96 ITEMS</div>
-    </a>
-    <a class="folder-item" href="museum-lower-levels.html">
-      <div class="folder-icon-wrap">
-        
-    <svg viewBox="0 0 120 100" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <linearGradient id="g4a3408" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stop-color="#7a5a1a"/>
-          <stop offset="1" stop-color="#4a3408"/>
-        </linearGradient>
-      </defs>
-      <!-- Tab -->
-      <path d="M 6 20 L 44 20 L 52 30 L 114 30 L 114 90 L 6 90 Z"
-            fill="#7a5a1a" stroke="#ffd98a" stroke-width="1.2" stroke-linejoin="miter" opacity="0.9"/>
-      <!-- Front face -->
-      <path d="M 6 30 L 114 30 L 114 90 L 6 90 Z"
-            fill="url(#g4a3408)" stroke="#ffd98a" stroke-width="1.2"/>
-      <!-- Highlight -->
-      <line x1="9" y1="33" x2="111" y2="33" stroke="#ffd98a" stroke-width="1" opacity="0.5"/>
-      <line x1="9" y1="87" x2="111" y2="87" stroke="#000" stroke-width="0.6" opacity="0.6"/>
-      <!-- Descending stairs -->
-      <polyline points="40,47 52,47 52,56 64,56 64,65 76,65 76,74 84,74" fill="none" stroke="#ffd98a" stroke-width="3" opacity="0.8"/>
-    </svg>
-    
-      </div>
-      <div class="folder-label">LOWER LEVELS</div>
-      <div class="folder-meta">73 ITEMS</div>
-    </a>
-  </div>
+  <section class="vis-section">
+    <div class="section-heading">◆ X-PERIMENTAL VISUAL BUMPERS ◆</div>
+    <div class="bumper-grid">
+      <a class="vid vid-bumper" href="https://youtu.be/1Q1y1acYINw?si=g2gAIMm3gnXRId5Q" target="_blank" rel="noopener"><div class="vid-thumb"><img src="https://i.ytimg.com/vi/1Q1y1acYINw/hqdefault.jpg" alt="Bumper 01" loading="lazy"><span class="vid-tag">YOUTUBE ↗</span><span class="vid-play">▶</span></div></a>
+      <a class="vid vid-bumper" href="https://youtu.be/lqXqq5QqVqk?si=0719rS-aY0GwO9hv" target="_blank" rel="noopener"><div class="vid-thumb"><img src="https://i.ytimg.com/vi/lqXqq5QqVqk/hqdefault.jpg" alt="Bumper 02" loading="lazy"><span class="vid-tag">YOUTUBE ↗</span><span class="vid-play">▶</span></div></a>
+      <a class="vid vid-bumper" href="https://youtu.be/B_J9Fb5hTvY?si=JyffQ4nFCe-D81A-" target="_blank" rel="noopener"><div class="vid-thumb"><img src="https://i.ytimg.com/vi/B_J9Fb5hTvY/hqdefault.jpg" alt="Bumper 03" loading="lazy"><span class="vid-tag">YOUTUBE ↗</span><span class="vid-play">▶</span></div></a>
+      <a class="vid vid-bumper" href="https://youtu.be/tuRnUS1zM7Y?si=zM4OD1smCLJVWi1I" target="_blank" rel="noopener"><div class="vid-thumb"><img src="https://i.ytimg.com/vi/tuRnUS1zM7Y/hqdefault.jpg" alt="Bumper 04" loading="lazy"><span class="vid-tag">YOUTUBE ↗</span><span class="vid-play">▶</span></div></a>
+      <a class="vid vid-bumper" href="https://youtu.be/f8E9jV8y4Bc?si=vsQP34eIW7cl1vbw" target="_blank" rel="noopener"><div class="vid-thumb"><img src="https://i.ytimg.com/vi/f8E9jV8y4Bc/hqdefault.jpg" alt="Bumper 05" loading="lazy"><span class="vid-tag">YOUTUBE ↗</span><span class="vid-play">▶</span></div></a>
+      <a class="vid vid-bumper" href="https://youtu.be/yTtD7SKSjl0?si=xg3Q0Ke_z9TIl9Rt" target="_blank" rel="noopener"><div class="vid-thumb"><img src="https://i.ytimg.com/vi/yTtD7SKSjl0/hqdefault.jpg" alt="Bumper 06" loading="lazy"><span class="vid-tag">YOUTUBE ↗</span><span class="vid-play">▶</span></div></a>
+      <a class="vid vid-bumper" href="https://youtu.be/IZ6zVx4Wn1M?si=GFpydLqq3frGh5iZ" target="_blank" rel="noopener"><div class="vid-thumb"><img src="https://i.ytimg.com/vi/IZ6zVx4Wn1M/hqdefault.jpg" alt="Bumper 07" loading="lazy"><span class="vid-tag">YOUTUBE ↗</span><span class="vid-play">▶</span></div></a>
+      <a class="vid vid-bumper" href="https://youtu.be/bC4ypXMyrsI?si=rGTnIlTjHcB-F1I1" target="_blank" rel="noopener"><div class="vid-thumb"><img src="https://i.ytimg.com/vi/bC4ypXMyrsI/hqdefault.jpg" alt="Bumper 08" loading="lazy"><span class="vid-tag">YOUTUBE ↗</span><span class="vid-play">▶</span></div></a>
+      <a class="vid vid-bumper" href="https://youtu.be/nr3QM84T_74?si=uMI5LGwB8SJJ--ow" target="_blank" rel="noopener"><div class="vid-thumb"><img src="https://i.ytimg.com/vi/nr3QM84T_74/hqdefault.jpg" alt="Bumper 09" loading="lazy"><span class="vid-tag">YOUTUBE ↗</span><span class="vid-play">▶</span></div></a>
+      <a class="vid vid-bumper" href="https://youtu.be/9fu7sXfO0jU?si=Bv4rYTfeNX_bszY_" target="_blank" rel="noopener"><div class="vid-thumb"><img src="https://i.ytimg.com/vi/9fu7sXfO0jU/hqdefault.jpg" alt="Bumper 10" loading="lazy"><span class="vid-tag">YOUTUBE ↗</span><span class="vid-play">▶</span></div></a>
+      <a class="vid vid-bumper" href="https://youtu.be/9MBIyXNiU0w?si=4yE4kXmHIMEXmnyy" target="_blank" rel="noopener"><div class="vid-thumb"><img src="https://i.ytimg.com/vi/9MBIyXNiU0w/hqdefault.jpg" alt="Bumper 11" loading="lazy"><span class="vid-tag">YOUTUBE ↗</span><span class="vid-play">▶</span></div></a>
+      <a class="vid vid-bumper" href="https://youtu.be/rytPDKrGhSU?si=mXPFQfA0ZjYIS2uY" target="_blank" rel="noopener"><div class="vid-thumb"><img src="https://i.ytimg.com/vi/rytPDKrGhSU/hqdefault.jpg" alt="Bumper 12" loading="lazy"><span class="vid-tag">YOUTUBE ↗</span><span class="vid-play">▶</span></div></a>
+      <a class="vid vid-bumper" href="https://youtu.be/hutblrf9aG4?si=kV0cM-u8YUYfgwt3" target="_blank" rel="noopener"><div class="vid-thumb"><img src="https://i.ytimg.com/vi/hutblrf9aG4/hqdefault.jpg" alt="Bumper 13" loading="lazy"><span class="vid-tag">YOUTUBE ↗</span><span class="vid-play">▶</span></div></a>
+      <a class="vid vid-bumper" href="https://youtu.be/SNgETW4tD3o?si=1BbOoKCicqhaxwhF" target="_blank" rel="noopener"><div class="vid-thumb"><img src="https://i.ytimg.com/vi/SNgETW4tD3o/hqdefault.jpg" alt="Bumper 14" loading="lazy"><span class="vid-tag">YOUTUBE ↗</span><span class="vid-play">▶</span></div></a>
+      <a class="vid vid-bumper" href="https://youtu.be/CEWZCePpREo?si=0sDaXCBGuAUXKT2H" target="_blank" rel="noopener"><div class="vid-thumb"><img src="https://i.ytimg.com/vi/CEWZCePpREo/hqdefault.jpg" alt="Bumper 15" loading="lazy"><span class="vid-tag">YOUTUBE ↗</span><span class="vid-play">▶</span></div></a>
+      <a class="vid vid-bumper" href="https://youtu.be/RJboQi56F2M?si=LiEaQxQqXI2d6jcR" target="_blank" rel="noopener"><div class="vid-thumb"><img src="https://i.ytimg.com/vi/RJboQi56F2M/hqdefault.jpg" alt="Bumper 16" loading="lazy"><span class="vid-tag">YOUTUBE ↗</span><span class="vid-play">▶</span></div></a>
+    </div>
+  </section>
 
   <div class="footer-bar">
-    <span>◉ ORIGAMI ULTRA · MUSEUM</span>
+    <span>◉ ORIGAMI ULTRA · VISUALS</span>
     <span class="best-viewed">★ ARCHIVE v.1.0 ★</span>
     <span>© EST. <span id="yr"></span></span>
   </div>
@@ -419,6 +454,13 @@
 <script>
 
 document.getElementById('yr').textContent = new Date().getFullYear();
+/* Swap in high-res thumbnails where YouTube has them (falls back to hqdefault) */
+document.querySelectorAll('img[data-hi]').forEach(function (img) {
+  var hi = new Image();
+  hi.onload = function () { if (hi.naturalWidth > 200) img.src = hi.src; };
+  hi.src = img.dataset.hi;
+});
+
 const sparkleChars = ['\u2726','\u2605','\u2727','\u2736','\u00b7'];
 const sparkleColors = ['#ffd700','#ff4bd8','#00e5ff','#39ff14','#fff'];
 let sparkleCooldown = 0;
