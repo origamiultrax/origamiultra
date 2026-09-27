@@ -2,6 +2,9 @@
 	"folders": [
 		{
 			"path": "."
+		},
+		{
+			"path": "../gallery-speed-update/img"
 		}
 	],
 	"settings": {}
