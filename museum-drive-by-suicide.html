@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>::: ORIGAMI ULTRA ::: Museum :::</title>
+<title>::: MUSEUM :: Drive By Suicide :::</title>
 <link href="https://fonts.googleapis.com/css2?family=VT323&family=Share+Tech+Mono&family=Press+Start+2P&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
 <style>
 
@@ -118,7 +118,6 @@
   .nav-btn.home:hover { background: var(--magenta); color: #000; border-color: var(--magenta); box-shadow: 0 0 18px rgba(255,75,216,0.9); }
   .nav-btn.back { border-color: var(--amber); color: var(--amber); box-shadow: 0 0 10px rgba(255,179,71,0.4), inset 0 0 6px rgba(255,179,71,0.15); }
   .nav-btn.back:hover { background: var(--amber); color: #000; border-color: var(--amber); box-shadow: 0 0 18px rgba(255,179,71,0.9); }
-
   .nav-breadcrumb {
     font-family: 'VT323', monospace;
     color: var(--amber); font-size: 16px; letter-spacing: 2px;
@@ -160,12 +159,6 @@
     border: none;
   }
 
-  .page-hint {
-    text-align: center; font-family: 'VT323', monospace;
-    color: var(--green); font-size: 18px;
-    letter-spacing: 3px; margin-bottom: 20px; opacity: 0.85;
-  }
-
   .footer-bar {
     margin-top: 30px;
     display: flex; justify-content: space-between; align-items: center;
@@ -182,6 +175,144 @@
     font-family: monospace;
   }
 
+  /* Gallery */
+  .gallery-header {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 10px 14px;
+    background: rgba(5, 15, 8, 0.8);
+    border: 3px outset #4a8a5a;
+    margin-bottom: 16px;
+    box-shadow: 0 0 14px rgba(57, 255, 20, 0.25);
+  }
+  .gallery-title {
+    font-family: 'TS Block Bold', sans-serif;
+    font-size: 22px; letter-spacing: 3px;
+    color: #d4ffcf;
+    text-shadow: 0 0 8px rgba(57,255,20,0.7), 2px 2px 0 #000;
+  }
+  .gallery-count {
+    font-family: 'Silkscreen', monospace; font-size: 11px;
+    color: var(--green); letter-spacing: 2px;
+  }
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 12px;
+  }
+  .gallery-tile {
+    position: relative;
+    background: rgba(0, 0, 0, 0.6);
+    border: 2px outset #4a8a5a;
+    cursor: pointer; overflow: hidden;
+    transition: all 0.2s ease;
+    aspect-ratio: 1 / 1;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .gallery-tile:hover {
+    border-color: var(--green); border-style: inset;
+    box-shadow: 0 0 18px rgba(57, 255, 20, 0.6);
+    transform: translateY(-2px);
+  }
+  .gallery-tile img {
+    width: 100%; height: 100%;
+    object-fit: cover; display: block;
+  }
+  .gallery-tile .tile-index {
+    position: absolute; top: 4px; left: 4px;
+    background: rgba(0,0,0,0.75); color: var(--green);
+    font-family: 'Silkscreen', monospace; font-size: 9px;
+    padding: 2px 5px; letter-spacing: 1px;
+  }
+
+  /* Loading overlay (shown until images decoded) */
+  .loading-overlay {
+    position: fixed; inset: 0; z-index: 100;
+    background: rgba(0,0,0,0.92);
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: 14px;
+    color: var(--green); font-family: 'Silkscreen', monospace;
+    letter-spacing: 3px; font-size: 14px;
+    transition: opacity 0.4s ease;
+  }
+  .loading-overlay.hidden { opacity: 0; pointer-events: none; }
+  .loading-overlay .bar {
+    width: min(320px, 60vw); height: 8px;
+    background: #001a05; border: 2px inset #4a8a5a;
+    overflow: hidden;
+  }
+  .loading-overlay .fill {
+    height: 100%; width: 0%;
+    background: var(--green);
+    box-shadow: 0 0 10px var(--green);
+    transition: width 0.15s linear;
+  }
+  .loading-overlay .count {
+    color: var(--amber); font-size: 11px;
+  }
+
+  /* Lightbox */
+  .lightbox {
+    display: none; position: fixed; inset: 0;
+    background: rgba(0,0,0,0.95); z-index: 999;
+    align-items: center; justify-content: center;
+    flex-direction: column; padding: 20px;
+  }
+  .lightbox.active { display: flex; }
+  .lightbox::after {
+    content: ''; position: absolute; inset: 0;
+    background: repeating-linear-gradient(to bottom, rgba(0,0,0,0.22) 0px, rgba(0,0,0,0.22) 1px, transparent 1px, transparent 3px);
+    pointer-events: none;
+  }
+  .lb-stage {
+    position: relative; flex: 1; width: 100%;
+    max-width: 1500px;
+    display: flex; align-items: center; justify-content: center;
+    padding: 0 80px;
+  }
+  .lb-media {
+    max-width: 100%; max-height: 85vh;
+    object-fit: contain;
+    border: 2px solid var(--green);
+    box-shadow: 0 0 30px rgba(57, 255, 20, 0.5), 0 0 80px rgba(57, 255, 20, 0.2);
+    background: #000;
+  }
+  .lb-arrow {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    width: 56px; height: 56px;
+    background: rgba(0,0,0,0.85);
+    border: 3px outset var(--green); color: var(--green);
+    font-family: 'Silkscreen', monospace; font-size: 22px;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 0 12px rgba(57,255,20,0.5);
+    transition: all 0.15s;
+    z-index: 2;
+  }
+  .lb-arrow:hover { background: var(--green); color: #000; border-style: inset; box-shadow: 0 0 24px rgba(57,255,20,0.9); }
+  .lb-arrow.prev { left: 10px; }
+  .lb-arrow.next { right: 10px; }
+  .lb-close {
+    position: absolute; top: 20px; right: 20px;
+    width: 44px; height: 44px;
+    background: rgba(0,0,0,0.85);
+    border: 3px outset var(--hot-pink); color: var(--hot-pink);
+    font-family: 'Silkscreen', monospace; font-size: 16px;
+    cursor: pointer; z-index: 2;
+    box-shadow: 0 0 12px rgba(255, 20, 147, 0.5);
+    transition: all 0.15s;
+  }
+  .lb-close:hover { background: var(--hot-pink); color: #fff; border-style: inset; }
+  .lb-caption {
+    margin-top: 14px;
+    font-family: 'VT323', monospace; color: #e9ffe4;
+    font-size: 16px; letter-spacing: 2px; text-align: center;
+    text-shadow: 0 0 4px #000; z-index: 2;
+  }
+  .lb-caption .counter {
+    color: var(--green); font-family: 'Silkscreen', monospace;
+    font-size: 11px; display: block; margin-top: 4px; letter-spacing: 3px;
+  }
+
   @media (max-width: 1200px) {
     .frame { padding: 20px 150px 40px 150px; }
     .plant-border { width: 130px; background-size: 130px auto; }
@@ -196,59 +327,6 @@
     .title { font-size: 42px; letter-spacing: 4px; }
   }
 
-
-  .folder-grid {
-    display: flex; flex-wrap: wrap; justify-content: center;
-    gap: 30px; padding: 30px 10px 20px; max-width: 1100px; margin: 0 auto;
-  }
-  .folder-grid .folder-item { width: 220px; }
-  .folder-item {
-    display: flex; flex-direction: column; align-items: center;
-    gap: 12px; padding: 18px 12px; cursor: pointer;
-    text-decoration: none; color: inherit;
-    border: 1px dashed transparent; border-radius: 4px;
-    transition: all 0.15s ease;
-  }
-  .folder-item:hover {
-    background: rgba(57, 255, 20, 0.1);
-    border-color: var(--green);
-    box-shadow: 0 0 16px rgba(57, 255, 20, 0.4);
-    transform: translateY(-3px);
-  }
-  .folder-item:active { transform: scale(0.97); }
-
-  .folder-icon-wrap {
-    width: 120px; height: 100px; position: relative;
-    filter: drop-shadow(0 0 10px rgba(57, 255, 20, 0.55)) drop-shadow(2px 2px 0 rgba(0,0,0,0.6));
-    transition: transform 0.2s;
-  }
-  .folder-item:hover .folder-icon-wrap { transform: translateY(-2px); }
-  .folder-icon-wrap svg { width: 100%; height: 100%; display: block; }
-
-  .folder-label {
-    font-family: 'TS Block Bold', monospace; color: #d4ffcf;
-    font-size: 22px; letter-spacing: 2px; text-align: center;
-    text-shadow: 0 0 5px rgba(57,255,20,0.6), 1px 1px 0 #000;
-    padding: 3px 10px; background: rgba(0,0,0,0.4);
-  }
-  .folder-label--long { font-size: 15px; letter-spacing: 1px; line-height: 1.2; }
-  .folder-item:hover .folder-label { background: var(--green); color: #000; text-shadow: none; }
-  .folder-meta {
-    font-family: 'Silkscreen', monospace; font-size: 10px;
-    color: var(--amber); letter-spacing: 1px; opacity: 0.85;
-  }
-
-  .museum-section-heading {
-    display: flex; align-items: center; gap: 14px;
-    width: 100%; max-width: 760px; margin: 26px auto 0; padding: 0 12px; box-sizing: border-box;
-    font-family: 'Silkscreen', monospace; font-size: 15px; letter-spacing: 4px;
-    color: var(--amber); text-shadow: 0 0 6px rgba(255,179,71,0.6); white-space: nowrap;
-  }
-  .museum-section-heading::before, .museum-section-heading::after {
-    content: ''; flex: 1; height: 2px; opacity: 0.6;
-    background: linear-gradient(90deg, transparent, var(--amber), transparent);
-  }
-  @media (max-width: 600px) { .museum-section-heading { font-size: 11px; letter-spacing: 2px; } }
 </style>
 </head>
 <body>
@@ -271,177 +349,57 @@
 </div>
 
 
-<div class="frame">
+<div class="loading-overlay" id="loader">
+  <div>▓ LOADING DRIVE BY SUICIDE ▓</div>
+  <div class="bar"><div class="fill" id="loadFill"></div></div>
+  <div class="count" id="loadCount">0 / 91</div>
+</div>
 
+<div class="frame">
   <div class="nav-row">
     <div class="nav-left">
       <a href="index.html" class="nav-btn home">⌂ HOME</a>
-      <a href="concepts.html" class="nav-btn back">▣ CONCEPTS</a>
+      <a href="museum.html" class="nav-btn back">◀ MUSEUM</a>
     </div>
-    <div class="nav-breadcrumb">MUSEUM</div>
-    <div class="nav-right" style="width:180px"></div>
+    <div class="nav-breadcrumb">
+      <a href="museum.html">MUSEUM</a>
+      <span class="sep">›</span>DRIVE BY SUICIDE
+    </div>
+    <div class="nav-right" style="width:80px"></div>
   </div>
 
   <div class="title-wrap">
-    <div class="title">MUSEUM</div>
-    <div class="subtitle">// VISUAL ARCHIVE //</div>
+    <div class="title" style="letter-spacing:5px; font-size: clamp(32px,5vw,72px);">DRIVE BY SUICIDE</div>
+    <div class="subtitle">// EXHIBIT · 91 WORKS //</div>
   </div>
 
   <hr class="rainbow-hr">
 
-  <div class="page-hint">◆ SELECT AN EXHIBITION TO ENTER ◆</div>
-
-  <div class="folder-grid">
-    <a class="folder-item" href="museum-visuals.html">
-      <div class="folder-icon-wrap">
-        
-    <svg viewBox="0 0 120 100" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <linearGradient id="g0a3a3a" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stop-color="#1a5a5a"/>
-          <stop offset="1" stop-color="#0a3a3a"/>
-        </linearGradient>
-      </defs>
-      <!-- Tab -->
-      <path d="M 6 20 L 44 20 L 52 30 L 114 30 L 114 90 L 6 90 Z"
-            fill="#1a5a5a" stroke="#a6fff4" stroke-width="1.2" stroke-linejoin="miter" opacity="0.9"/>
-      <!-- Front face -->
-      <path d="M 6 30 L 114 30 L 114 90 L 6 90 Z"
-            fill="url(#g0a3a3a)" stroke="#a6fff4" stroke-width="1.2"/>
-      <!-- Highlight -->
-      <line x1="9" y1="33" x2="111" y2="33" stroke="#a6fff4" stroke-width="1" opacity="0.5"/>
-      <line x1="9" y1="87" x2="111" y2="87" stroke="#000" stroke-width="0.6" opacity="0.6"/>
-      <!-- Play glyph -->
-      <polygon points="52,47 52,75 74,61" fill="#a6fff4" opacity="0.85"/>
-    </svg>
-    
-      </div>
-      <div class="folder-label">Visuals</div>
-      <div class="folder-meta">21 VIDEOS</div>
-    </a>
-    <a class="folder-item" href="museum-grafx-design.html">
-      <div class="folder-icon-wrap">
-        
-    <svg viewBox="0 0 120 100" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <linearGradient id="g1a2a5a" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stop-color="#2a3a7a"/>
-          <stop offset="1" stop-color="#1a2a5a"/>
-        </linearGradient>
-      </defs>
-      <!-- Tab -->
-      <path d="M 6 20 L 44 20 L 52 30 L 114 30 L 114 90 L 6 90 Z"
-            fill="#2a3a7a" stroke="#a6d4ff" stroke-width="1.2" stroke-linejoin="miter" opacity="0.9"/>
-      <!-- Front face -->
-      <path d="M 6 30 L 114 30 L 114 90 L 6 90 Z"
-            fill="url(#g1a2a5a)" stroke="#a6d4ff" stroke-width="1.2"/>
-      <!-- Highlight -->
-      <line x1="9" y1="33" x2="111" y2="33" stroke="#a6d4ff" stroke-width="1" opacity="0.5"/>
-      <line x1="9" y1="87" x2="111" y2="87" stroke="#000" stroke-width="0.6" opacity="0.6"/>
-    </svg>
-    
-      </div>
-      <div class="folder-label">ORAMICS&nbsp;- GRAFX DESIGN</div>
-      <div class="folder-meta">88 ITEMS</div>
-    </a>
+  <div class="gallery-header">
+    <div class="gallery-title">DRIVE BY SUICIDE</div>
+    <div class="gallery-count">91 ITEMS</div>
   </div>
 
-  <div class="museum-section-heading">◆ PHOTOGRAPHY ◆</div>
-
-  <div class="folder-grid">
-    <a class="folder-item" href="museum-ambient-dreamscapes.html">
-      <div class="folder-icon-wrap">
-        
-    <svg viewBox="0 0 120 100" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <linearGradient id="g3e1450" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stop-color="#6a2a7a"/>
-          <stop offset="1" stop-color="#3e1450"/>
-        </linearGradient>
-      </defs>
-      <!-- Tab -->
-      <path d="M 6 20 L 44 20 L 52 30 L 114 30 L 114 90 L 6 90 Z"
-            fill="#6a2a7a" stroke="#ffb3f5" stroke-width="1.2" stroke-linejoin="miter" opacity="0.9"/>
-      <!-- Front face -->
-      <path d="M 6 30 L 114 30 L 114 90 L 6 90 Z"
-            fill="url(#g3e1450)" stroke="#ffb3f5" stroke-width="1.2"/>
-      <!-- Highlight -->
-      <line x1="9" y1="33" x2="111" y2="33" stroke="#ffb3f5" stroke-width="1" opacity="0.5"/>
-      <line x1="9" y1="87" x2="111" y2="87" stroke="#000" stroke-width="0.6" opacity="0.6"/>
-      <!-- Crescent moon + stars -->
-      <path d="M 64 46 A 15 15 0 0 0 64 76 A 9 15 0 0 1 64 46 Z" fill="#ffb3f5" opacity="0.9"/>
-      <circle cx="76" cy="52" r="1.6" fill="#ffe8fb"/>
-      <circle cx="82" cy="64" r="1.2" fill="#ffe8fb"/>
-      <circle cx="46" cy="50" r="1.2" fill="#ffe8fb"/>
-    </svg>
-    
-      </div>
-      <div class="folder-label folder-label--long">International Collection of Ambient Dreamscapes</div>
-      <div class="folder-meta">96 ITEMS</div>
-    </a>
-    <a class="folder-item" href="museum-lower-levels.html">
-      <div class="folder-icon-wrap">
-        
-    <svg viewBox="0 0 120 100" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <linearGradient id="g4a3408" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stop-color="#7a5a1a"/>
-          <stop offset="1" stop-color="#4a3408"/>
-        </linearGradient>
-      </defs>
-      <!-- Tab -->
-      <path d="M 6 20 L 44 20 L 52 30 L 114 30 L 114 90 L 6 90 Z"
-            fill="#7a5a1a" stroke="#ffd98a" stroke-width="1.2" stroke-linejoin="miter" opacity="0.9"/>
-      <!-- Front face -->
-      <path d="M 6 30 L 114 30 L 114 90 L 6 90 Z"
-            fill="url(#g4a3408)" stroke="#ffd98a" stroke-width="1.2"/>
-      <!-- Highlight -->
-      <line x1="9" y1="33" x2="111" y2="33" stroke="#ffd98a" stroke-width="1" opacity="0.5"/>
-      <line x1="9" y1="87" x2="111" y2="87" stroke="#000" stroke-width="0.6" opacity="0.6"/>
-      <!-- Descending stairs -->
-      <polyline points="40,47 52,47 52,56 64,56 64,65 76,65 76,74 84,74" fill="none" stroke="#ffd98a" stroke-width="3" opacity="0.8"/>
-    </svg>
-    
-      </div>
-      <div class="folder-label">LOWER LEVELS</div>
-      <div class="folder-meta">73 ITEMS</div>
-    </a>
-    <a class="folder-item" href="museum-drive-by-suicide.html">
-      <div class="folder-icon-wrap">
-        
-    <svg viewBox="0 0 120 100" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <linearGradient id="g3a0a0e" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stop-color="#6e1a22"/>
-          <stop offset="1" stop-color="#3a0a0e"/>
-        </linearGradient>
-      </defs>
-      <!-- Tab -->
-      <path d="M 6 20 L 44 20 L 52 30 L 114 30 L 114 90 L 6 90 Z"
-            fill="#6e1a22" stroke="#ff9aa3" stroke-width="1.2" stroke-linejoin="miter" opacity="0.9"/>
-      <!-- Front face -->
-      <path d="M 6 30 L 114 30 L 114 90 L 6 90 Z"
-            fill="url(#g3a0a0e)" stroke="#ff9aa3" stroke-width="1.2"/>
-      <!-- Highlight -->
-      <line x1="9" y1="33" x2="111" y2="33" stroke="#ff9aa3" stroke-width="1" opacity="0.5"/>
-      <line x1="9" y1="87" x2="111" y2="87" stroke="#000" stroke-width="0.6" opacity="0.6"/>
-      <!-- Road -->
-      <path d="M 52 44 L 34 80 M 68 44 L 86 80" fill="none" stroke="#ff9aa3" stroke-width="2.5" opacity="0.85"/>
-      <path d="M 60 46 L 60 52 M 60 57 L 60 64 M 60 70 L 60 78" fill="none" stroke="#ffd9a0" stroke-width="2.5" opacity="0.9"/>
-    </svg>
-    
-      </div>
-      <div class="folder-label">Drive By Suicide</div>
-      <div class="folder-meta">91 ITEMS</div>
-    </a>
-  </div>
+  <div class="gallery-grid" id="galleryGrid"></div>
 
   <div class="footer-bar">
     <span>◉ ORIGAMI ULTRA · MUSEUM</span>
     <span class="best-viewed">★ ARCHIVE v.1.0 ★</span>
     <span>© EST. <span id="yr"></span></span>
   </div>
+</div>
 
+<div class="lightbox" id="lightbox">
+  <button class="lb-close" onclick="closeLightbox()" aria-label="Close">✕</button>
+  <div class="lb-stage">
+    <button class="lb-arrow prev" onclick="prevImg()" aria-label="Previous">◀</button>
+    <div id="lbMediaWrap"></div>
+    <button class="lb-arrow next" onclick="nextImg()" aria-label="Next">▶</button>
+  </div>
+  <div class="lb-caption">
+    <span id="lbName">—</span>
+    <span class="counter" id="lbCounter">—</span>
+  </div>
 </div>
 
 <script>
@@ -471,6 +429,115 @@ document.addEventListener('mousemove', function(e) {
   requestAnimationFrame(anim);
 });
 
+
+const IMG_DIR = 'img/drive-by-suicide/';
+const ITEMS = [{"idx":1,"w":500,"h":375},{"idx":2,"w":500,"h":281},{"idx":3,"w":500,"h":281},{"idx":4,"w":500,"h":281},{"idx":5,"w":500,"h":375},{"idx":6,"w":500,"h":281},{"idx":7,"w":282,"h":500},{"idx":8,"w":500,"h":281},{"idx":9,"w":500,"h":281},{"idx":10,"w":500,"h":281},{"idx":11,"w":500,"h":281},{"idx":12,"w":500,"h":281},{"idx":13,"w":500,"h":281},{"idx":14,"w":500,"h":281},{"idx":15,"w":500,"h":281},{"idx":16,"w":500,"h":281},{"idx":17,"w":500,"h":281},{"idx":18,"w":500,"h":281},{"idx":19,"w":500,"h":281},{"idx":20,"w":500,"h":281},{"idx":21,"w":500,"h":281},{"idx":22,"w":500,"h":281},{"idx":23,"w":500,"h":281},{"idx":24,"w":500,"h":281},{"idx":25,"w":282,"h":500},{"idx":26,"w":500,"h":281},{"idx":27,"w":500,"h":281},{"idx":28,"w":500,"h":281},{"idx":29,"w":500,"h":281},{"idx":30,"w":500,"h":281},{"idx":31,"w":500,"h":281},{"idx":32,"w":500,"h":281},{"idx":33,"w":500,"h":281},{"idx":34,"w":500,"h":281},{"idx":35,"w":500,"h":281},{"idx":36,"w":500,"h":281},{"idx":37,"w":500,"h":281},{"idx":38,"w":500,"h":281},{"idx":39,"w":500,"h":281},{"idx":40,"w":500,"h":281},{"idx":41,"w":500,"h":281},{"idx":42,"w":500,"h":281},{"idx":43,"w":500,"h":281},{"idx":44,"w":500,"h":281},{"idx":45,"w":500,"h":281},{"idx":46,"w":500,"h":281},{"idx":47,"w":500,"h":281},{"idx":48,"w":500,"h":281},{"idx":49,"w":500,"h":281},{"idx":50,"w":500,"h":281},{"idx":51,"w":500,"h":281},{"idx":52,"w":500,"h":281},{"idx":53,"w":282,"h":500},{"idx":54,"w":500,"h":281},{"idx":55,"w":500,"h":281},{"idx":56,"w":500,"h":281},{"idx":57,"w":500,"h":281},{"idx":58,"w":500,"h":281},{"idx":59,"w":500,"h":281},{"idx":60,"w":500,"h":281},{"idx":61,"w":500,"h":281},{"idx":62,"w":500,"h":281},{"idx":63,"w":500,"h":281},{"idx":64,"w":500,"h":281},{"idx":65,"w":500,"h":281},{"idx":66,"w":500,"h":281},{"idx":67,"w":500,"h":281},{"idx":68,"w":500,"h":281},{"idx":69,"w":500,"h":495},{"idx":70,"w":500,"h":375},{"idx":71,"w":500,"h":375},{"idx":72,"w":500,"h":375},{"idx":73,"w":500,"h":375},{"idx":74,"w":500,"h":375},{"idx":75,"w":500,"h":375},{"idx":76,"w":500,"h":375},{"idx":77,"w":500,"h":375},{"idx":78,"w":500,"h":375},{"idx":79,"w":375,"h":500},{"idx":80,"w":500,"h":375},{"idx":81,"w":500,"h":375},{"idx":82,"w":500,"h":375},{"idx":83,"w":500,"h":375},{"idx":84,"w":500,"h":375},{"idx":85,"w":500,"h":375},{"idx":86,"w":500,"h":375},{"idx":87,"w":500,"h":375},{"idx":88,"w":500,"h":375},{"idx":89,"w":500,"h":375},{"idx":90,"w":500,"h":375},{"idx":91,"w":500,"h":375}];
+const COUNT = ITEMS.length;
+let currentIdx = 0;
+
+function pad(n, w) { return String(n).padStart(w, '0'); }
+function thumbUrl(item) { return IMG_DIR + 'thumbs/' + pad(item.idx, 3) + '.jpg'; }
+function fullUrl(item)  { return IMG_DIR + pad(item.idx, 3) + '.jpg'; }
+const EAGER = 8;          // first rows load immediately; the rest lazy-load on scroll
+const preloaded = {};
+function preloadFull(k) {  // warm the full-size image for piece k
+  const u = fullUrl(ITEMS[(k + COUNT) % COUNT]);
+  if (!preloaded[u]) { const im = new Image(); im.decoding = 'async'; im.src = u; preloaded[u] = im; }
+  return preloaded[u];
+}
+
+// Build grid progressively so the page doesn't hang on initial parse
+(function buildGrid() {
+  const grid = document.getElementById('galleryGrid');
+  const loader = document.getElementById('loader');
+  const fill = document.getElementById('loadFill');
+  const count = document.getElementById('loadCount');
+
+  let i = 0;
+  function addNext() {
+    if (i >= COUNT) {
+      // done: wait only for thumbnails that are actually on screen (max 1.5s), then lift the loader
+      const visible = Array.from(grid.querySelectorAll('img')).slice(0, EAGER)
+        .filter(im => im.getBoundingClientRect().top < window.innerHeight);
+      const ready = Promise.all(visible.map(im => im.complete ? null : new Promise(r => {
+        im.addEventListener('load', r, { once: true }); im.addEventListener('error', r, { once: true });
+      })));
+      Promise.race([ready, new Promise(r => setTimeout(r, 1500))]).then(() => {
+        setTimeout(() => {
+          loader.classList.add('hidden');
+          setTimeout(() => loader.style.display = 'none', 500);
+        }, 200);
+      });
+      return;
+    }
+    const item = ITEMS[i];
+    const tile = document.createElement('div');
+    tile.className = 'gallery-tile';
+    tile.onclick = (function(k) { return function() { openLightbox(k); }; })(i);
+    tile.onpointerdown = (function(k) { return function() { preloadFull(k); }; })(i);
+    tile.innerHTML =
+      '<span class="tile-index">' + pad(item.idx, 3) + '</span>' +
+      '<img src="' + thumbUrl(item) + '" alt="' + pad(item.idx, 3) + '" width="' + item.w + '" height="' + item.h + '"' +
+      ' decoding="async" loading="' + (i < EAGER ? 'eager' : 'lazy') + '"' + (i < 4 ? ' fetchpriority="high"' : '') + '>';
+    grid.appendChild(tile);
+    i++;
+    const pct = Math.round(100 * i / COUNT);
+    fill.style.width = pct + '%';
+    count.textContent = i + ' / ' + COUNT;
+    // Batch 8 at a time per frame to keep UI responsive
+    if (i % 8 === 0) {
+      requestAnimationFrame(addNext);
+    } else {
+      addNext();
+    }
+  }
+  requestAnimationFrame(addNext);
+})();
+
+function openLightbox(idx) {
+  currentIdx = idx;
+  renderLightbox();
+  document.getElementById('lightbox').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+let lbToken = 0;
+function closeLightbox() {
+  lbToken++;
+  document.getElementById('lightbox').classList.remove('active');
+  document.body.style.overflow = '';
+  document.getElementById('lbMediaWrap').innerHTML = '';
+}
+function renderLightbox() {
+  const item = ITEMS[currentIdx];
+  const token = ++lbToken;
+  const wrap = document.getElementById('lbMediaWrap');
+  wrap.innerHTML = '';
+  const img = document.createElement('img');
+  img.className = 'lb-media';
+  img.alt = 'Image ' + item.idx;
+  const hi = preloadFull(currentIdx);
+  if (!(hi.complete && hi.naturalWidth)) {           // not cached yet: reveal once decoded (no empty-frame flash)
+    img.style.visibility = 'hidden';
+    img.addEventListener('load', () => { img.style.visibility = ''; }, { once: true });
+  }
+  img.src = fullUrl(item);
+  wrap.appendChild(img);
+  preloadFull(currentIdx + 1); preloadFull(currentIdx + 2);
+  document.getElementById('lbName').textContent = pad(item.idx, 3);
+  document.getElementById('lbCounter').textContent = pad(item.idx, 3) + ' / ' + pad(COUNT, 3);
+}
+function prevImg() { currentIdx = (currentIdx - 1 + COUNT) % COUNT; renderLightbox(); }
+function nextImg() { currentIdx = (currentIdx + 1) % COUNT; renderLightbox(); }
+
+document.addEventListener('keydown', function(e) {
+  if (!document.getElementById('lightbox').classList.contains('active')) return;
+  if (e.key === 'ArrowLeft') prevImg();
+  else if (e.key === 'ArrowRight') nextImg();
+  else if (e.key === 'Escape') closeLightbox();
+});
+document.getElementById('lightbox').addEventListener('click', function(e) {
+  if (e.target.id === 'lightbox' || e.target.classList.contains('lb-stage')) closeLightbox();
+});
 
 </script>
 <!-- OU_PROTECTION_v1 -->
