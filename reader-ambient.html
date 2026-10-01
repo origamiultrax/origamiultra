@@ -574,11 +574,11 @@ document.addEventListener('mousemove', function(e) {
    3D page turn, spread / single-page modes, click · swipe · keys,
    scrubber, zoom, fullscreen, remembers your place + highlights
    ========================================================== */
-const BOOK = {"id": "ambient-dreamscapes-0", "count": 50, "dir": "img/books/ambient/", "zoomDir": "img/books/ambient/zoom/", "aspect": 0.9725};
+const BOOK = {"id": "ambient-dreamscapes-0-r2", "count": 50, "dir": "img/books/ambient/", "zoomDir": "img/books/ambient/zoom/", "aspect": 1.0, "v": 2};
 const N = BOOK.count;
 const pad2 = n => String(n).padStart(2, '0');
-const pageSrc = i => BOOK.dir + pad2(i + 1) + '.jpg';
-const zoomSrc = i => (BOOK.zoomDir || BOOK.dir) + pad2(i + 1) + '.jpg';
+const pageSrc = i => BOOK.dir + pad2(i + 1) + '.jpg' + (BOOK.v ? '?v=' + BOOK.v : '');
+const zoomSrc = i => (BOOK.zoomDir || BOOK.dir) + pad2(i + 1) + '.jpg' + (BOOK.v ? '?v=' + BOOK.v : '');
 const $ = id => document.getElementById(id);
 const bookEl = $('book'), stage = $('bookStage');
 const pageL = $('pageLeft'), pageR = $('pageRight'), imgL = $('imgLeft'), imgR = $('imgRight');
