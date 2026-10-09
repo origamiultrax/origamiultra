@@ -335,6 +335,8 @@
     gap: 24px; align-items: start;
   }
 
+  .films-grid > .vid-film:last-child:nth-child(odd) { grid-column: 1 / -1; justify-self: center; width: calc(50% - 12px); }
+
   /* Bumpers: 5 across, thumbnails only */
   .bumper-grid {
     display: grid; grid-template-columns: repeat(5, minmax(0, 1fr));
@@ -346,6 +348,7 @@
 
   @media (max-width: 950px) {
     .films-grid { grid-template-columns: 1fr; max-width: 560px; margin: 0 auto; }
+    .films-grid > .vid-film:last-child:nth-child(odd) { width: auto; justify-self: stretch; }
     .bumper-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   }
   @media (max-width: 600px) {
@@ -431,6 +434,11 @@
   <section class="vis-section">
     <div class="section-heading">◆ FILMS ◆</div>
     <div class="films-grid">
+      <a class="vid vid-film" href="https://youtu.be/MY0CaE0t0L8?si=M2qzQphG6ZAE4g7K" target="_blank" rel="noopener">
+        <div class="vid-thumb"><img src="https://i.ytimg.com/vi/MY0CaE0t0L8/hqdefault.jpg" data-hi="https://i.ytimg.com/vi/MY0CaE0t0L8/maxresdefault.jpg" alt="Vibes Cubed" loading="lazy"><span class="vid-tag">YOUTUBE ↗</span><span class="vid-play">▶</span></div>
+        <div class="vid-title">Vibes Cubed</div>
+        <div class="vid-caption">An experimental visual short film exploring American suburbia, consumer nostalgia, and the surrealism of everyday life.</div>
+      </a>
       <a class="vid vid-film" href="https://youtu.be/0Bt3q7Li8zA?si=c_Iad3DMK7nU51xS" target="_blank" rel="noopener">
         <div class="vid-thumb"><img src="https://i.ytimg.com/vi/0Bt3q7Li8zA/hqdefault.jpg" data-hi="https://i.ytimg.com/vi/0Bt3q7Li8zA/maxresdefault.jpg" alt="COLD OUTSIDE" loading="lazy"><span class="vid-tag">YOUTUBE ↗</span><span class="vid-play">▶</span></div>
         <div class="vid-title">COLD OUTSIDE</div>
