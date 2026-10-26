@@ -202,6 +202,7 @@
     gap: 30px; padding: 30px 10px 20px; max-width: 1100px; margin: 0 auto;
   }
   .folder-grid .folder-item { width: 220px; }
+  .folder-grid--three { max-width: 740px; }   /* 3 per row; extra folders wrap centered underneath */
   .folder-item {
     display: flex; flex-direction: column; align-items: center;
     gap: 12px; padding: 18px 12px; cursor: pointer;
@@ -348,7 +349,7 @@
 
   <div class="museum-section-heading">◆ PHOTOGRAPHY ◆</div>
 
-  <div class="folder-grid">
+  <div class="folder-grid folder-grid--three">
     <a class="folder-item" href="museum-ambient-dreamscapes.html">
       <div class="folder-icon-wrap">
         
@@ -433,6 +434,36 @@
       </div>
       <div class="folder-label">Drive By Suicide</div>
       <div class="folder-meta">91 ITEMS</div>
+    </a>
+    <a class="folder-item" href="museum-gardens-of-gami.html">
+      <div class="folder-icon-wrap">
+        
+    <svg viewBox="0 0 120 100" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="g12401c" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#2e6a34"/>
+          <stop offset="1" stop-color="#12401c"/>
+        </linearGradient>
+      </defs>
+      <!-- Tab -->
+      <path d="M 6 20 L 44 20 L 52 30 L 114 30 L 114 90 L 6 90 Z"
+            fill="#2e6a34" stroke="#b8f5a6" stroke-width="1.2" stroke-linejoin="miter" opacity="0.9"/>
+      <!-- Front face -->
+      <path d="M 6 30 L 114 30 L 114 90 L 6 90 Z"
+            fill="url(#g12401c)" stroke="#b8f5a6" stroke-width="1.2"/>
+      <!-- Highlight -->
+      <line x1="9" y1="33" x2="111" y2="33" stroke="#b8f5a6" stroke-width="1" opacity="0.5"/>
+      <line x1="9" y1="87" x2="111" y2="87" stroke="#000" stroke-width="0.6" opacity="0.6"/>
+      <!-- Pine trees -->
+      <polygon points="50,44 40,62 46,62 37,76 63,76 54,62 60,62" fill="#b8f5a6" opacity="0.85"/>
+      <rect x="48" y="76" width="4" height="5" fill="#b8f5a6" opacity="0.85"/>
+      <polygon points="72,52 65,65 69,65 63,76 81,76 75,65 79,65" fill="#b8f5a6" opacity="0.6"/>
+      <rect x="70.5" y="76" width="3" height="5" fill="#b8f5a6" opacity="0.6"/>
+    </svg>
+    
+      </div>
+      <div class="folder-label">Gardens Of Gami</div>
+      <div class="folder-meta">16 ITEMS</div>
     </a>
   </div>
 
