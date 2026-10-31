@@ -10,7 +10,7 @@
   'use strict';
   if (window.OUSearch) return;
 
-  var VERSION = '1';
+  var VERSION = '2';
   var SCRIPT = document.currentScript;
   var ROOT = (function () {
     try { return new URL('../', SCRIPT && SCRIPT.src ? SCRIPT.src : location.href).href; }
@@ -855,9 +855,13 @@
 
   function lucky(e) {
     if (!DOCS) return;
-    var kinds = ['track', 'video', 'photo', 'album', 'gallery', 'uw', 'bpage'];   /* pick a kind first so photos don't drown everything */
-    var kind = kinds[Math.floor(Math.random() * kinds.length)];
-    var pool = DOCS.filter(function (d) { return d.k === kind && !(d.k === 'bpage' && (!d.b || d.b.length < 120)) && !(d.k === 'gallery' && !d.i); });
+    var kinds = ['track', 'video', 'album', 'gallery', 'uw', 'bpage'];   /* pick a kind first so no one kind drowns the rest */
+    var pool = [];
+    for (var tries = 0; !pool.length && tries < 10; tries++) {
+      var kind = kinds[Math.floor(Math.random() * kinds.length)];
+      pool = DOCS.filter(function (d) { return d.k === kind && !(d.k === 'bpage' && (!d.b || d.b.length < 120)) && !(d.k === 'gallery' && !d.i); });
+    }
+    if (!pool.length) return;
     var d = pool[Math.floor(Math.random() * pool.length)];
     toast('★ ' + kindLabel(d) + ': ' + d.n.toUpperCase());
     if (d.k === 'video' && d.v) { setTimeout(function () { go(ROOT + d.v); }, 450); return; }   /* stay on the site */
