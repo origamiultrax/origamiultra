@@ -246,6 +246,16 @@
   }
 
 </style>
+<style>
+  /* OU_SEARCH_v1 — search button */
+  .ou-sbtn { gap: 7px; }
+  .ou-sbtn .ou-sico { width: 13px; height: 13px; flex: 0 0 auto; display: inline-block; vertical-align: -2px; }
+  @media (max-width: 600px) {
+    .nav-row .nav-right, .nav-row .ou-snav { margin-left: auto; width: auto !important; min-width: 0 !important; }
+    .nav-btn.ou-sbtn { padding: 7px 11px; }
+    .nav-btn.ou-sbtn .ou-stxt { display: none; }
+  }
+</style>
 </head>
 <body>
 
@@ -275,7 +285,7 @@
       <a href="concepts.html" class="nav-btn concepts">▣ CONCEPTS</a>
     </div>
     <div class="nav-breadcrumb">BOOKS</div>
-    <div class="nav-right" style="width:180px"></div>
+    <div class="nav-right" style="width:180px;justify-content:flex-end"><a href="#search" class="nav-btn ou-sbtn" data-ou-search aria-label="Search the site"><svg class="ou-sico" viewBox="0 0 16 16" aria-hidden="true"><circle cx="6.5" cy="6.5" r="4.6" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M10.2 10.2l4.3 4.3" stroke="currentColor" stroke-width="2.6"/></svg><span class="ou-stxt">SEARCH</span></a></div>
   </div>
 
   <div class="title-wrap">
@@ -920,6 +930,9 @@ img {
     }
   }
 
+  // Public hook: lets ULTRA SEARCH start a radio track from the results
+  window.OUPlayer = { tracks: TRACKS, play: function (i) { loadTrack(i, true); } };
+
   // ----- Boot: load the saved track at saved position, autoplay if was playing -----
   loadTrack(state.idx, state.playing, state.t);
 
@@ -1424,5 +1437,7 @@ img {
 })();
 </script>
 
+<!-- OU_SEARCH_v1 -->
+<script src="search/ou-search.js?v=1" defer></script>
 </body>
 </html>

@@ -528,6 +528,16 @@ input[type="range"]::-moz-range-thumb {
 }
 
 </style>
+<style>
+  /* OU_SEARCH_v1 — search button */
+  .ou-sbtn { gap: 7px; }
+  .ou-sbtn .ou-sico { width: 13px; height: 13px; flex: 0 0 auto; display: inline-block; vertical-align: -2px; }
+  @media (max-width: 600px) {
+    .nav-row .nav-right, .nav-row .ou-snav { margin-left: auto; width: auto !important; min-width: 0 !important; }
+    .nav-btn.ou-sbtn { padding: 7px 11px; }
+    .nav-btn.ou-sbtn .ou-stxt { display: none; }
+  }
+</style>
 </head>
 <body>
 <div class="vhs-bg"></div>
@@ -556,7 +566,7 @@ input[type="range"]::-moz-range-thumb {
       <a href="concepts.html" class="nav-btn concepts">▣ CONCEPTS</a>
     </div>
     <div class="nav-breadcrumb"><a href="music.html">MUSIC</a><span class="sep">›</span>XXULTRAXX</div>
-    <div class="nav-right" style="width:80px"></div>
+    <div class="nav-right" style="min-width:80px;justify-content:flex-end"><a href="#search" class="nav-btn ou-sbtn" data-ou-search aria-label="Search the site"><svg class="ou-sico" viewBox="0 0 16 16" aria-hidden="true"><circle cx="6.5" cy="6.5" r="4.6" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M10.2 10.2l4.3 4.3" stroke="currentColor" stroke-width="2.6"/></svg><span class="ou-stxt">SEARCH</span></a></div>
   </div>
 
   <div class="title-wrap">
@@ -976,6 +986,31 @@ input[type="range"]::-moz-range-thumb {
   renderTracklist();
   buildEqUI();
   load(0, false);  // loads first track (no autoplay)
+
+  // ---- ULTRA SEARCH: album-x.html#t=N opens with track N cued up ----
+  function cue(idx, autoplay) {
+    if (!(idx >= 0 && idx < tracks.length)) return;
+    load(idx, !!autoplay);
+    const row = tracklist && tracklist.querySelector('.track[data-idx="' + idx + '"]');
+    if (row) {
+      row.scrollIntoView({ block: 'center', behavior: 'smooth' });
+      row.classList.remove('ou-found'); void row.offsetWidth; row.classList.add('ou-found');
+      setTimeout(() => row.classList.remove('ou-found'), 2700);
+    }
+    if (!autoplay && playBtn) {
+      playBtn.classList.add('ou-cue');
+      setTimeout(() => playBtn.classList.remove('ou-cue'), 4200);
+    }
+  }
+  function cueFromHash() {
+    const m = /[#&]t=(\d+)/.exec(location.hash);
+    if (!m) return;
+    try { history.replaceState(history.state, '', location.pathname + location.search); } catch (e) {}
+    cue(parseInt(m[1], 10) - 1, false);
+  }
+  window.OUAlbum = { cue: idx => cue(idx, false), play: idx => cue(idx, true) };
+  cueFromHash();
+  window.addEventListener('hashchange', cueFromHash);
 })();
 
 </script>
@@ -1549,6 +1584,9 @@ img {
     }
   }
 
+  // Public hook: lets ULTRA SEARCH start a radio track from the results
+  window.OUPlayer = { tracks: TRACKS, play: function (i) { loadTrack(i, true); } };
+
   // ----- Boot: load the saved track at saved position, autoplay if was playing -----
   loadTrack(state.idx, state.playing, state.t);
 
@@ -2053,5 +2091,7 @@ img {
 })();
 </script>
 
+<!-- OU_SEARCH_v1 -->
+<script src="search/ou-search.js?v=1" defer></script>
 </body>
 </html>

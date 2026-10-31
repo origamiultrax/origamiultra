@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>::: ORIGAMI ULTRA ::: Welcome! :::</title>
 
-<link href="https://fonts.googleapis.com/css2?family=VT323&family=Share+Tech+Mono&family=Press+Start+2P&family=Silkscreen:wght@400;700&family=Micro+5&family=Barlow+Condensed:wght@500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=VT323&family=Share+Tech+Mono&family=Press+Start+2P&family=Silkscreen:wght@400;700&family=Micro+5&family=Barlow+Condensed:wght@500;600&family=Anton&display=swap" rel="stylesheet">
 
 <style>
   @font-face {
@@ -185,7 +185,7 @@
     padding: 2px 8px;
     font-family: 'Silkscreen', monospace; font-size: 10px; font-weight: 700; letter-spacing: 1px;
     border: 2px outset var(--yellow);
-    animation: constrFlash 0.8s steps(2) infinite;
+    animation: constrFlash 0.8s steps(1, end) infinite;
   }
   @keyframes constrFlash {
     0%, 100% { background: var(--yellow); color: #000; }
@@ -1001,6 +1001,43 @@
   .sp-bar i { display: block; height: 100%; width: 0; background: linear-gradient(90deg, var(--magenta), var(--yellow), var(--cyan)); }
 
 </style>
+<style>
+  /* OU_SEARCH_v1 — homepage search bar (opens ULTRA SEARCH) */
+  .ou-portal {
+    display: flex; align-items: stretch; gap: 6px;
+    width: min(540px, 100%); margin: 12px auto 2px; height: 36px;
+    text-decoration: none; cursor: text; -webkit-tap-highlight-color: transparent;
+  }
+  .ou-portal-lbl {
+    display: flex; align-items: center; padding: 0 10px;
+    background: #000; border: 2px solid var(--magenta); color: var(--magenta);
+    font-family: 'Silkscreen', monospace; font-size: 10px; font-weight: 700; letter-spacing: 2px; white-space: nowrap;
+    text-shadow: 0 0 6px rgba(255,75,216,0.8); box-shadow: 0 0 10px rgba(255,75,216,0.35);
+  }
+  .ou-portal-box {
+    flex: 1; min-width: 0; display: flex; align-items: center; padding: 0 10px; overflow: hidden;
+    background: #000; border: 2px solid; border-color: #0f3a0b #5dff3e #5dff3e #0f3a0b;
+    box-shadow: inset 0 0 12px rgba(57,255,20,0.12);
+    font-family: 'VT323', monospace; font-size: 19px; color: #3f8f35; white-space: nowrap; text-align: left;
+  }
+  .ou-portal-lbl .ou-sico { width: 13px; height: 13px; display: block; flex: 0 0 auto; }
+  .ou-portal-box .cur { display: inline-block; width: 9px; height: 17px; margin-left: 3px; background: #39ff14; animation: blink 1s steps(1) infinite; }
+  .ou-portal-go {
+    display: flex; align-items: center; padding: 0 14px; cursor: pointer;
+    background: #39ff14; color: #000; border: 3px solid; border-color: #b6ff9f #157a07 #157a07 #b6ff9f;
+    font-family: 'Silkscreen', monospace; font-size: 11px; font-weight: 700; letter-spacing: 2px;
+    box-shadow: 0 0 12px rgba(57,255,20,0.5);
+  }
+  .ou-portal:hover .ou-portal-box, .ou-portal:focus-visible .ou-portal-box { box-shadow: inset 0 0 12px rgba(57,255,20,0.18), 0 0 12px rgba(57,255,20,0.55); color: #5fb553; }
+  .ou-portal:focus-visible { outline: none; }
+  @media (max-width: 600px) {
+    .ou-portal { height: 34px; margin-top: 10px; }
+    .ou-portal-lbl { padding: 0 8px; font-size: 13px; letter-spacing: 0; }
+    .ou-portal-lbl b { display: none; }
+    .ou-portal-box { font-size: 17px; padding: 0 8px; }
+    .ou-portal-go { padding: 0 10px; font-size: 10px; letter-spacing: 1px; }
+  }
+</style>
 </head>
 <body>
 
@@ -1044,6 +1081,11 @@
       <span class="badge">HTML 4.01</span>
       <span class="badge" style="color: var(--hot-pink); border-color: var(--hot-pink);">WEBRING MEMBER</span>
     </div>
+    <a href="#search" class="ou-portal" data-ou-search aria-label="Search the whole site">
+      <span class="ou-portal-lbl"><svg class="ou-sico" viewBox="0 0 16 16" aria-hidden="true"><circle cx="6.5" cy="6.5" r="4.6" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M10.2 10.2l4.3 4.3" stroke="currentColor" stroke-width="2.6"/></svg><b>&nbsp;ULTRA SEARCH</b></span>
+      <span class="ou-portal-box">songs, films, photos, books…<span class="cur"></span></span>
+      <span class="ou-portal-go">SEARCH!</span>
+    </a>
   </div>
 
   <hr class="rainbow-hr">
@@ -1747,6 +1789,156 @@ setInterval(setDailyVerse, 60 * 60 * 1000);
 })();
 </script>
 
+<!-- OU_POPUPS_v2 — fake 90s pop-up ads (homepage only): one per visit, corner, self-closing -->
+<style>
+  .oua {
+    position: fixed; z-index: 8800; right: 16px; bottom: 16px; width: 270px; max-width: calc(100vw - 20px);
+    background: #c0c0c0; border: 2px solid; border-color: #fff #404040 #404040 #fff;
+    box-shadow: inset -1px -1px 0 #808080, inset 1px 1px 0 #dfdfdf, 5px 6px 0 rgba(0,0,0,0.55), 0 0 22px rgba(57,255,20,0.22);
+    font-family: Tahoma, Verdana, 'Segoe UI', sans-serif; color: #000; padding: 2px;
+    animation: ouaIn 0.36s steps(6, end); user-select: none; -webkit-user-select: none;
+  }
+  .oua.closing { animation: ouaOut 0.26s steps(4, end) forwards; }
+  @keyframes ouaIn { from { transform: translateY(calc(100% + 24px)); } to { transform: translateY(0); } }
+  @keyframes ouaOut { to { transform: translateY(calc(100% + 24px)); } }
+  .oua-timer { height: 3px; margin-top: 2px; background: #808080; }
+  .oua-timer i { display: block; height: 100%; width: 100%; background: #000080; animation: ouaTimer 16s linear forwards; }
+  .oua:hover .oua-timer i, .oua.hold .oua-timer i { animation-play-state: paused; }
+  @keyframes ouaTimer { to { width: 0; } }
+  .oua-bar {
+    display: flex; align-items: center; gap: 5px; height: 20px; padding: 0 2px 0 4px; cursor: default;
+    background: linear-gradient(90deg, #000080, #1084d0); color: #fff; font-size: 11px; font-weight: 700;
+  }
+  .oua-bar .oua-ico { width: 14px; height: 14px; flex: 0 0 auto; display: flex; align-items: center; justify-content: center; font-size: 11px; }
+  .oua-bar .oua-ttl { flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; letter-spacing: 0.2px; }
+  .oua-btn {
+    width: 16px; height: 14px; padding: 0; margin-left: 2px; flex: 0 0 auto; cursor: pointer;
+    background: #c0c0c0; border: 1px solid; border-color: #fff #404040 #404040 #fff;
+    box-shadow: inset -1px -1px 0 #808080; font: 700 10px/10px Tahoma, Verdana, sans-serif; color: #000;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .oua-btn:active { border-color: #404040 #fff #fff #404040; box-shadow: inset 1px 1px 0 #808080; }
+  .oua-btn[disabled] { color: #808080; cursor: default; }
+  .oua-body { margin-top: 2px; border: 1px solid; border-color: #808080 #fff #fff #808080; overflow: hidden; }
+  .oua a { text-decoration: none; color: inherit; }
+  .oua-cta {
+    display: block; margin: 10px auto 0; padding: 8px 10px; text-align: center; cursor: pointer;
+    font: 700 13px Impact, Anton, 'Arial Black', sans-serif; letter-spacing: 1px; color: #fff;
+    border: 2px solid; border-color: #fff #404040 #404040 #fff; box-shadow: 2px 2px 0 rgba(0,0,0,0.35);
+  }
+  .oua-cta:active { border-color: #404040 #fff #fff #404040; transform: translate(1px, 1px); }
+  .oua-blink { animation: ouaBlink 0.9s steps(1) infinite; }
+  @keyframes ouaBlink { 50% { visibility: hidden; } }
+
+  /* --- ad: Instagram winner --- */
+  .oua-ig .oua-body { background: #ffff00; padding: 12px 12px 10px; text-align: center; }
+  .oua-ig .oua-h { font: 400 30px/1 Impact, Anton, 'Arial Black', sans-serif; color: #e00000; letter-spacing: 1px; text-shadow: 2px 2px 0 #000; }
+  .oua-ig .oua-p { margin-top: 8px; font-size: 12px; line-height: 1.35; font-weight: 700; }
+  .oua-ig .oua-cta { background: linear-gradient(45deg, #f09433, #dc2743 50%, #bc1888); }
+  .oua-ig .oua-fine { margin-top: 7px; font-size: 9px; color: #555; }
+  /* --- ad: YouTube transmission --- */
+  .oua-yt .oua-body { background: #000; padding: 8px 8px 10px; color: #39ff14; }
+  .oua-yt .oua-scr { position: relative; aspect-ratio: 16 / 9; background: #111 center / cover no-repeat; border: 2px solid #333; }
+  .oua-yt .oua-scr::after { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(to bottom, rgba(0,0,0,0.25) 0 1px, transparent 1px 3px); }
+  .oua-yt .oua-play { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 1; width: 52px; height: 36px; border-radius: 9px; background: #e00; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 16px; padding-left: 3px; box-shadow: 0 0 14px rgba(255,0,0,0.7); }
+  .oua-yt .oua-live { position: absolute; top: 6px; left: 6px; z-index: 1; font: 700 9px Tahoma, Verdana, sans-serif; color: #fff; background: #e00; padding: 2px 5px; letter-spacing: 1px; }
+  .oua-yt .oua-p { margin-top: 8px; font: 18px/1.15 'VT323', monospace; text-align: center; letter-spacing: 1px; }
+  .oua-yt .oua-cta { background: #e00; }
+  /* --- ad: setup wizard (web projects) --- */
+  .oua-wz .oua-body { background: #c0c0c0; padding: 10px 10px 8px; font-size: 11px; }
+  .oua-wz .oua-row { display: flex; gap: 10px; align-items: flex-start; }
+  .oua-wz .oua-warn { flex: 0 0 auto; width: 32px; height: 28px; }
+  .oua-wz .oua-p { line-height: 1.35; }
+  .oua-wz .oua-prog { margin: 9px 0 3px; height: 16px; border: 1px solid; border-color: #808080 #fff #fff #808080; background: #fff; padding: 2px; }
+  .oua-wz .oua-prog i { display: block; height: 100%; width: 0; background: repeating-linear-gradient(90deg, #000080 0 9px, transparent 9px 11px); animation: ouaProg 3.2s steps(16, end) forwards; }
+  @keyframes ouaProg { to { width: 87%; } }
+  .oua-wz .oua-pl { font-size: 10px; color: #333; }
+  .oua-wz ul { list-style: none; margin: 8px 0 0; padding: 4px; background: #fff; border: 1px solid; border-color: #808080 #fff #fff #808080; }
+  .oua-wz li a { display: flex; align-items: center; gap: 6px; padding: 3px 4px; font-size: 11px; font-weight: 700; color: #000080; }
+  .oua-wz li a:hover { background: #000080; color: #fff; }
+  .oua-wz li a::before { content: '▸'; font-size: 10px; }
+  .oua-wz .oua-foot { display: flex; justify-content: flex-end; gap: 6px; margin-top: 8px; }
+  .oua-wz .oua-dlg { min-width: 64px; padding: 3px 8px; font: 11px Tahoma, Verdana, sans-serif; background: #c0c0c0; border: 2px solid; border-color: #fff #404040 #404040 #fff; cursor: pointer; color: #000; }
+  .oua-wz .oua-dlg[disabled] { color: #808080; cursor: default; }
+  /* --- ad: Bandcamp singles --- */
+  .oua-bc .oua-body { background: radial-gradient(circle at 50% 0, #ff4bd8, #5a0a4a 70%); padding: 12px 12px 10px; text-align: center; color: #fff; }
+  .oua-bc .oua-h { font: 400 26px/1.02 Impact, Anton, 'Arial Black', sans-serif; letter-spacing: 1px; color: #fff; text-shadow: 2px 2px 0 #000, 0 0 12px #ff4bd8; }
+  .oua-bc .oua-hearts { margin-top: 4px; font-size: 14px; color: #ffd700; letter-spacing: 6px; }
+  .oua-bc .oua-p { margin-top: 6px; font-size: 12px; line-height: 1.35; font-weight: 700; }
+  .oua-bc .oua-cta { background: #629aa9; }
+
+  .oua-ig .oua-h { font-size: 27px; } .oua-bc .oua-h { font-size: 24px; }
+  @media (max-width: 600px) { .oua { width: 252px; right: 10px; bottom: 58px; } .oua-ig .oua-h { font-size: 24px; } .oua-bc .oua-h { font-size: 22px; } .oua-wz ul { margin-top: 6px; } }
+  @media (prefers-reduced-motion: reduce) { .oua, .oua.closing { animation: none; } .oua-timer i { animation-duration: 16s; } .oua-blink { animation: none; } .oua-wz .oua-prog i { animation: none; width: 87%; } }
+</style>
+<script>
+/* OU_POPUPS_v2 — fake 90s pop-up ads, toned down:
+   ONE ad per visit (rotates IG → YouTube → setup wizard → Bandcamp across visits),
+   slides up in the bottom-right corner after a short wait, closes itself, never blocks scrolling */
+(function () {
+  if (window.__ouAds) return; window.__ouAds = true;
+  var SEEN = 'ou_ads_v2_seen', ROT = 'ou_ads_v2_next', DELAY = 12000;
+  var IG = 'https://www.instagram.com/origamixultra/', YT = 'https://www.youtube.com/@prodorigamiultra', BC = 'https://internetjunklesinc.bandcamp.com/';
+  var SITES = [['VIDEODROID', 'https://origamiultrax.github.io/videodroid/'], ['CITYSCAPES', 'https://cityscapes.world/'],
+               ['RAINFOREST SHOWROOM', 'https://origamiultrax.github.io/rainforestshowroom/#/home'],
+               ['NOISY IMAGES', 'https://origamiultrax.github.io/noisyimages/'], ['WEIRD SCI FI', 'https://origamiultrax.github.io/weirdsciencefiction/']];
+  var ADS = {
+    ig: { cls: 'oua-ig', ico: '★', title: 'WINNER!!!.exe', body:
+      '<div class="oua-h oua-blink">CONGRATULATIONS!</div>' +
+      '<div class="oua-p">You are the <u>1,000,000th</u> visitor to ORIGAMIULTRA.COM!<br>Click below to claim your prize ▼</div>' +
+      '<a class="oua-cta" href="' + IG + '" target="_blank" rel="noopener">FOLLOW @ORIGAMIXULTRA ▸</a>' +
+      '<div class="oua-fine">*prize is following me on instagram. no purchase necessary.</div>' },
+    yt: { cls: 'oua-yt', ico: '▶', title: 'NEW_TRANSMISSION.mpg', body:
+      '<a href="' + YT + '" target="_blank" rel="noopener"><div class="oua-scr" style="background-image:url(https://i.ytimg.com/vi/Ryiy1XrdMBw/hqdefault.jpg)"><span class="oua-live oua-blink">● NOW SHOWING</span><span class="oua-play">▶</span></div></a>' +
+      '<div class="oua-p">FILMS · VISUAL ALBUMS · BUMPERS</div>' +
+      '<a class="oua-cta" href="' + YT + '" target="_blank" rel="noopener">▶ SUBSCRIBE ON YOUTUBE</a>' },
+    wz: { cls: 'oua-wz', ico: '⚙', title: 'Origami Ultra Setup Wizard', body:
+      '<div class="oua-row"><svg class="oua-warn" viewBox="0 0 32 28" aria-hidden="true"><polygon points="16,1 31,27 1,27" fill="#ffd700" stroke="#000" stroke-width="1.5"/><rect x="14.5" y="9" width="3" height="10" fill="#000"/><rect x="14.5" y="21" width="3" height="3" fill="#000"/></svg>' +
+      '<div class="oua-p"><b>Your computer is missing 5 Origami Ultra programs.</b><br>Select a program to run it now.</div></div>' +
+      '<div class="oua-prog"><i></i></div><div class="oua-pl">Installing ORIGAMI ULTRA SOFTWARE SUITE… 87%</div>' +
+      '<ul>' + SITES.map(function (s) { return '<li><a href="' + s[1] + '" target="_blank" rel="noopener">' + s[0] + '</a></li>'; }).join('') + '</ul>' +
+      '<div class="oua-foot"><button class="oua-dlg" disabled>&lt; Back</button><button class="oua-dlg" data-close>Cancel</button></div>' },
+    bc: { cls: 'oua-bc', ico: '♥', title: 'hot_singles.exe', body:
+      '<div class="oua-h">HOT NEW SINGLES<br>IN YOUR AREA</div><div class="oua-hearts oua-blink">♥ ♥ ♥</div>' +
+      '<div class="oua-p">Origami Ultra &amp; Kidd Comic beat tapes are waiting to meet you.</div>' +
+      '<a class="oua-cta" href="' + BC + '" target="_blank" rel="noopener">MEET THEM ON BANDCAMP ▸</a>' }
+  };
+  var ORDER = ['ig', 'yt', 'wz', 'bc'];
+
+  try { if (sessionStorage.getItem(SEEN)) return; } catch (e) {}   /* already had this visit's ad */
+  var el = null;
+
+  function close() {
+    if (!el || el.classList.contains('closing')) return;
+    var dead = el; dead.classList.add('closing');
+    setTimeout(function () { dead.remove(); }, 280);
+    el = null;
+  }
+  function show() {
+    if (document.hidden || document.querySelector('.ous.open')) { setTimeout(show, 3000); return; }  /* wait: tab hidden or search open */
+    var n = 0; try { n = parseInt(localStorage.getItem(ROT), 10) || 0; localStorage.setItem(ROT, String((n + 1) % ORDER.length)); } catch (e) {}
+    try { sessionStorage.setItem(SEEN, '1'); } catch (e) {}
+    var a = ADS[ORDER[n % ORDER.length]];
+    el = document.createElement('div');
+    el.className = 'oua ' + a.cls; el.setAttribute('role', 'complementary'); el.setAttribute('aria-label', 'Advertisement: ' + a.title);
+    el.innerHTML = '<div class="oua-bar"><span class="oua-ico">' + a.ico + '</span><span class="oua-ttl">' + a.title + '</span>' +
+      '<button class="oua-btn" data-close aria-label="Minimize">_</button><button class="oua-btn" disabled aria-hidden="true">□</button>' +
+      '<button class="oua-btn" data-close aria-label="Close ad">×</button></div><div class="oua-body">' + a.body + '</div>' +
+      '<div class="oua-timer" aria-hidden="true"><i></i></div>';
+    document.body.appendChild(el);
+    var me = el;
+    me.querySelector('.oua-timer i').addEventListener('animationend', function () { if (el === me) close(); });   /* closes itself */
+    me.addEventListener('touchstart', function () { me.classList.add('hold'); }, { passive: true });         /* tapped on a phone = keep it */
+    me.addEventListener('click', function (e) {
+      if (e.target.closest('[data-close]')) { e.preventDefault(); close(); }
+      else if (e.target.closest('a[href]')) setTimeout(close, 50);
+    });
+  }
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && el) close(); });
+  setTimeout(show, DELAY);
+})();
+</script>
+
 <!-- OU_PROTECTION_v1 -->
 
 <style>
@@ -2289,6 +2481,9 @@ img {
     }
   }
 
+  // Public hook: lets ULTRA SEARCH start a radio track from the results
+  window.OUPlayer = { tracks: TRACKS, play: function (i) { loadTrack(i, true); } };
+
   // ----- Boot: load the saved track at saved position, autoplay if was playing -----
   loadTrack(state.idx, state.playing, state.t);
 
@@ -2793,5 +2988,7 @@ img {
 })();
 </script>
 
+<!-- OU_SEARCH_v1 -->
+<script src="search/ou-search.js?v=1" defer></script>
 </body>
 </html>

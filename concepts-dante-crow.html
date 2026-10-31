@@ -316,6 +316,16 @@
   }
 
 </style>
+<style>
+  /* OU_SEARCH_v1 — search button */
+  .ou-sbtn { gap: 7px; }
+  .ou-sbtn .ou-sico { width: 13px; height: 13px; flex: 0 0 auto; display: inline-block; vertical-align: -2px; }
+  @media (max-width: 600px) {
+    .nav-row .nav-right, .nav-row .ou-snav { margin-left: auto; width: auto !important; min-width: 0 !important; }
+    .nav-btn.ou-sbtn { padding: 7px 11px; }
+    .nav-btn.ou-sbtn .ou-stxt { display: none; }
+  }
+</style>
 </head>
 <body>
 
@@ -346,7 +356,7 @@
       <a href="concepts.html" class="nav-btn back">◀ CONCEPTS</a>
     </div>
     <div class="nav-breadcrumb"><a href="concepts.html">CONCEPTS</a><span class="sep">›</span>DANTE CROW - SCRIPT</div>
-    <div class="nav-right" style="width:180px"></div>
+    <div class="nav-right" style="width:180px;justify-content:flex-end"><a href="#search" class="nav-btn ou-sbtn" data-ou-search aria-label="Search the site"><svg class="ou-sico" viewBox="0 0 16 16" aria-hidden="true"><circle cx="6.5" cy="6.5" r="4.6" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M10.2 10.2l4.3 4.3" stroke="currentColor" stroke-width="2.6"/></svg><span class="ou-stxt">SEARCH</span></a></div>
   </div>
 
   <div class="title-wrap">
@@ -535,6 +545,52 @@ document.addEventListener('mousemove', function(e) {
     }, 200);
   });
 
+  /* ---------- ULTRA SEARCH: concepts-dante-crow.html#p=4&hl=word,word ---------- */
+  var hitData = null;
+  function showHits(n, terms) {
+    wraps.forEach(function (w) { Array.prototype.forEach.call(w.querySelectorAll('.rw-hit'), function (h) { h.remove(); }); });
+    if (!terms.length) return Promise.resolve(null);
+    var get = hitData ? Promise.resolve(hitData)
+      : fetch('search/words-dante.json').then(function (r) { return r.json(); }).then(function (j) { hitData = j; return j; });
+    return get.then(function (j) {
+      var boxes = (j.pages || {})[n] || {}, wrap = wraps[n - 1], first = null;
+      terms.forEach(function (t) {
+        (boxes[t] || []).forEach(function (b) {
+          var d = document.createElement('div');
+          d.className = 'rw-hit';
+          d.style.left = (b[0] / 10 - 0.4) + '%'; d.style.top = (b[1] / 10 - 0.3) + '%';
+          d.style.width = (b[2] / 10 + 0.8) + '%'; d.style.height = (b[3] / 10 + 0.6) + '%';
+          wrap.appendChild(d);
+          if (first === null || b[1] < first) first = b[1];
+        });
+      });
+      return first;
+    }).catch(function () { return null; });
+  }
+  function land(n, terms) {
+    if (!wraps.length) return;
+    n = Math.max(1, Math.min(wraps.length, n));
+    var rw = document.querySelector('.reader-wrap');
+    if (rw) rw.scrollIntoView({ block: 'start', behavior: 'smooth' });
+    goTo(n);
+    var w = wraps[n - 1];
+    w.classList.remove('ou-found'); void w.offsetWidth; w.classList.add('ou-found');
+    setTimeout(function () { w.classList.remove('ou-found'); }, 2700);
+    showHits(n, terms).then(function (firstY) {
+      if (firstY == null) return;
+      vpEl.scrollTo({ top: Math.max(0, w.offsetTop + w.offsetHeight * firstY / 1000 - vpEl.clientHeight * 0.3), behavior: 'smooth' });
+    });
+  }
+  function landFromHash() {
+    var m = /[#&]p=(\d+)/.exec(location.hash);
+    if (!m) return;
+    var hm = /[#&]hl=([^&]*)/.exec(location.hash);
+    try { history.replaceState(history.state, '', location.pathname + location.search); } catch (e) {}
+    land(parseInt(m[1], 10), hm ? decodeURIComponent(hm[1]).split(',').filter(Boolean) : []);
+  }
+  window.OUScript = { go: function (n, terms) { land(parseInt(n, 10) || 1, terms || []); } };
+  window.addEventListener('hashchange', landFromHash);
+
   if (!window.pdfjsLib) { fallback('pdf.js did not load'); return; }
   pdfjsLib.GlobalWorkerOptions.workerSrc = LIB + 'build/pdf.worker.min.js';
   pdfjsLib.getDocument({ data: bytes(), standardFontDataUrl: LIB + 'standard_fonts/' }).promise
@@ -557,6 +613,7 @@ document.addEventListener('mousemove', function(e) {
       statusEl.style.display = 'none';
       lastW = vpEl.clientWidth;
       layout(); render(); updateNum();
+      landFromHash();
     })
     .catch(fallback);
 })();
@@ -1104,6 +1161,9 @@ img {
     }
   }
 
+  // Public hook: lets ULTRA SEARCH start a radio track from the results
+  window.OUPlayer = { tracks: TRACKS, play: function (i) { loadTrack(i, true); } };
+
   // ----- Boot: load the saved track at saved position, autoplay if was playing -----
   loadTrack(state.idx, state.playing, state.t);
 
@@ -1608,5 +1668,7 @@ img {
 })();
 </script>
 
+<!-- OU_SEARCH_v1 -->
+<script src="search/ou-search.js?v=1" defer></script>
 </body>
 </html>

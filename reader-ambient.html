@@ -473,6 +473,16 @@
     .reader-toast { top: 120px; white-space: normal; text-align: center; width: 88vw; }
   }
 </style>
+<style>
+  /* OU_SEARCH_v1 — search button */
+  .ou-sbtn { gap: 7px; }
+  .ou-sbtn .ou-sico { width: 13px; height: 13px; flex: 0 0 auto; display: inline-block; vertical-align: -2px; }
+  @media (max-width: 600px) {
+    .nav-row .nav-right, .nav-row .ou-snav { margin-left: auto; width: auto !important; min-width: 0 !important; }
+    .nav-btn.ou-sbtn { padding: 7px 11px; }
+    .nav-btn.ou-sbtn .ou-stxt { display: none; }
+  }
+</style>
 </head>
 <body>
 
@@ -505,6 +515,7 @@
   <div class="toolbar">
     <a href="index.html" class="tool-btn" style="border-color:#c98aff;color:var(--magenta)">⌂ HOME</a>
     <a href="publications.html" class="tool-btn">◀ BOOKS</a>
+    <a href="#search" class="tool-btn ou-sbtn" data-ou-search aria-label="Search the site"><svg class="ou-sico" viewBox="0 0 16 16" aria-hidden="true"><circle cx="6.5" cy="6.5" r="4.6" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M10.2 10.2l4.3 4.3" stroke="currentColor" stroke-width="2.6"/></svg>SEARCH</a>
     <span class="tb-gap tb-secondary"></span>
     <button class="tool-btn tb-secondary" id="hlToggle" onclick="toggleHighlight()">✎ HIGHLIGHTER: OFF</button>
     <button class="tool-btn tb-secondary" onclick="clearHighlights()">⌦ CLEAR PAGE</button>
@@ -574,7 +585,7 @@ document.addEventListener('mousemove', function(e) {
    3D page turn, spread / single-page modes, click · swipe · keys,
    scrubber, zoom, fullscreen, remembers your place + highlights
    ========================================================== */
-const BOOK = {"id": "ambient-dreamscapes-0-r2", "count": 50, "dir": "img/books/ambient/", "zoomDir": "img/books/ambient/zoom/", "aspect": 1.0, "v": 2};
+const BOOK = {"id": "ambient-dreamscapes-0-r2", "count": 50, "dir": "img/books/ambient/", "zoomDir": "img/books/ambient/zoom/", "aspect": 1.0, "v": 2, "words": "search/words-ambient.json"};
 const N = BOOK.count;
 const pad2 = n => String(n).padStart(2, '0');
 const pageSrc = i => BOOK.dir + pad2(i + 1) + '.jpg' + (BOOK.v ? '?v=' + BOOK.v : '');
@@ -595,6 +606,7 @@ let pos = Math.max(0, Math.min(N - 1, parseInt(saved && saved.pos) || 0));   // 
 let single = false, busy = false, highlightOn = false, drag = null;
 const queue = [];
 function save() { try { localStorage.setItem(STORE, JSON.stringify({ pos, hl: highlights })); } catch (e) {} }
+let searchHits = {};   // ULTRA SEARCH: glowing boxes around the words you searched for (not saved)
 
 /* ---------- spread model: cover alone on the right, back cover alone on the left ---------- */
 const SLOTS = [null]; for (let i = 0; i < N; i++) SLOTS.push(i); if (SLOTS.length % 2) SLOTS.push(null);
@@ -801,6 +813,12 @@ function renderHighlights(hl, pageIdx) {
     d.style.width = (r.w * 100) + '%'; d.style.height = (r.h * 100) + '%';
     hl.appendChild(d);
   }
+  for (const r of (searchHits[pageIdx] || [])) {
+    const d = document.createElement('div'); d.className = 'highlight-rect search-hit';
+    d.style.left = (r.x * 100) + '%'; d.style.top = (r.y * 100) + '%';
+    d.style.width = (r.w * 100) + '%'; d.style.height = (r.h * 100) + '%';
+    hl.appendChild(d);
+  }
 }
 function toggleHighlight() {
   highlightOn = !highlightOn;
@@ -811,10 +829,10 @@ function toggleHighlight() {
   bookEl.classList.toggle('hl-mode', highlightOn);
 }
 function clearHighlights() {
-  view().forEach(i => { if (i != null) delete highlights[i]; });
+  view().forEach(i => { if (i != null) { delete highlights[i]; delete searchHits[i]; } });
   render();
 }
-function clearAllHighlights() { for (const k in highlights) delete highlights[k]; render(); }
+function clearAllHighlights() { for (const k in highlights) delete highlights[k]; searchHits = {}; render(); }
 function setupHighlightLayer(hl) {
   hl.addEventListener('pointerdown', e => {
     if (!highlightOn) return;
@@ -865,8 +883,44 @@ document.addEventListener('keydown', e => {
 imgR.setAttribute('fetchpriority', 'high');
 $('pageTotal').textContent = N;
 window.addEventListener('resize', () => { clearTimeout(window.__rz); window.__rz = setTimeout(applyMode, 80); });
+/* ---------- ULTRA SEARCH deep link: reader-x.html#p=12&hl=word,word ---------- */
+function readDeepLink() {
+  const m = /[#&]p=(\d+)/.exec(location.hash);
+  if (!m) return null;
+  const hm = /[#&]hl=([^&]*)/.exec(location.hash);
+  try { history.replaceState(history.state, '', location.pathname + location.search); } catch (e) {}
+  return { p: Math.max(0, Math.min(N - 1, parseInt(m[1], 10) - 1)),
+           terms: hm ? decodeURIComponent(hm[1]).split(',').filter(Boolean) : [] };
+}
+function loadSearchHits(page, terms) {
+  searchHits = {};
+  if (!terms.length || !BOOK.words) return;
+  fetch(BOOK.words).then(r => r.json()).then(w => {
+    const boxes = (w.pages || {})[page + 1] || {}, list = [];
+    terms.forEach(t => (boxes[t] || []).forEach(b => list.push(
+      { x: b[0] / 1000 - 0.004, y: b[1] / 1000 - 0.003, w: b[2] / 1000 + 0.008, h: b[3] / 1000 + 0.006 })));
+    if (list.length) { searchHits[page] = list; [[pageL, hlL], [pageR, hlR]].forEach(([, hl]) => {
+      const i = parseInt(hl.dataset.pageIdx); if (!isNaN(i)) renderHighlights(hl, i); }); }
+  }).catch(() => {});
+}
+function foundToast(p) {
+  const t = $('readerToast'); t.textContent = '\u25C6 OPENED AT PAGE ' + (p + 1) + ' \u00B7 FROM ULTRA SEARCH';
+  t.classList.add('show'); clearTimeout(t._h); t._h = setTimeout(() => t.classList.remove('show'), 3200);
+}
+window.OUReader = {
+  go(p, terms) {
+    const i = Math.max(0, Math.min(N - 1, (parseInt(p, 10) || 1) - 1));
+    loadSearchHits(i, terms || []);
+    if (viewAt(i).indexOf(i) >= 0 && view().indexOf(i) >= 0) render(); else jumpTo(i);
+    foundToast(i);
+  }
+};
+window.addEventListener('hashchange', () => { const d = readDeepLink(); if (d) window.OUReader.go(d.p + 1, d.terms); });
+const deepLink = readDeepLink();
+if (deepLink) pos = deepLink.p;
 applyMode();
-if (pos > 0) {
+if (deepLink) { foundToast(deepLink.p); loadSearchHits(deepLink.p, deepLink.terms); }
+else if (pos > 0) {
   const t = $('readerToast'); t.textContent = '\u21BA RESUMED AT PAGE ' + labelFor(view()) + ' \u00B7 \u23EE FIRST TO START OVER';
   t.classList.add('show'); setTimeout(() => t.classList.remove('show'), 3800);
 }
@@ -1414,6 +1468,9 @@ img {
     }
   }
 
+  // Public hook: lets ULTRA SEARCH start a radio track from the results
+  window.OUPlayer = { tracks: TRACKS, play: function (i) { loadTrack(i, true); } };
+
   // ----- Boot: load the saved track at saved position, autoplay if was playing -----
   loadTrack(state.idx, state.playing, state.t);
 
@@ -1918,5 +1975,7 @@ img {
 })();
 </script>
 
+<!-- OU_SEARCH_v1 -->
+<script src="search/ou-search.js?v=1" defer></script>
 </body>
 </html>
