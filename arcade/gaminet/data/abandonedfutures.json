@@ -1,0 +1,1190 @@
+{
+ "_about": "Abandoned Futures database (abandonedfutures.ou inside Gami Net). Fictional institution; every record summarizes the published sources it cites.",
+ "_schema": {
+  "id": "lowercase-hyphen slug, unique; used in the URL abandonedfutures.ou/project/<id>",
+  "no": "AF-#### accession number, next in sequence, never reused",
+  "name": "string",
+  "loc": "City/region, Country",
+  "country": "country name as used by other records",
+  "decade": "e.g. 1970s, the decade the project began",
+  "y": "year begun (number)",
+  "type": "short typology",
+  "style": "architectural style or typology, one line",
+  "people": "principal architects/developers/owners",
+  "status": "one of NC (Never Constructed), PR (Partially Realized), AB (Abandoned), DM (Demolished), RA (Radically Altered), PF (Preserved Fragments)",
+  "fig": "one of the figure keys in figTypes",
+  "vision": "original vision, 1-4 sentences",
+  "tl": "timeline: [[date label, event sentence], ...] in order",
+  "built": "what was built",
+  "happened": "what happened",
+  "current": "current status as of verification",
+  "sources": "[[title, url], ...] at least one; prefer Wikipedia plus another reputable source",
+  "rel": "ids of 2 related records that exist",
+  "added": "YYYY-MM-DD catalogued",
+  "verified": "YYYY-MM-DD facts last checked",
+  "watch": "true if the status may still change (re-check on each update)",
+  "note": "optional HTML note; links to other Gami Net sites use <a href=\"#\" data-go=\"host.ou/path\">"
+ },
+ "_rules": [
+  "Add a record only when its facts can be verified in published sources; cite them.",
+  "Plain declarative sentences, no hype. Where sources disagree, say so in the record.",
+  "Do not invent links between real places and fictional Gami Net companies.",
+  "Log every addition and every status change in log[], newest last, with today's date.",
+  "Update the top-level 'updated' date whenever anything changes."
+ ],
+ "figTypes": [
+  "city-radial",
+  "slab-blocks",
+  "hotel-low",
+  "tower-shell",
+  "helix",
+  "arcology",
+  "glasshouse",
+  "island-towers",
+  "pods",
+  "spire",
+  "theme-park",
+  "tower",
+  "complex",
+  "monument",
+  "generic"
+ ],
+ "updated": "2026-11-01",
+ "records": [
+  {
+   "id": "palace-of-the-soviets",
+   "no": "AF-0001",
+   "name": "Palace of the Soviets",
+   "loc": "Moscow, Russia (then USSR)",
+   "country": "Russia",
+   "decade": "1930s",
+   "y": 1931,
+   "type": "Monument / civic assembly hall",
+   "style": "Soviet monumental classicism; stepped tower surmounted by a statue",
+   "people": "Boris Iofan, with Vladimir Shchuko and Vladimir Helfreich",
+   "status": "NC",
+   "vision": "A congress hall for the Soviet state on the bank of the Moskva River, conceived to be the tallest building in the world. The approved scheme rose in stepped tiers to about 416 metres, crowned by a statue of Lenin roughly 100 metres high.",
+   "tl": [
+    [
+     "1931",
+     "The Cathedral of Christ the Saviour is blown up in December to clear the site."
+    ],
+    [
+     "1931–33",
+     "Four rounds of design competition, with Soviet and foreign entrants."
+    ],
+    [
+     "May 1933",
+     "Iofan’s scheme is chosen; Shchuko and Helfreich join him to develop it."
+    ],
+    [
+     "1930s",
+     "Excavation and foundation work; sources date the completed foundations to 1938 or 1939."
+    ],
+    [
+     "June 1941",
+     "Work stops after the German invasion."
+    ],
+    [
+     "1942",
+     "The erected steel frame is dismantled for wartime use."
+    ],
+    [
+     "1958–1994",
+     "The foundation pit is reused for the open-air Moskva Pool."
+    ],
+    [
+     "From 1995",
+     "The cathedral is rebuilt on the site."
+    ]
+   ],
+   "built": "Foundations and the beginnings of a steel frame. No part of the building above ground was completed.",
+   "happened": "The war ended construction and the frame was removed for military use. Post-war revisions of the design were not carried forward, and the site became a public swimming pool for several decades.",
+   "current": "The rebuilt Cathedral of Christ the Saviour occupies the site. The Palace survives in drawings, models and the stepped silhouette it lent to later Moscow towers.",
+   "sources": [
+    [
+     "Wikipedia: Palace of the Soviets",
+     "https://en.wikipedia.org/wiki/Palace_of_the_Soviets"
+    ],
+    [
+     "Wikipedia: Moskva Pool",
+     "https://en.wikipedia.org/wiki/Moskva_Pool"
+    ],
+    [
+     "The Museum of Russian Art: Palaces for the People",
+     "https://tmora.org/online-exhibitions/postage-stamps-messengers-of-the-soviet-future/palaces-for-the-people-2/palaces-for-the-people/"
+    ]
+   ],
+   "rel": [
+    "ryugyong-hotel",
+    "dubailand"
+   ],
+   "added": "2026-10-31",
+   "verified": "2026-10-31",
+   "fig": "palace-of-the-soviets"
+  },
+  {
+   "id": "nara-dreamland",
+   "no": "AF-0002",
+   "name": "Nara Dreamland",
+   "loc": "Nara, Japan",
+   "country": "Japan",
+   "decade": "1960s",
+   "y": 1961,
+   "type": "Theme park",
+   "style": "Disneyland-inspired theme park: castle, themed lands, monorail",
+   "people": "Kunizo Matsuo (founder); later owned by Daiei",
+   "status": "DM",
+   "vision": "A Japanese park in the image of Disneyland. Its founder, businessman Kunizo Matsuo, was inspired by the Anaheim park; when licensing talks with Disney fell through, the park went ahead with its own versions of a castle, themed lands and a monorail.",
+   "tl": [
+    [
+     "1 Jul 1961",
+     "Opens to the public."
+    ],
+    [
+     "1960s–90s",
+     "Rides added, among them the wooden coaster Aska, the Screw Coaster, the Bobsleigh and the Space Liner monorail."
+    ],
+    [
+     "31 Aug 2006",
+     "Closes after years of declining attendance."
+    ],
+    [
+     "2006–2016",
+     "Stands closed and decaying."
+    ],
+    [
+     "2015",
+     "SK Housing buys the site at auction for ¥730 million."
+    ],
+    [
+     "Oct 2016 – Dec 2017",
+     "Demolished."
+    ]
+   ],
+   "built": "A complete, operating theme park that ran for 45 years.",
+   "happened": "Attendance declined, the park closed in 2006 and it sat abandoned for a decade before the site was sold and cleared.",
+   "current": "Demolished. None of the park remains on the site.",
+   "sources": [
+    [
+     "Wikipedia: Nara Dreamland",
+     "https://en.wikipedia.org/wiki/Nara_Dreamland"
+    ],
+    [
+     "Coasterpedia: Nara Dreamland",
+     "https://coasterpedia.net/wiki/Nara_Dreamland"
+    ]
+   ],
+   "rel": [
+    "six-flags-new-orleans",
+    "dubailand"
+   ],
+   "added": "2026-10-31",
+   "verified": "2026-10-31",
+   "fig": "nara-dreamland"
+  },
+  {
+   "id": "nakagin-capsule-tower",
+   "no": "AF-0003",
+   "name": "Nakagin Capsule Tower",
+   "loc": "Ginza, Tokyo, Japan",
+   "country": "Japan",
+   "decade": "1970s",
+   "y": 1970,
+   "type": "Mixed-use residential tower",
+   "style": "Metabolism: prefabricated capsules plugged into concrete cores",
+   "people": "Kisho Kurokawa (architect); Gengo Matsui (structural engineer)",
+   "status": "PF",
+   "vision": "A building that could renew itself. Two concrete cores carried 140 factory-made capsules, each about 2.5 × 2.5 × 4.0 metres with a single round window, intended to be unbolted and replaced as they aged. It was a working demonstration of the Metabolist idea that cities should grow and change like organisms.",
+   "tl": [
+    [
+     "1970",
+     "Construction begins."
+    ],
+    [
+     "1972",
+     "Completed: two towers of 11 and 13 storeys carrying 140 capsules."
+    ],
+    [
+     "1972–2022",
+     "The capsules are never replaced. Maintenance lapses and the building deteriorates."
+    ],
+    [
+     "12 Apr 2022",
+     "Demolition begins."
+    ],
+    [
+     "After 2022",
+     "23 capsules are saved and restored. Some go to museums, including SFMOMA, M+ in Hong Kong, the Museum of Modern Art in New York and the Museum of Modern Art, Wakayama."
+    ]
+   ],
+   "built": "The complete tower, which stood and was occupied for fifty years.",
+   "happened": "The replaceable capsules, the central idea, were never replaced. Repair costs mounted, preservation efforts failed and the building was demolished in 2022.",
+   "current": "Demolished. Individual capsules survive in museum collections and other locations.",
+   "sources": [
+    [
+     "Wikipedia: Nakagin Capsule Tower",
+     "https://en.wikipedia.org/wiki/Nakagin_Capsule_Tower"
+    ],
+    [
+     "Nakagin Capsule Tower Building: Project",
+     "https://www.nakagincapsuletower.com/project"
+    ]
+   ],
+   "rel": [
+    "palace-of-the-soviets",
+    "ryugyong-hotel"
+   ],
+   "added": "2026-10-31",
+   "verified": "2026-10-31",
+   "fig": "nakagin-capsule-tower"
+  },
+  {
+   "id": "ryugyong-hotel",
+   "no": "AF-0004",
+   "name": "Ryugyong Hotel",
+   "loc": "Pyongyang, North Korea",
+   "country": "North Korea",
+   "decade": "1980s",
+   "y": 1987,
+   "type": "Hotel / tower",
+   "style": "Three-winged pyramidal concrete skyscraper",
+   "people": "Baikdoosan Architects & Engineers; exterior completed by Orascom",
+   "status": "PR",
+   "vision": "A 105-storey hotel rising about 330 metres over Pyongyang, planned to open in 1992 for the 80th birthday of Kim Il Sung. At its planned height it would have been among the tallest buildings in the world.",
+   "tl": [
+    [
+     "1987",
+     "Construction begins."
+    ],
+    [
+     "1992",
+     "The structure reaches full height. Work stops during North Korea’s economic crisis after the collapse of the Soviet Union."
+    ],
+    [
+     "1992–2008",
+     "The concrete shell stands unfinished."
+    ],
+    [
+     "Apr 2008",
+     "Work resumes under the Egyptian firm Orascom."
+    ],
+    [
+     "Jul 2011",
+     "Glass cladding of the exterior is reported complete."
+    ],
+    [
+     "2018",
+     "A large LED display is installed on the facade."
+    ],
+    [
+     "2024",
+     "The government is reported to be seeking an operator to complete it."
+    ]
+   ],
+   "built": "The full structure and a finished exterior. The interior was never completed.",
+   "happened": "Construction halted for sixteen years. The exterior was finished, but planned openings in 2012 and 2013 did not happen.",
+   "current": "Unfinished and never opened to guests. It is often described as the world’s tallest unoccupied building.",
+   "sources": [
+    [
+     "Wikipedia: Ryugyong Hotel",
+     "https://en.wikipedia.org/wiki/Ryugyong_Hotel"
+    ]
+   ],
+   "rel": [
+    "palace-of-the-soviets",
+    "dubailand"
+   ],
+   "added": "2026-10-31",
+   "verified": "2026-10-31",
+   "fig": "ryugyong-hotel",
+   "watch": true
+  },
+  {
+   "id": "six-flags-new-orleans",
+   "no": "AF-0005",
+   "name": "Six Flags New Orleans (Jazzland)",
+   "loc": "New Orleans, Louisiana, USA",
+   "country": "United States",
+   "decade": "2000s",
+   "y": 2000,
+   "type": "Theme park",
+   "style": "Regional theme park",
+   "people": "Opened as Jazzland; later operated by Six Flags",
+   "status": "AB",
+   "vision": "A regional theme park for New Orleans. It opened in 2000 as Jazzland and was later operated as Six Flags New Orleans.",
+   "tl": [
+    [
+     "2000",
+     "Opens as Jazzland."
+    ],
+    [
+     "Aug 2005",
+     "Closes as Hurricane Katrina approaches. The park floods and never reopens."
+    ],
+    [
+     "2009",
+     "A plan to reopen it as a Nickelodeon-branded park does not go ahead."
+    ],
+    [
+     "2005–2024",
+     "Stands abandoned for about two decades."
+    ],
+    [
+     "2023",
+     "The New Orleans Redevelopment Authority approves the Bayou Phoenix plan: a sports complex, water park, film studio, hotels and retail."
+    ],
+    [
+     "2024",
+     "Demolition begins on the 227-acre site."
+    ]
+   ],
+   "built": "A complete, operating theme park.",
+   "happened": "Katrina closed it after five seasons. Repair and reopening plans failed, and the rides stood in place for nearly twenty years.",
+   "current": "Abandoned from 2005. Demolition was under way in late 2024 to clear the site for redevelopment. Status last verified November 2024.",
+   "sources": [
+    [
+     "Attractions Magazine: Abandoned Six Flags theme park to be demolished (Nov 2024)",
+     "https://attractionsmagazine.com/abandoned-six-flags-demolition-new-orleans-bayou-phoenix"
+    ],
+    [
+     "Axios New Orleans: Six Flags demolition expected to start in September (Aug 2024)",
+     "https://www.axios.com/local/new-orleans/2024/08/29/six-flags-theme-park-abandoned-katrina-demolition-starting-september"
+    ]
+   ],
+   "rel": [
+    "nara-dreamland",
+    "meadowlands-xanadu"
+   ],
+   "added": "2026-10-31",
+   "verified": "2026-10-31",
+   "fig": "six-flags-new-orleans",
+   "watch": true
+  },
+  {
+   "id": "dubailand",
+   "no": "AF-0006",
+   "name": "Dubailand",
+   "loc": "Dubai, United Arab Emirates",
+   "country": "United Arab Emirates",
+   "decade": "2000s",
+   "y": 2003,
+   "type": "Leisure masterplan",
+   "style": "Themed leisure megaproject; masterplan of six zones",
+   "people": "Tatweer, a Dubai Holding company (developer)",
+   "status": "PR",
+   "vision": "A leisure and entertainment city on about 278 km² of desert, announced in October 2003 and promoted as the largest destination of its kind in the world. MEED’s report of the launch gave a figure of US$5 billion; later estimates rose to about US$64 billion. The plan was divided into six themed zones of theme parks, sports venues, retail and resorts.",
+   "tl": [
+    [
+     "Oct 2003",
+     "Dubailand is announced."
+    ],
+    [
+     "2000s",
+     "Partners announced for the site include Six Flags and a DreamWorks park."
+    ],
+    [
+     "2007",
+     "Dubai Outlet City opens."
+    ],
+    [
+     "2008",
+     "Most work is put on hold in the global financial crisis."
+    ],
+    [
+     "Jan 2012",
+     "The Great Dubai Wheel is cancelled."
+    ],
+    [
+     "2013",
+     "Development resumes. Dubai Miracle Garden opens."
+    ],
+    [
+     "Aug 2016",
+     "IMG Worlds of Adventure, an indoor theme park, opens."
+    ],
+    [
+     "Later",
+     "Six Flags Dubai is moved to the Dubai Parks and Resorts site and then cancelled."
+    ]
+   ],
+   "built": "Separate attractions, among them Dubai Outlet City, Dubai Miracle Garden, IMG Worlds of Adventure, Global Village, Dubai Autodrome and Dubai Sports City.",
+   "happened": "The 2008 financial crisis stopped most work. Several flagship partnerships were dropped or moved. When development resumed, it went ahead project by project.",
+   "current": "Several components operate as standalone attractions. The single, unified leisure city announced in 2003 was never built.",
+   "sources": [
+    [
+     "Wikipedia: Dubailand",
+     "https://en.wikipedia.org/wiki/Dubailand"
+    ],
+    [
+     "MEED: Dubai unveils $5,000 million Dubailand project",
+     "https://www.meed.com/dubai-unveils-5000-million-dubailand-project/"
+    ],
+    [
+     "IMD case study: Dubailand (B), turning vision into action",
+     "https://www.imd.org/research-knowledge/strategy/case-studies/dubailand-b-turning-vision-into-action"
+    ]
+   ],
+   "rel": [
+    "meadowlands-xanadu",
+    "ryugyong-hotel"
+   ],
+   "added": "2026-10-31",
+   "verified": "2026-10-31",
+   "fig": "dubailand"
+  },
+  {
+   "id": "meadowlands-xanadu",
+   "no": "AF-0007",
+   "name": "Meadowlands Xanadu",
+   "loc": "East Rutherford, New Jersey, USA",
+   "country": "United States",
+   "decade": "2000s",
+   "y": 2003,
+   "type": "Retail & entertainment complex",
+   "style": "Megamall with indoor ski slope and themed attractions",
+   "people": "Mills Corporation and Mack-Cali; then Colony Capital; then Triple Five",
+   "status": "RA",
+   "vision": "A retail and entertainment complex in the Meadowlands Sports Complex, next to the stadium. It was planned around an indoor ski slope and other attractions, and is remembered for its striped, multicoloured exterior.",
+   "tl": [
+    [
+     "Jul 2002",
+     "A request for proposals is issued for the site."
+    ],
+    [
+     "Feb 2003",
+     "Mills Corporation and Mack-Cali are selected."
+    ],
+    [
+     "29 Sep 2004",
+     "Ground is broken."
+    ],
+    [
+     "2006–07",
+     "Colony Capital takes over the project."
+    ],
+    [
+     "May 2009",
+     "Construction stops at about 80% complete when financing collapses."
+    ],
+    [
+     "29 Apr 2011",
+     "Triple Five agrees to take over and redesign the complex."
+    ],
+    [
+     "25 Oct 2019",
+     "Opens as American Dream."
+    ],
+    [
+     "5 Dec 2019",
+     "The Big SNOW indoor ski slope opens."
+    ],
+    [
+     "1 Oct 2020",
+     "DreamWorks Water Park opens."
+    ]
+   ],
+   "built": "The Xanadu structure was largely built, then substantially redesigned and expanded into the roughly 3,000,000 sq ft American Dream complex.",
+   "happened": "Changes of developer, the 2008 financial crisis and a long construction stoppage left the half-finished building empty for years. A new owner rebuilt the project under a new name and plan.",
+   "current": "Operating as American Dream. Classified as Radically Altered, not abandoned: the complex opened, but not as Xanadu.",
+   "note": "The suburban regional mall, and its redevelopment, is documented closer to the ground by the <a href=\"#\" data-go=\"route59.ou\">Route 59 Corridor Archive</a>, which covers Rockland County, New York.",
+   "sources": [
+    [
+     "Wikipedia: American Dream Meadowlands",
+     "https://en.wikipedia.org/wiki/American_Dream_Meadowlands"
+    ],
+    [
+     "NJBIZ: After 15 years, Meadowlands’ American Dream finally opens doors",
+     "https://njbiz.com/15-years-meadowlands-american-dream-finally-opens-doors-slideshow/"
+    ]
+   ],
+   "rel": [
+    "dubailand",
+    "six-flags-new-orleans"
+   ],
+   "added": "2026-10-31",
+   "verified": "2026-10-31",
+   "fig": "meadowlands-xanadu"
+  },
+  {
+   "id": "epcot-city",
+   "no": "AF-0008",
+   "name": "EPCOT (Experimental Prototype Community of Tomorrow)",
+   "loc": "Walt Disney World, Florida, USA",
+   "country": "United States",
+   "decade": "1960s",
+   "y": 1966,
+   "type": "Planned city",
+   "style": "Radial planned community: central hub, monorail and PeopleMover transit, roads beneath the city core",
+   "people": "Walt Disney; Walt Disney Productions",
+   "status": "RA",
+   "fig": "city-radial",
+   "vision": "A working city of about 20,000 residents on Disney’s Florida land, laid out like a wheel: a covered downtown core with a 30-storey hotel and convention centre at its hub, high-density apartments around it and lower-density neighbourhoods at the edges. Monorail and PeopleMover lines would carry residents, while cars and delivery trucks ran underground. Walt Disney presented it on film as a permanent showcase for new technology.",
+   "tl": [
+    [
+     "Oct 1966",
+     "Walt Disney films his presentation of the EPCOT city."
+    ],
+    [
+     "Dec 1966",
+     "Walt Disney dies before work begins."
+    ],
+    [
+     "Feb 1967",
+     "The EPCOT film is screened for Florida legislators."
+    ],
+    [
+     "May 1967",
+     "State law creates the Reedy Creek Improvement District, giving the Disney land most of the powers of a county."
+    ],
+    [
+     "1967",
+     "Construction of the Magic Kingdom begins. The company’s board is not persuaded to build the city."
+    ],
+    [
+     "Oct 1971",
+     "Walt Disney World opens with the Magic Kingdom and two hotels."
+    ],
+    [
+     "1982",
+     "EPCOT Center opens as a theme park, not a city."
+    ]
+   ],
+   "built": "No city. The name, the monorail and the idea of a technology showcase survived in EPCOT Center, a park divided into Future World and World Showcase.",
+   "happened": "After Walt Disney’s death, the company’s directors judged a permanent residential city too risky. The project was reshaped into something closer to a world’s fair, with no residents.",
+   "current": "Operating as the EPCOT theme park at Walt Disney World. Classified Radically Altered: the name was built, the city was not.",
+   "sources": [
+    [
+     "Wikipedia: EPCOT (concept)",
+     "https://en.wikipedia.org/wiki/EPCOT_(concept)"
+    ]
+   ],
+   "rel": [
+    "meadowlands-xanadu",
+    "arcosanti"
+   ],
+   "added": "2026-11-01",
+   "verified": "2026-11-01"
+  },
+  {
+   "id": "pruitt-igoe",
+   "no": "AF-0009",
+   "name": "Pruitt–Igoe",
+   "loc": "St. Louis, Missouri, USA",
+   "country": "United States",
+   "decade": "1950s",
+   "y": 1951,
+   "type": "Public housing",
+   "style": "Modernist slab blocks: 33 eleven-storey concrete buildings",
+   "people": "Minoru Yamasaki, for Leinweber, Yamasaki & Hellmuth (architects)",
+   "status": "DM",
+   "fig": "slab-blocks",
+   "watch": true,
+   "vision": "A large public housing project of 33 eleven-storey concrete buildings with 2,870 apartments, 1,736 in Pruitt and 1,132 in Igoe, built to house more than 10,000 people.",
+   "tl": [
+    [
+     "1951–55",
+     "Built."
+    ],
+    [
+     "Nov 1954",
+     "Pruitt accepts its first tenants."
+    ],
+    [
+     "Jul 1955",
+     "Igoe accepts its first tenants."
+    ],
+    [
+     "1969",
+     "Occupancy falls to 57% in Pruitt and 49% in Igoe."
+    ],
+    [
+     "1970",
+     "Only 10 of the 33 buildings are still occupied."
+    ],
+    [
+     "16 Mar 1972",
+     "The first building is demolished by implosion, shown on television."
+    ],
+    [
+     "May 1974",
+     "The last tenant leaves."
+    ],
+    [
+     "1976",
+     "Demolition is complete."
+    ],
+    [
+     "1995",
+     "An elementary school is built on part of the site."
+    ]
+   ],
+   "built": "The entire complex, which stood for about twenty years.",
+   "happened": "Occupancy fell steeply within fifteen years of opening. The buildings were demolished between 1972 and 1976, and the televised implosions became a widely reproduced image of failed modernist public housing.",
+   "current": "Demolished. Parts of the site hold a school and an urgent care centre; as of 2024 much of it remained vacant.",
+   "sources": [
+    [
+     "Wikipedia: Pruitt–Igoe",
+     "https://en.wikipedia.org/wiki/Pruitt%E2%80%93Igoe"
+    ],
+    [
+     "The Cultural Landscape Foundation: Pruitt-Igoe",
+     "https://www.tclf.org/wendell-o-pruitt-homes-and-william-igoe-apartments-pruitt-igoe"
+    ]
+   ],
+   "rel": [
+    "nakagin-capsule-tower",
+    "sathorn-unique-tower"
+   ],
+   "added": "2026-11-01",
+   "verified": "2026-11-01"
+  },
+  {
+   "id": "imperial-hotel-tokyo",
+   "no": "AF-0010",
+   "name": "Imperial Hotel (Wright building)",
+   "loc": "Tokyo, Japan",
+   "country": "Japan",
+   "decade": "1910s",
+   "y": 1917,
+   "type": "Hotel",
+   "style": "Low-rise hotel of golden brick and carved Oya stone around a reflecting pool",
+   "people": "Frank Lloyd Wright (architect)",
+   "status": "PF",
+   "fig": "hotel-low",
+   "vision": "A new Imperial Hotel for Tokyo by Frank Lloyd Wright: a long, low building of golden brick and pale Oya stone, a local volcanic rock, replacing the city’s outdated hotel.",
+   "tl": [
+    [
+     "1917–23",
+     "Built."
+    ],
+    [
+     "1 Sep 1923",
+     "The hotel opens. The Great Kantō earthquake strikes the same day, and the building survives."
+    ],
+    [
+     "1968",
+     "Demolished to make way for a larger hotel."
+    ],
+    [
+     "1976",
+     "The entrance lobby and reflecting pool are moved and rebuilt at the Meiji Mura open-air architecture museum near Nagoya."
+    ]
+   ],
+   "built": "The complete hotel, in use for 45 years.",
+   "happened": "Its survival of the 1923 earthquake made the building famous, but it was demolished in 1968 for a larger hotel on the same site.",
+   "current": "Demolished in Tokyo. The entrance lobby and reflecting pool survive, rebuilt at Meiji Mura in Inuyama.",
+   "sources": [
+    [
+     "Frank Lloyd Wright Foundation: Imperial Hotel Lobby (Reconstruction)",
+     "https://franklloydwright.org/site/imperial-hotel-lobby-reconstruction/"
+    ],
+    [
+     "Wright’s Japan: The Imperial Hotel",
+     "https://www.wrightsjapan1905.org/timeline/the-imperial-hotel/"
+    ]
+   ],
+   "rel": [
+    "nakagin-capsule-tower",
+    "nara-dreamland"
+   ],
+   "added": "2026-11-01",
+   "verified": "2026-11-01"
+  },
+  {
+   "id": "sathorn-unique-tower",
+   "no": "AF-0011",
+   "name": "Sathorn Unique Tower",
+   "loc": "Bangkok, Thailand",
+   "country": "Thailand",
+   "decade": "1990s",
+   "y": 1990,
+   "type": "Residential tower",
+   "style": "Luxury condominium skyscraper",
+   "people": "Rangsan Torsuwan (architect); Sathorn Unique Co., Ltd. (developer)",
+   "status": "AB",
+   "fig": "tower-shell",
+   "watch": true,
+   "vision": "A 47-storey luxury condominium tower of 600 units, about 185 metres tall, off Charoen Krung Road in Bangkok’s Sathon district.",
+   "tl": [
+    [
+     "1990",
+     "Construction begins."
+    ],
+    [
+     "1993",
+     "Financing becomes difficult after the architect is arrested in an unrelated criminal case. He is convicted in 2008 and acquitted on appeal in 2010."
+    ],
+    [
+     "1997",
+     "Work stops in the Asian financial crisis when the finance companies behind the project collapse. The structure is about 80% complete."
+    ],
+    [
+     "1997–present",
+     "The shell stands unfinished while refinancing and sale talks continue."
+    ]
+   ],
+   "built": "The concrete structure, estimated at 80 to 90 percent complete. Interior and services work had barely started.",
+   "happened": "The 1997 financial crisis bankrupted the project’s funders. Later negotiations have not produced a completion date.",
+   "current": "Abandoned and unfinished: one of more than a dozen “ghost towers” in Bangkok.",
+   "sources": [
+    [
+     "Wikipedia: Sathorn Unique Tower",
+     "https://en.wikipedia.org/wiki/Sathorn_Unique_Tower"
+    ],
+    [
+     "Khaosod English: ‘Ghost Tower’ haunts Bangkok 20 years after financial crisis (2017)",
+     "https://www.khaosodenglish.com/life/2017/03/01/ghost-tower-haunts-bangkok-20-years-financial-crisis/"
+    ]
+   ],
+   "rel": [
+    "ryugyong-hotel",
+    "chicago-spire"
+   ],
+   "added": "2026-11-01",
+   "verified": "2026-11-01"
+  },
+  {
+   "id": "tatlins-tower",
+   "no": "AF-0012",
+   "name": "Monument to the Third International (Tatlin’s Tower)",
+   "loc": "Petrograd (now Saint Petersburg), Russia",
+   "country": "Russia",
+   "decade": "1910s",
+   "y": 1919,
+   "type": "Monument / headquarters",
+   "style": "Constructivist iron and glass double helix with rotating volumes",
+   "people": "Vladimir Tatlin",
+   "status": "NC",
+   "fig": "helix",
+   "vision": "A 400-metre monument and headquarters for the Communist International: an iron and steel double helix enclosing four glass volumes that would rotate at different speeds. A cube for lectures and legislative meetings would turn once a year, a pyramid for executive offices once a month, and a cylinder housing an information centre, issuing news by telegraph, radio and loudspeaker, once a day. A hemisphere at the top would hold radio equipment. Plans included an open-air screen and a projector to cast messages onto the clouds.",
+   "tl": [
+    [
+     "1919–20",
+     "Tatlin designs the tower for Petrograd."
+    ],
+    [
+     "1920",
+     "A large model is built and exhibited. Sources differ on whether it was first shown in Petrograd or Moscow."
+    ],
+    [
+     "1920s",
+     "The tower is not built. The steel it required was unobtainable in post-revolutionary Russia."
+    ],
+    [
+     "Later",
+     "Models are held by the Moderna Museet, Stockholm, the Tretyakov Gallery, Moscow, and the Centre Pompidou, Paris."
+    ],
+    [
+     "2011",
+     "A 1:42 model is built at the Royal Academy of Arts, London."
+    ]
+   ],
+   "built": "Only models. No part of the tower was built.",
+   "happened": "The state could not supply the steel and the project never left the model stage. Architects and artists have reconstructed and quoted it ever since.",
+   "current": "Never constructed. Models and reconstructions exist in several museums.",
+   "sources": [
+    [
+     "Wikipedia: Tatlin’s Tower",
+     "https://en.wikipedia.org/wiki/Tatlin%27s_Tower"
+    ]
+   ],
+   "rel": [
+    "palace-of-the-soviets",
+    "ryugyong-hotel"
+   ],
+   "added": "2026-11-01",
+   "verified": "2026-11-01"
+  },
+  {
+   "id": "arcosanti",
+   "no": "AF-0013",
+   "name": "Arcosanti",
+   "loc": "Yavapai County, Arizona, USA",
+   "country": "United States",
+   "decade": "1970s",
+   "y": 1970,
+   "type": "Experimental town",
+   "style": "Arcology: a dense, car-free town of cast-concrete vaults and apses",
+   "people": "Paolo Soleri; the Cosanti Foundation",
+   "status": "PR",
+   "fig": "arcology",
+   "watch": true,
+   "vision": "A compact, car-free town on a mesa about 70 miles north of Phoenix: Paolo Soleri’s prototype “arcology”, combining architecture and ecology in a single dense structure. The 1969 plan was for 1,500 residents; a 1975–77 revision raised the target to 5,000.",
+   "tl": [
+    [
+     "1969",
+     "First plan, for 1,500 residents."
+    ],
+    [
+     "1970",
+     "Ground is broken."
+    ],
+    [
+     "1975–77",
+     "The plan is enlarged for 5,000 residents."
+    ],
+    [
+     "1970s onward",
+     "Thirteen major structures are built. Bells cast on site help fund the work."
+    ],
+    [
+     "2013",
+     "Paolo Soleri dies."
+    ],
+    [
+     "2024",
+     "Workshops end."
+    ],
+    [
+     "2025",
+     "The Cosanti Foundation lays off about 80% of its staff. Ceramic bell production and volunteer programmes end, and agriculture ends on 31 December."
+    ]
+   ],
+   "built": "Thirteen major structures. The population has varied between 50 and 150 people, many of them students and volunteers.",
+   "happened": "The town never approached its planned size. In 2025 the foundation that runs it cut most of its staff and programmes.",
+   "current": "Partially realized. Bronze bell casting, tours and overnight stays continue with minimal staff.",
+   "sources": [
+    [
+     "Wikipedia: Arcosanti",
+     "https://en.wikipedia.org/wiki/Arcosanti"
+    ]
+   ],
+   "rel": [
+    "biosphere-2",
+    "epcot-city"
+   ],
+   "added": "2026-11-01",
+   "verified": "2026-11-01"
+  },
+  {
+   "id": "biosphere-2",
+   "no": "AF-0014",
+   "name": "Biosphere 2",
+   "loc": "Oracle, Arizona, USA",
+   "country": "United States",
+   "decade": "1980s",
+   "y": 1987,
+   "type": "Closed ecological research facility",
+   "style": "Glass-and-steel space frames enclosing artificial biomes",
+   "people": "Built privately; managed by Columbia University 1995–2003; owned by the University of Arizona since 2011",
+   "status": "RA",
+   "fig": "glasshouse",
+   "vision": "A materially closed, artificial world under glass, built to test whether a sealed ecological system could keep people alive, with space settlement in mind. Crews would live inside for years, growing their own food.",
+   "tl": [
+    [
+     "1987–91",
+     "Built."
+    ],
+    [
+     "26 Sep 1991",
+     "Mission 1 begins: eight people sealed inside for two years."
+    ],
+    [
+     "1993",
+     "Oxygen has fallen from 20.9% to 14.5% over 16 months. Oxygen is injected in January and August."
+    ],
+    [
+     "26 Sep 1993",
+     "Mission 1 ends."
+    ],
+    [
+     "6 Mar 1994",
+     "Mission 2 begins, planned for ten months."
+    ],
+    [
+     "6 Sep 1994",
+     "Mission 2 ends early."
+    ],
+    [
+     "Dec 1995",
+     "Columbia University takes over and converts it to a “flow-through” research system."
+    ],
+    [
+     "2007",
+     "The University of Arizona takes over research."
+    ],
+    [
+     "1 Jul 2011",
+     "The University of Arizona assumes full ownership."
+    ]
+   ],
+   "built": "The complete facility, including its glass enclosures and biomes.",
+   "happened": "The sealed missions ran into failures, including the loss of oxygen, and closed habitation ended in 1994. The structure became an open research facility and visitor site.",
+   "current": "Operating as a University of Arizona research facility, open to the public. Classified Radically Altered: the building survives, the sealed world does not.",
+   "sources": [
+    [
+     "Wikipedia: Biosphere 2",
+     "https://en.wikipedia.org/wiki/Biosphere_2"
+    ]
+   ],
+   "rel": [
+    "arcosanti",
+    "epcot-city"
+   ],
+   "added": "2026-11-01",
+   "verified": "2026-11-01"
+  },
+  {
+   "id": "forest-city",
+   "no": "AF-0015",
+   "name": "Forest City",
+   "loc": "Iskandar Puteri, Johor, Malaysia",
+   "country": "Malaysia",
+   "decade": "2000s",
+   "y": 2006,
+   "type": "Planned city on reclaimed land",
+   "style": "High-rise residential towers on man-made islands",
+   "people": "Country Garden (60%) and Esplanade Danga 88 (40%)",
+   "status": "PR",
+   "fig": "island-towers",
+   "watch": true,
+   "vision": "A new city on reclaimed islands in the Johor Strait, across the water from Singapore, planned for 700,000 people.",
+   "tl": [
+    [
+     "2006",
+     "Announced as a twenty-year project in the new Iskandar Malaysia development corridor."
+    ],
+    [
+     "Jan 2014",
+     "Land reclamation begins. A stop-work order follows in June."
+    ],
+    [
+     "Jan 2015",
+     "An environmental assessment cuts the site from 1,600 hectares to under 405."
+    ],
+    [
+     "6 Mar 2016",
+     "Grand opening. Duty-free status is announced."
+    ],
+    [
+     "2018",
+     "Prime Minister Mahathir Mohamad announces a ban on foreign buyers, later recast as visa changes."
+    ],
+    [
+     "2020",
+     "Sales fall by more than 90% during the pandemic."
+    ],
+    [
+     "2023",
+     "Country Garden defers debt payments. Long-term residents are estimated at 8,000–9,000."
+    ],
+    [
+     "2024",
+     "Forest City Island 1 is designated a duty-free island and a Special Financial Zone is announced."
+    ]
+   ],
+   "built": "Apartment blocks, hotels, a show gallery, roads and a few schools on the first reclaimed island.",
+   "happened": "Sales collapsed after 2018 and again in the pandemic, and the developer fell into a debt crisis. The city holds a small fraction of its planned population.",
+   "current": "Partially realized. Government incentives since 2024 aim to revive it.",
+   "sources": [
+    [
+     "Wikipedia: Forest City, Johor",
+     "https://en.wikipedia.org/wiki/Forest_City,_Johor"
+    ],
+    [
+     "Foreign Policy: Malaysia’s Forest City went from boomtown to ghost town (2024)",
+     "https://foreignpolicy.com/2024/03/18/malaysia-china-real-estate-countrygarden-forestcity/"
+    ]
+   ],
+   "rel": [
+    "dubailand",
+    "ryugyong-hotel"
+   ],
+   "added": "2026-11-01",
+   "verified": "2026-11-01"
+  },
+  {
+   "id": "sanzhi-ufo-houses",
+   "no": "AF-0016",
+   "name": "Sanzhi UFO Houses",
+   "loc": "Sanzhi District, New Taipei, Taiwan",
+   "country": "Taiwan",
+   "decade": "1970s",
+   "y": 1978,
+   "type": "Holiday resort",
+   "style": "Pod-shaped houses on stilts, resembling the Futuro house",
+   "people": "Private developer (not named in the sources consulted)",
+   "status": "DM",
+   "fig": "pods",
+   "vision": "A seaside holiday resort of pod-shaped houses resembling the Finnish Futuro house, on Taiwan’s northern coast near Tamsui, reportedly marketed to U.S. military officers stationed in East Asia.",
+   "tl": [
+    [
+     "1978",
+     "Construction begins."
+    ],
+    [
+     "1980",
+     "Construction stops after investment losses."
+    ],
+    [
+     "1980–2008",
+     "The unfinished pods stand abandoned for about 28 years."
+    ],
+    [
+     "29 Dec 2008",
+     "Demolition begins, despite a petition to keep one house as a museum."
+    ],
+    [
+     "2010",
+     "The last houses are demolished."
+    ]
+   ],
+   "built": "A cluster of pod houses, left unfinished.",
+   "happened": "The investment failed. Local stories blamed accidents and bad luck during construction; the archive treats these accounts as unverified.",
+   "current": "Demolished. The site was redeveloped as a seaside resort.",
+   "sources": [
+    [
+     "Wikipedia: Sanzhi UFO houses",
+     "https://en.wikipedia.org/wiki/Sanzhi_UFO_houses"
+    ],
+    [
+     "Failed Architecture: Sanzhi",
+     "https://failedarchitecture.com/sanzhi"
+    ]
+   ],
+   "rel": [
+    "nakagin-capsule-tower",
+    "six-flags-new-orleans"
+   ],
+   "added": "2026-11-01",
+   "verified": "2026-11-01"
+  },
+  {
+   "id": "chicago-spire",
+   "no": "AF-0017",
+   "name": "Chicago Spire",
+   "loc": "Chicago, Illinois, USA",
+   "country": "United States",
+   "decade": "2000s",
+   "y": 2005,
+   "type": "Residential skyscraper",
+   "style": "Twisting supertall spire",
+   "people": "Santiago Calatrava (architect); Shelbourne Development Group (developer)",
+   "status": "NC",
+   "fig": "spire",
+   "watch": true,
+   "vision": "A twisting, needle-like condominium tower of about 150 floors, designed by Santiago Calatrava for a lakefront site at 400 North Lake Shore Drive.",
+   "tl": [
+    [
+     "Jul 2005",
+     "Proposed as the Fordham Spire, with a hotel and condominiums."
+    ],
+    [
+     "2006",
+     "Shelbourne Development takes over and renames it the Chicago Spire. The city approves the design."
+    ],
+    [
+     "May 2007",
+     "The final design, all condominiums, is approved."
+    ],
+    [
+     "Jun 2007",
+     "Construction begins."
+    ],
+    [
+     "2008",
+     "Work stops after the caissons are finished, as financing collapses in the financial crisis."
+    ],
+    [
+     "2010",
+     "The lender files for foreclosure."
+    ],
+    [
+     "Nov 2014",
+     "The property passes to Related Midwest, which says it will not build the Spire."
+    ],
+    [
+     "2024",
+     "The 76-foot-deep hole is filled and construction of a different project, 400 Lake Shore, begins."
+    ]
+   ],
+   "built": "Foundations and a 76-foot-deep hole that stood fenced off for about sixteen years.",
+   "happened": "The 2008 financial crisis and the collapse of its lender ended the project. The site passed to a new developer with different plans.",
+   "current": "Never constructed. The site is being built over by Related Midwest’s two-tower 400 Lake Shore project.",
+   "sources": [
+    [
+     "Wikipedia: Chicago Spire",
+     "https://en.wikipedia.org/wiki/Chicago_Spire"
+    ],
+    [
+     "Axios Chicago: Chicago’s Spire hole fades into history (2024)",
+     "https://www.axios.com/local/chicago/2024/06/17/spire-hole-chicago-400-lake-shore"
+    ]
+   ],
+   "rel": [
+    "sathorn-unique-tower",
+    "palace-of-the-soviets"
+   ],
+   "added": "2026-11-01",
+   "verified": "2026-11-01"
+  }
+ ],
+ "log": [
+  {
+   "date": "2026-10-31",
+   "kind": "opened",
+   "text": "Archive opened with seven records, AF-0001 to AF-0007."
+  },
+  {
+   "date": "2026-11-01",
+   "kind": "added",
+   "id": "epcot-city",
+   "text": "Catalogued AF-0008: EPCOT (Experimental Prototype Community of Tomorrow)."
+  },
+  {
+   "date": "2026-11-01",
+   "kind": "added",
+   "id": "pruitt-igoe",
+   "text": "Catalogued AF-0009: Pruitt–Igoe."
+  },
+  {
+   "date": "2026-11-01",
+   "kind": "added",
+   "id": "imperial-hotel-tokyo",
+   "text": "Catalogued AF-0010: Imperial Hotel (Wright building)."
+  },
+  {
+   "date": "2026-11-01",
+   "kind": "added",
+   "id": "sathorn-unique-tower",
+   "text": "Catalogued AF-0011: Sathorn Unique Tower."
+  },
+  {
+   "date": "2026-11-01",
+   "kind": "added",
+   "id": "tatlins-tower",
+   "text": "Catalogued AF-0012: Monument to the Third International (Tatlin’s Tower)."
+  },
+  {
+   "date": "2026-11-01",
+   "kind": "added",
+   "id": "arcosanti",
+   "text": "Catalogued AF-0013: Arcosanti."
+  },
+  {
+   "date": "2026-11-01",
+   "kind": "added",
+   "id": "biosphere-2",
+   "text": "Catalogued AF-0014: Biosphere 2."
+  },
+  {
+   "date": "2026-11-01",
+   "kind": "added",
+   "id": "forest-city",
+   "text": "Catalogued AF-0015: Forest City."
+  },
+  {
+   "date": "2026-11-01",
+   "kind": "added",
+   "id": "sanzhi-ufo-houses",
+   "text": "Catalogued AF-0016: Sanzhi UFO Houses."
+  },
+  {
+   "date": "2026-11-01",
+   "kind": "added",
+   "id": "chicago-spire",
+   "text": "Catalogued AF-0017: Chicago Spire."
+  }
+ ]
+}

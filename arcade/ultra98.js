@@ -317,9 +317,11 @@
 
   /* ---------- routing: arcade.html#sweeper opens that game ---------- */
   function route() {
-    var id = (location.hash || '').slice(1).toLowerCase();
-    if (id && U.apps[id] && !U.apps[id].comingSoon) { U.focused = true; U.open(id); }
+    var h = (location.hash || '').slice(1), cut = h.indexOf('/'), id = (cut >= 0 ? h.slice(0, cut) : h).toLowerCase(), arg = '';
+    if (cut >= 0) { try { arg = decodeURIComponent(h.slice(cut + 1)); } catch (e) { arg = h.slice(cut + 1); } }
+    if (id && U.apps[id] && !U.apps[id].comingSoon) { U.focused = true; U.open(id, arg); }   /* arcade.html#app/anything passes "anything" to the app */
   }
+  U.setHash = function (v) { setHash(v); };
   function setHash(id) {
     try { history.replaceState(history.state, '', location.pathname + location.search + (id ? '#' + id : '')); } catch (e) {}
   }
@@ -377,7 +379,7 @@
 
   /* ------------------------------------------------------------ windows */
   var cascade = 0;
-  U.open = function (id) {
+  U.open = function (id, arg) {
     var app = U.apps[id]; if (!app) return;
     if (D.off) return;
     if (app.comingSoon) {
@@ -386,11 +388,13 @@
       return;
     }
     var existing = U.wins.filter(function (w) { return w.id === id; })[0];
-    if (existing) { existing.restore(); return existing; }
+    if (existing) { existing.restore(); if (arg) existing.emit('route', arg); return existing; }
     var autoFs = false;
     if (U.isSmall() && !D.screen.classList.contains('fs') && !document.fullscreenElement) { setPseudoFs(true); autoFs = true; }
+    U.openArg = arg || null;
     var w = new Win(app, autoFs);
-    setHash(id);
+    U.openArg = null;
+    if (!arg) setHash(id);   /* apps given a deep link keep their own hash */
     return w;
   };
 
@@ -511,7 +515,7 @@
         U.closeMenus();
         mi.classList.add('open'); U.openMenu = mi;
         var r = mi.getBoundingClientRect(), wr = self.el.getBoundingClientRect();
-        buildMenu(m.items, r.left - wr.left, r.bottom - wr.top, self.el);
+        buildMenu(val(m.items), r.left - wr.left, r.bottom - wr.top, self.el);
       }
       mi.addEventListener('click', function (e) { e.stopPropagation(); if (mi.classList.contains('open')) U.closeMenus(); else open(); });
       mi.addEventListener('mouseenter', function () { if (U.openMenu && U.openMenu !== mi && U.openMenu.parentNode === bar) open(); });
