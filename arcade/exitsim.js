@@ -1091,7 +1091,7 @@
       '<div class="es-view"><canvas class="es-cv"></canvas>' +
       '<div class="es-hud"><div class="es-say"></div><div class="es-prompt"></div><div class="es-card"></div><div class="es-load"><div class="es-load-box u98-raised"><div class="t">Loading simulation…</div><div class="es-bar u98-sunken"><i></i></div></div></div></div>' +
       '<div class="es-touch"><div class="es-stick"><i></i></div><button type="button" class="u98-btn es-use">USE</button><button type="button" class="u98-btn es-hint" aria-label="Ask the wizard"></button></div>' +
-      '<input type="file" accept="image/*" class="es-file" hidden></div>';
+      '<input type="file" accept="image/*" class="es-file" tabindex="-1" aria-hidden="true" style="position:absolute;left:-9999px;top:0;width:1px;height:1px;opacity:0;pointer-events:none"></div>';
     this.view = win.body.querySelector('.es-view');
     if (U.touch) this.view.classList.add('touch');
     this.cv = win.body.querySelector('.es-cv');
@@ -1308,14 +1308,28 @@
 
   /* ---- frames: hang your image */
   G.use = function () {
+    if (!this.near && this.wings) this.checkNear();   /* in case the frame came into view this instant */
     var n = this.near; if (!n) return;
     if (n.type === 'frame') this.pickImage(n.wing);
   };
   G.pickImage = function () {
+    if (!this.near && this.wings) this.checkNear();
     if (!this.near || this.near.type !== 'frame') return;
+    var self = this;
     this.pending = this.near.wing;
     this.keys = {};
-    try { this.file.click(); } catch (e) {}
+    var drawings = (this.myImages || []).filter(function (m) { return /^P:/.test(m.key); });
+    if (!drawings.length) { try { this.file.click(); } catch (e) {} return; }
+    drawings.sort(function (a, b) { return b.key < a.key ? -1 : 1; });
+    var thumbs = drawings.slice(0, 8).map(function (m, i) { return '<label class="es-pick"><input type="radio" name="pk" value="' + U.esc(m.key) + '"' + (i === 0 ? ' checked' : '') + '><img src="' + m.url + '" alt=""></label>'; }).join('');
+    U.dialog({ title: 'Hang an Image', wide: 340, html: 'Hang one of your GAMI PAINT drawings, or browse for a picture.<div class="es-picks">' + thumbs + '</div>',
+      buttons: [{ label: '&Hang It', value: 'hang', def: true }, { label: '&Browse\u2026', value: 'browse' }, { label: 'Cancel', value: null }],
+      collect: function (d, v) { if (v !== 'hang') return v; var r = d.querySelector('input[name=pk]:checked'); return r ? { key: r.value } : null; } }, this.win).then(function (v) {
+      if (!v || self.closed) return;
+      if (v === 'browse') { try { self.file.click(); } catch (e) {} return; }
+      var m = self.myImages.filter(function (x) { return x.key === v.key; })[0];
+      if (m) self.hangURL(self.pending, m.url);
+    });
   };
   G.hangFile = function (f) {
     var self = this, w = this.pending; if (!w) return;
@@ -1327,19 +1341,23 @@
         var max = 1024, s = Math.min(1, max / Math.max(img.width, img.height)), c = canvas(Math.max(1, Math.round(img.width * s)), Math.max(1, Math.round(img.height * s)));
         c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
         var url; try { url = c.toDataURL('image/jpeg', 0.86); } catch (e) { url = rd.result; }
-        DB.set(w.id, url).then(function () {
-          self.makeImage(w.id, url).then(function (im) {
-            if (!im || self.closed) return;
-            self.myImages = self.myImages.filter(function (m) { return m.key !== w.id; }); self.myImages.push(im);
-            store.hung[w.id] = true; persist();
-            self.openWing(w, im, false);
-          });
-        });
+        self.hangURL(w, url);
       };
       img.onerror = function () { U.dialog({ title: 'Exit Simulations', icon: 'error', text: 'The simulation couldn’t read that image.', buttons: [{ label: 'OK', def: true }] }, self.win); };
       img.src = rd.result;
     };
     rd.readAsDataURL(f);
+  };
+  G.hangURL = function (w, url) {
+    var self = this;
+    DB.set(w.id, url).then(function () {
+      self.makeImage(w.id, url).then(function (im) {
+        if (!im || self.closed) return;
+        self.myImages = self.myImages.filter(function (m) { return m.key !== w.id; }); self.myImages.push(im);
+        store.hung[w.id] = true; persist();
+        self.openWing(w, im, false);
+      });
+    });
   };
   /* put the image in the frame, paper the wing with it, and dissolve the veil */
   G.openWing = function (w, im, instant) {
@@ -1587,7 +1605,7 @@
   G.help = function () {
     U.dialog({ title: 'Exit Simulations Help', wide: 400,
       html: '<div class="u98-help u98-sunken"><h4>The object</h4><p>Every world is a simulation with one EXIT. Find it. Each simulation plays a song from <b>Sun’s Getting Low</b>.</p>' +
-        '<h4>Your images</h4><p>Empty glowing frames hang beside sealed doorways. Hang one of your own images in a frame and the doorway opens. Inside is a <b>sun shard</b>. Your images also turn up later in the game. They never leave your browser.</p>' +
+        '<h4>Your images</h4><p>Empty glowing frames hang beside sealed doorways. Hang one of your own images (or a GAMI PAINT drawing) in a frame and the doorway opens. Inside is a <b>sun shard</b>. Your images also turn up later in the game. They never leave your browser.</p>' +
         '<h4>The wizard</h4><p>He follows you everywhere. Press <b>H</b> (or tap his button) and he’ll lead the way.</p>' +
         '<h4>Controls</h4><ul><li>W / ↑ forward, S / ↓ back, ← → turn, A D sidestep, Shift to run.</li><li>Drag the view to look around. E, Space or click to use a frame.</li><li>On a phone: the stick moves you, drag the view to look, USE hangs an image.</li></ul></div>',
       buttons: [{ label: 'OK', def: true }] }, this.win);
@@ -1674,6 +1692,9 @@
     '....099..990....',
     '...0999..9990...'
   ]);
+  U.art.drawWizard = drawWizard;   /* GAMI PAINT stamps him */
+  U.esDB = DB;                     /* GAMI PAINT saves drawings here */
+  U.onImagesChanged = function () { U.wins.forEach(function (w) { if (w.id === 'exitsim' && w.game && w.game.renderer) w.game.loadImages(); }); };
   U.register({
     id: 'exitsim', title: 'Exit Simulations', label: 'Exit Simulations', menuLabel: '&Exit Simulations', exe: 'EXITSIM.EXE',
     icon: 'icon_exitsim', small: 'icon_wizard',
