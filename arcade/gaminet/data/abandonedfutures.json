@@ -49,7 +49,7 @@
   "monument",
   "generic"
  ],
- "updated": "2026-11-01",
+ "updated": "2026-11-15",
  "records": [
   {
    "id": "palace-of-the-soviets",
@@ -296,7 +296,7 @@
     "dubailand"
    ],
    "added": "2026-10-31",
-   "verified": "2026-10-31",
+   "verified": "2026-11-15",
    "fig": "ryugyong-hotel",
    "watch": true
   },
@@ -311,7 +311,7 @@
    "type": "Theme park",
    "style": "Regional theme park",
    "people": "Opened as Jazzland; later operated by Six Flags",
-   "status": "AB",
+   "status": "DM",
    "vision": "A regional theme park for New Orleans. It opened in 2000 as Jazzland and was later operated as Six Flags New Orleans.",
    "tl": [
     [
@@ -337,11 +337,19 @@
     [
      "2024",
      "Demolition begins on the 227-acre site."
+    ],
+    [
+     "2025–2026",
+     "The remaining structures are cleared. The New Orleans Redevelopment Authority dates the end of demolition to early 2025; the site was reported fully cleared in March 2026."
+    ],
+    [
+     "Oct 2026",
+     "The authority tells the City Council that Bayou Phoenix must close its financing by the end of the year. The developer calls the deadline artificial."
     ]
    ],
    "built": "A complete, operating theme park.",
-   "happened": "Katrina closed it after five seasons. Repair and reopening plans failed, and the rides stood in place for nearly twenty years.",
-   "current": "Abandoned from 2005. Demolition was under way in late 2024 to clear the site for redevelopment. Status last verified November 2024.",
+   "happened": "Katrina closed it after five seasons. Repair and reopening plans failed, the rides stood in place for nearly twenty years, and the park was then demolished.",
+   "current": "Demolished. The park’s structures have been cleared from the site, which the New Orleans Redevelopment Authority still owns. The Bayou Phoenix redevelopment has not secured its financing, and the authority says it will act if the deal is not closed by the end of 2026.",
    "sources": [
     [
      "Attractions Magazine: Abandoned Six Flags theme park to be demolished (Nov 2024)",
@@ -350,6 +358,18 @@
     [
      "Axios New Orleans: Six Flags demolition expected to start in September (Aug 2024)",
      "https://www.axios.com/local/new-orleans/2024/08/29/six-flags-theme-park-abandoned-katrina-demolition-starting-september"
+    ],
+    [
+     "NORA: Bayou Phoenix to unveil new partners for former New Orleans Six Flags site (Feb 2026)",
+     "https://noraworks.org/news/253-bayou-phoenix-to-unveil-new-partners-for-former-new-orleans-six-flags-site"
+    ],
+    [
+     "Old Six Flags site cleared as developers seek $50M in taxpayer funding (Mar 2026)",
+     "https://www.yahoo.com/news/articles/old-six-flags-cleared-developers-043532301.html"
+    ],
+    [
+     "FOX 8: City leaders warn Bayou Phoenix time is running out on Six Flags redevelopment (Oct 2026)",
+     "https://www.fox8live.com/2026/10/30/zombie-apocalypse-movie-city-leaders-warn-bayou-phoenix-time-is-running-out-six-flags-redevelopment/"
     ]
    ],
    "rel": [
@@ -357,7 +377,7 @@
     "meadowlands-xanadu"
    ],
    "added": "2026-10-31",
-   "verified": "2026-10-31",
+   "verified": "2026-11-15",
    "fig": "six-flags-new-orleans",
    "watch": true
   },
@@ -637,7 +657,7 @@
     "sathorn-unique-tower"
    ],
    "added": "2026-11-01",
-   "verified": "2026-11-01"
+   "verified": "2026-11-15"
   },
   {
    "id": "imperial-hotel-tokyo",
@@ -742,7 +762,7 @@
     "chicago-spire"
    ],
    "added": "2026-11-01",
-   "verified": "2026-11-01"
+   "verified": "2026-11-15"
   },
   {
    "id": "tatlins-tower",
@@ -855,7 +875,7 @@
     "epcot-city"
    ],
    "added": "2026-11-01",
-   "verified": "2026-11-01"
+   "verified": "2026-11-15"
   },
   {
    "id": "biosphere-2",
@@ -972,11 +992,15 @@
     [
      "2024",
      "Forest City Island 1 is designated a duty-free island and a Special Financial Zone is announced."
+    ],
+    [
+     "2026",
+     "The developer reports about 20,000 residents in 66 completed blocks, says no new residential launches are planned and turns to commercial and industrial land."
     ]
    ],
    "built": "Apartment blocks, hotels, a show gallery, roads and a few schools on the first reclaimed island.",
    "happened": "Sales collapsed after 2018 and again in the pandemic, and the developer fell into a debt crisis. The city holds a small fraction of its planned population.",
-   "current": "Partially realized. Government incentives since 2024 aim to revive it.",
+   "current": "Partially realized. The developer reports about 20,000 residents, a company figure, and is shifting from housing to commercial and industrial development. Government incentives since 2024 aim to revive it.",
    "sources": [
     [
      "Wikipedia: Forest City, Johor",
@@ -985,6 +1009,10 @@
     [
      "Foreign Policy: Malaysia’s Forest City went from boomtown to ghost town (2024)",
      "https://foreignpolicy.com/2024/03/18/malaysia-china-real-estate-countrygarden-forestcity/"
+    ],
+    [
+     "The Edge Malaysia: Playing the long game at Forest City (Oct 2026)",
+     "https://theedgemalaysia.com/node/819942"
     ]
    ],
    "rel": [
@@ -992,7 +1020,7 @@
     "ryugyong-hotel"
    ],
    "added": "2026-11-01",
-   "verified": "2026-11-01"
+   "verified": "2026-11-15"
   },
   {
    "id": "sanzhi-ufo-houses",
@@ -1097,11 +1125,15 @@
     [
      "2024",
      "The 76-foot-deep hole is filled and construction of a different project, 400 Lake Shore, begins."
+    ],
+    [
+     "Jul 2026",
+     "The last facade glass goes on the first tower of 400 Lake Shore, 72 storeys and 857 feet tall. The second tower has no start date."
     ]
    ],
    "built": "Foundations and a 76-foot-deep hole that stood fenced off for about sixteen years.",
    "happened": "The 2008 financial crisis and the collapse of its lender ended the project. The site passed to a new developer with different plans.",
-   "current": "Never constructed. The site is being built over by Related Midwest’s two-tower 400 Lake Shore project.",
+   "current": "Never constructed. The site is being built over by Related Midwest’s 400 Lake Shore project: the first tower’s exterior was finished in July 2026, and a second tower is planned but not started.",
    "sources": [
     [
      "Wikipedia: Chicago Spire",
@@ -1110,6 +1142,10 @@
     [
      "Axios Chicago: Chicago’s Spire hole fades into history (2024)",
      "https://www.axios.com/local/chicago/2024/06/17/spire-hole-chicago-400-lake-shore"
+    ],
+    [
+     "Chicago Sun-Times: Exterior construction wraps up at the first of two towers at 400 N. Lake Shore (Aug 2026)",
+     "https://chicago.suntimes.com/architecture-design/2026/08/10/chicago-spire-exterior-construction-two-towers-related-400-n-lake-shore-drive"
     ]
    ],
    "rel": [
@@ -1117,7 +1153,433 @@
     "palace-of-the-soviets"
    ],
    "added": "2026-11-01",
+   "verified": "2026-11-15"
+  },
+  {
+   "id": "fordlandia",
+   "no": "AF-0018",
+   "name": "Fordlândia",
+   "loc": "Aveiro, Pará, Brazil",
+   "country": "Brazil",
+   "decade": "1920s",
+   "y": 1928,
+   "type": "Company town and rubber plantation",
+   "style": "American suburban town laid out in the Amazon",
+   "people": "Henry Ford; Ford Motor Company; some buildings by Albert Kahn",
+   "status": "AB",
+   "fig": "generic",
+   "watch": true,
+   "vision": "A plantation town on the Tapajós River, planned for 10,000 inhabitants, that would give Ford Motor Company its own supply of cultivated rubber and reduce its reliance on European-controlled supplies. It was designed to resemble an American suburb, with bungalows, a hospital, schools, a cinema, and golf and tennis courts for American staff.",
+   "tl": [
+    [
+     "1926–27",
+     "Ford negotiates a concession on the Tapajós in exchange for 9% of profits. Sources give its size as about 10,000 sq km or more than 14,000 sq km."
+    ],
+    [
+     "1928",
+     "Clearing begins and the town is founded. Some reports date the founding to 1927."
+    ],
+    [
+     "Dec 1930",
+     "Workers angered by food and meal rules riot in the Breaking Pans revolt, smashing cars and machinery. The Brazilian Army ends it."
+    ],
+    [
+     "1934",
+     "With blight and pests spreading through the tightly planted rubber trees, Ford abandons Fordlândia and moves to Belterra, 40 km south of Santarém."
+    ],
+    [
+     "1945",
+     "Synthetic rubber has cut demand. Henry Ford II sells the land to the Brazilian government for US$244,200, after an investment of about US$20 million."
+    ],
+    [
+     "2015",
+     "Federal prosecutors in Pará sue the heritage agency Iphan and the city of Aveiro for failing to preserve the town."
+    ],
+    [
+     "May 2026",
+     "A court in Pará orders federal and municipal authorities to draw up and carry out a recovery plan."
+    ]
+   ],
+   "built": "A working town with a sawmill, workshops, a hospital, a cinema, a 50-metre water tower, houses for American staff, and rubber plantations.",
+   "happened": "The plantation failed. Rubber trees set in tight rows were exposed to fungus and pests, workers revolted in 1930, and the operation moved away in 1934. Synthetic rubber ended the venture, and the land returned to Brazil at a heavy loss. Henry Ford never visited.",
+   "current": "Abandoned by its founder but not empty. It is a district of Aveiro with about 2,000 to 3,000 residents, depending on the source, many living in Ford-era buildings. The hospital is a ruin. It has no official heritage status, but a 2026 court order requires a recovery plan.",
+   "sources": [
+    [
+     "Wikipedia: Fordlândia",
+     "https://en.wikipedia.org/wiki/Fordl%C3%A2ndia"
+    ],
+    [
+     "AP via KSAT: Brazilian court orders restoration of Fordlandia (May 2026)",
+     "https://www.ksat.com/business/2026/05/29/brazilian-court-orders-restoration-of-fordlandia-henry-fords-amazon-ghost-town/"
+    ],
+    [
+     "Al Jazeera: Brazil’s Fordlandia, tracing the roots of Amazon deforestation (2024)",
+     "https://www.aljazeera.com/features/longform/2024/2/27/brazils-fordlandia-tracing-the-roots-of-amazon-deforestation"
+    ],
+    [
+     "American Heritage: Henry Ford’s Bungle Jungle",
+     "https://www.americanheritage.com/henry-fords-bungle-jungle"
+    ]
+   ],
+   "rel": [
+    "epcot-city",
+    "forest-city"
+   ],
+   "added": "2026-11-01",
+   "verified": "2026-11-15"
+  },
+  {
+   "id": "robin-hood-gardens",
+   "no": "AF-0019",
+   "name": "Robin Hood Gardens",
+   "loc": "Poplar, London, UK",
+   "country": "United Kingdom",
+   "decade": "1960s",
+   "y": 1968,
+   "type": "Council housing estate",
+   "style": "Brutalism: concrete blocks with streets in the sky",
+   "people": "Alison and Peter Smithson (architects); Greater London Council (client)",
+   "status": "PF",
+   "fig": "slab-blocks",
+   "watch": false,
+   "vision": "Council housing in two long, curved concrete blocks around a central green. Wide access decks on every third floor were meant to work as streets in the sky, where residents would meet.",
+   "tl": [
+    [
+     "1968",
+     "Construction begins, according to Wikipedia. The V&A catalogue dates the building to 1970–1972."
+    ],
+    [
+     "1971",
+     "The first residents move in."
+    ],
+    [
+     "1972",
+     "Completed at a cost of £1,845,585: blocks of ten and seven storeys holding 213 flats."
+    ],
+    [
+     "2008–2009",
+     "A campaign for listing fails. The government refuses it and grants a five-year Certificate of Immunity."
+    ],
+    [
+     "2012",
+     "Tower Hamlets Council approves demolition for the Blackwall Reach redevelopment."
+    ],
+    [
+     "2015",
+     "Historic England rejects a second listing application."
+    ],
+    [
+     "2017–2018",
+     "The west block is demolished. The V&A salvages a three-storey section of it."
+    ],
+    [
+     "2018",
+     "Part of the salvaged section is shown at the Venice Architecture Biennale."
+    ],
+    [
+     "Mar 2025",
+     "Demolition of the east block is finished. Sources differ on whether it began in mid-2024 or December 2024."
+    ],
+    [
+     "May 2025",
+     "The fragment goes on display at V&A East Storehouse in Stratford."
+    ]
+   ],
+   "built": "The complete estate, with 213 flats when built and 252 homes by the time of its replacement.",
+   "happened": "The estate fell into disrepair. Two listing bids failed despite support from notable architects, and the council chose redevelopment. The blocks came down in two stages between 2017 and 2025.",
+   "current": "Demolished. A three-storey fragment, with the interiors of two maisonettes and a section of street in the sky, is held by the V&A and shown at V&A East Storehouse. The site is being redeveloped as Blackwall Reach.",
+   "sources": [
+    [
+     "Wikipedia: Robin Hood Gardens",
+     "https://en.wikipedia.org/wiki/Robin_Hood_Gardens"
+    ],
+    [
+     "V&A: Robin Hood Gardens fragment, CD.26-2018",
+     "https://collections.vam.ac.uk/item/O1427439"
+    ],
+    [
+     "V&A Blog: Open call: Robin Hood",
+     "https://www.vam.ac.uk/blog/east/open-call-robin-hood"
+    ],
+    [
+     "Brutalism As Found: Demolition and Afterlife",
+     "https://brutalismasfound.co.uk/demolition-and-afterlife/"
+    ]
+   ],
+   "rel": [
+    "pruitt-igoe",
+    "nakagin-capsule-tower"
+   ],
+   "added": "2026-11-01",
    "verified": "2026-11-01"
+  },
+  {
+   "id": "plan-voisin",
+   "no": "AF-0020",
+   "name": "Plan Voisin",
+   "loc": "Paris, France",
+   "country": "France",
+   "decade": "1920s",
+   "y": 1925,
+   "type": "Urban redevelopment plan",
+   "style": "Modernist city planning: identical towers in open parkland",
+   "people": "Le Corbusier (architect); Gabriel Voisin (sponsor)",
+   "status": "NC",
+   "fig": "complex",
+   "vision": "A large area of central Paris on the Right Bank of the Seine, about 260 hectares including the Marais, would be cleared and replaced by 18 identical cruciform skyscrapers set in parks and open roads. Only 12 per cent of the ground would be built on, and the towers could house about 78,000 people. Le Corbusier saw it as a cure for overcrowding and disease in the old quarters.",
+   "tl": [
+    [
+     "1922",
+     "Le Corbusier shows the Ville Contemporaine, an unsited plan for a city of three million people in skyscrapers, at the Salon d’Automne."
+    ],
+    [
+     "1925",
+     "He applies the same ideas to a real site in central Paris. The plan is named after Gabriel Voisin, the aircraft and car maker who sponsored it."
+    ],
+    [
+     "After 1925",
+     "Paris rejects the plan as too radical. Le Corbusier keeps promoting its ideas in manifestos and periodicals."
+    ]
+   ],
+   "built": "Nothing. The plan exists only as drawings and models.",
+   "happened": "The city never took the proposal up, and the Marais survived. Its principles of towers in open space spread instead through later modernist planning, and Wikipedia cites it as an influence on La Défense, Brasília and post-war housing estates across Europe.",
+   "current": "Never constructed. The Marais remains one of the best-preserved historic quarters of central Paris.",
+   "sources": [
+    [
+     "Wikipedia: Plan Voisin",
+     "https://en.wikipedia.org/wiki/Plan_Voisin"
+    ],
+    [
+     "Paris ZigZag: Le plan Voisin, le projet de Le Corbusier qui aurait pu défigurer Paris",
+     "https://www.pariszigzag.fr/secret/histoire-insolite-paris/plan-voisin-projet-le-corbusier-paris"
+    ]
+   ],
+   "rel": [
+    "pruitt-igoe",
+    "epcot-city"
+   ],
+   "added": "2026-11-08",
+   "verified": "2026-11-08",
+   "watch": false
+  },
+  {
+   "id": "pyramid-of-tirana",
+   "no": "AF-0021",
+   "name": "Pyramid of Tirana",
+   "loc": "Tirana, Albania",
+   "country": "Albania",
+   "decade": "1980s",
+   "y": 1986,
+   "type": "Memorial museum",
+   "style": "Late socialist modernism: a concrete pyramid with sloping faces",
+   "people": "Pirro Vaso, Klement Kolaneci, Pranvera Hoxha and Vladimir Bregu (architects); MVRDV (2021–2023 renovation)",
+   "status": "RA",
+   "fig": "monument",
+   "vision": "A museum to the legacy of Enver Hoxha, Albania’s communist leader, who died in 1985. It was co-designed by his daughter Pranvera Hoxha and her husband Klement Kolaneci, and was said to be the most expensive single structure built in Albania at the time.",
+   "tl": [
+    [
+     "1986",
+     "Construction begins."
+    ],
+    [
+     "14 Oct 1988",
+     "Opens as the Enver Hoxha Museum."
+    ],
+    [
+     "1991",
+     "After the fall of communism the museum closes. The building becomes a conference and exhibition centre."
+    ],
+    [
+     "1999",
+     "NATO and humanitarian organisations use it as a base during the Kosovo War."
+    ],
+    [
+     "2001",
+     "A television and radio broadcaster moves into part of the building. The rest decays and is vandalised."
+    ],
+    [
+     "2010s",
+     "Several demolition plans are proposed, including a new parliament building on the site. A petition against demolition gathers about 6,000 signatures."
+    ],
+    [
+     "2017–2018",
+     "The government announces it will be refurbished, not demolished, and a youth technology centre is planned inside."
+    ],
+    [
+     "Feb 2021",
+     "Renovation to a design by MVRDV begins."
+    ],
+    [
+     "Oct 2023",
+     "The building reopens with steps up its sloping faces and coloured boxes in and around it. It is inaugurated on 16 October."
+    ]
+   ],
+   "built": "The complete pyramid, covering about 17,000 square metres including its grounds.",
+   "happened": "The shrine to the regime lost its purpose within three years of opening. It drifted through other uses, decayed, and faced repeated demolition plans before being kept and reworked.",
+   "current": "Radically altered. It is a public cultural and education centre whose roof can be climbed, housing TUMO Tirana, which offers free technology courses to young people, along with studios, cafés and start-up offices.",
+   "sources": [
+    [
+     "Wikipedia: Pyramid of Tirana",
+     "https://en.wikipedia.org/wiki/Pyramid_of_Tirana"
+    ],
+    [
+     "ArchDaily: Pyramid of Tirana / MVRDV",
+     "https://www.archdaily.com/1008619/pyramid-of-tirana-mvrdv"
+    ]
+   ],
+   "rel": [
+    "palace-of-the-soviets",
+    "ryugyong-hotel"
+   ],
+   "added": "2026-11-08",
+   "verified": "2026-11-08",
+   "watch": false
+  },
+  {
+   "id": "buzludzha-monument",
+   "no": "AF-0022",
+   "name": "Buzludzha Monument",
+   "loc": "Buzludzha Peak, Stara Zagora Province, Bulgaria",
+   "country": "Bulgaria",
+   "decade": "1970s",
+   "y": 1974,
+   "type": "Party monument and assembly hall",
+   "style": "Late socialist modernism: a concrete saucer-shaped hall beside a tall pylon",
+   "people": "Georgi Stoilov (architect); Bulgarian Communist Party (client); Buzludzha Project Foundation, founded by Dora Ivanova (conservation)",
+   "status": "AB",
+   "fig": "monument",
+   "vision": "A memorial house of the Bulgarian Communist Party on the peak where a founding congress of Bulgarian socialists was held in 1891. Its circular hall was lined with about 937 square metres of mosaics celebrating the party and its history.",
+   "tl": [
+    [
+     "23 Jan 1974",
+     "Construction begins. The peak is levelled with explosives, lowering it from 1,441 to 1,432 metres."
+    ],
+    [
+     "23 Aug 1981",
+     "The monument opens. It cost 14,186,000 leva."
+    ],
+    [
+     "1989",
+     "Maintenance stops with the fall of communism, and the building is left to decay."
+    ],
+    [
+     "2018",
+     "Europa Nostra names it one of the seven most endangered heritage sites in Europe."
+    ],
+    [
+     "2019",
+     "The Getty Foundation grants $185,000 for a conservation management plan, prepared with ICOMOS Germany."
+    ],
+    [
+     "Jul 2020",
+     "A second Getty grant funds the stabilisation of surviving mosaic panels."
+    ],
+    [
+     "Aug 2025",
+     "A 36-month first-stage consolidation project worth almost seven million leva is announced, starting with a new roof and windows."
+    ],
+    [
+     "Aug 2026",
+     "The sixth Open Buzludzha festival is described by the foundation as the symbolic start of its conservation project."
+    ]
+   ],
+   "built": "The complete monument: the domed hall, its ring of mosaics and the pylon beside it.",
+   "happened": "The building lost its purpose eight years after it opened. Without maintenance, age, weather and vandalism weakened the structure, about a fifth of the interior mosaics have been destroyed, and the river-stone mosaics of the outer ring have mostly vanished.",
+   "current": "Abandoned and closed to the public because of structural hazards. A consolidation project led by the Buzludzha Project Foundation, Kazanlak Municipality and the Stara Zagora Regional Administration is at an early stage.",
+   "sources": [
+    [
+     "Wikipedia: Buzludzha Monument",
+     "https://en.wikipedia.org/wiki/Buzludzha_Monument"
+    ],
+    [
+     "Radio Bulgaria: The future of the monument on Mount Buzludzha (Aug 2025)",
+     "https://bnrnews.bg/en/post/12025/the-future-of-the-monument-on-mount-buzludzha-a-tourist-site-that-brings-benefits-to-the-region"
+    ],
+    [
+     "BTA: Open Buzludzha Festival gets underway (Aug 2026)",
+     "https://www.bta.bg/en/local-focus/1185291-open-buzludzha-festival-gets-underway-with-music-digital-experiences"
+    ]
+   ],
+   "rel": [
+    "pyramid-of-tirana",
+    "palace-of-the-soviets"
+   ],
+   "added": "2026-11-15",
+   "verified": "2026-11-15",
+   "watch": true
+  },
+  {
+   "id": "palast-der-republik",
+   "no": "AF-0023",
+   "name": "Palast der Republik",
+   "loc": "Berlin, Germany",
+   "country": "Germany",
+   "decade": "1970s",
+   "y": 1973,
+   "type": "Parliament and public culture house",
+   "style": "East German modernism: a long steel-framed box clad in bronze-tinted mirror glass",
+   "people": "Heinz Graffunder with the Bauakademie der DDR (architects); German Democratic Republic (client)",
+   "status": "DM",
+   "fig": "complex",
+   "vision": "A palace for the people on the site of the demolished Berlin City Palace: the seat of the Volkskammer, the East German parliament, combined with a great hall for up to about 4,500 people, theatres, galleries, restaurants and a bowling alley open to the public. Its many lights earned it the nickname “Erich’s lamp shop”.",
+   "tl": [
+    [
+     "2 Nov 1973",
+     "The foundation stone is laid."
+    ],
+    [
+     "Apr 1976",
+     "The palace opens officially on 23 April and to the public on 25 April."
+    ],
+    [
+     "19 Sep 1990",
+     "It is closed because of asbestos contamination, two weeks before German reunification."
+    ],
+    [
+     "Nov 1998–2003",
+     "Asbestos removal begins; by 2003 the asbestos and interior fittings have been taken out."
+    ],
+    [
+     "Nov 2003",
+     "The Bundestag decides to demolish it and rebuild the Berlin Palace."
+    ],
+    [
+     "2003–2005",
+     "The gutted shell opens to visitors and hosts exhibitions, concerts and theatre as an interim use."
+    ],
+    [
+     "6 Feb 2006",
+     "Demolition begins; delayed by further asbestos finds, it runs into 2008."
+    ],
+    [
+     "2021",
+     "The Humboldt Forum, behind reconstructed palace façades, opens to the public on the site."
+    ]
+   ],
+   "built": "The complete building, about 180 metres long, 85 metres wide and 32 metres high. Cost figures differ: an internal list gives 485 million East German marks, while other estimates run from about 800 million to one billion.",
+   "happened": "The parliament it housed was dissolved in October 1990, weeks after the building closed. After years of debate over asbestos, cost and the symbolism of the site, it was demolished in favour of a reconstruction of the palace that had stood there before.",
+   "current": "Demolished. Fragments survive in collections: globe lamps and an original sign are displayed in the Humboldt Forum, parts of the Gläserne Blume glass sculpture from its foyer are held by the Deutsches Historisches Museum, and the DDR Museum shows original lighting and signage.",
+   "sources": [
+    [
+     "Wikipedia: Palace of the Republic, Berlin",
+     "https://en.wikipedia.org/wiki/Palace_of_the_Republic,_Berlin"
+    ],
+    [
+     "DDR Museum: The Palace of the Republic between splendour and controversy",
+     "https://www.ddr-museum.de/en/blog/2023/the-palace-of-the-republic-between-splendour-and-controversy"
+    ],
+    [
+     "Deutsches Historisches Museum: Zur Gläsernen Blume",
+     "https://www.dhm.de/pressemitteilung/zur-glaesernen-blume"
+    ]
+   ],
+   "rel": [
+    "pyramid-of-tirana",
+    "robin-hood-gardens"
+   ],
+   "added": "2026-11-15",
+   "verified": "2026-11-15",
+   "watch": false
   }
  ],
  "log": [
@@ -1185,6 +1647,60 @@
    "kind": "added",
    "id": "chicago-spire",
    "text": "Catalogued AF-0017: Chicago Spire."
+  },
+  {
+   "date": "2026-11-01",
+   "kind": "status",
+   "id": "six-flags-new-orleans",
+   "text": "Status changed from Abandoned to Demolished: all park structures have been cleared from the site."
+  },
+  {
+   "date": "2026-11-01",
+   "kind": "revised",
+   "id": "forest-city",
+   "text": "The developer now reports about 20,000 residents and is shifting from housing to commercial and industrial development."
+  },
+  {
+   "date": "2026-11-01",
+   "kind": "revised",
+   "id": "chicago-spire",
+   "text": "The exterior of the first 400 Lake Shore tower on the site was finished in July 2026."
+  },
+  {
+   "date": "2026-11-01",
+   "kind": "added",
+   "id": "fordlandia",
+   "text": "Catalogued AF-0018: Fordlândia."
+  },
+  {
+   "date": "2026-11-01",
+   "kind": "added",
+   "id": "robin-hood-gardens",
+   "text": "Catalogued AF-0019: Robin Hood Gardens."
+  },
+  {
+   "date": "2026-11-08",
+   "kind": "added",
+   "id": "plan-voisin",
+   "text": "Catalogued AF-0020: Plan Voisin."
+  },
+  {
+   "date": "2026-11-08",
+   "kind": "added",
+   "id": "pyramid-of-tirana",
+   "text": "Catalogued AF-0021: Pyramid of Tirana."
+  },
+  {
+   "date": "2026-11-15",
+   "kind": "added",
+   "id": "buzludzha-monument",
+   "text": "Catalogued AF-0022: Buzludzha Monument."
+  },
+  {
+   "date": "2026-11-15",
+   "kind": "added",
+   "id": "palast-der-republik",
+   "text": "Catalogued AF-0023: Palast der Republik."
   }
  ]
 }
